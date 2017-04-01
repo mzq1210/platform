@@ -1,0 +1,13 @@
+.idea
+
+/nbproject/private/
+nbproject/
+
+web/backend/data
+web/backend/assets
+runtime
+#data/
+#common/config/db
+
+
+web/sweb/swagger/swagger.json
