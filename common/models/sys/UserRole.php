@@ -1,9 +1,4 @@
 <?php
-/**
- * 用户角色模型
- * User: zhangshaohua
- * Date: 16-11-10
- */
 
 namespace common\models\sys;
 
@@ -25,9 +20,9 @@ class UserRole extends BaseSys
      * 时 间: 2016-11-10
      * 说 明:查询一个用户的角色
      */
-    public static function getUserRole($userid = 0,$siteid = 0){
+    public static function getUserRole($userid = 0){
         $list = self::find()
-            ->where('userid=:userid and siteid=:siteid', [':userid' => $userid,':siteid'=>$siteid])
+            ->where('userid=:userid', [':userid' => $userid])
             ->select('roleid')
             ->asArray()
             ->all();

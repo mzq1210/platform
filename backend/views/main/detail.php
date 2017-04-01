@@ -26,14 +26,6 @@ use yii\helpers\Url;
                 <td><?= $user->mobile ?></td>
             </tr>
             <tr>
-                <th width="100">所属站点：</th>
-                <td><?= $siteName ?></td>
-            </tr>
-            <tr>
-                <th width="100">组织结构：</th>
-                <td><?= $deptName ?></td>
-            </tr>
-            <tr>
                 <th width="100">状态：</th>
                 <td><?= $user->status == 1 ? '禁用' : '启用' ?></td>
             </tr>
