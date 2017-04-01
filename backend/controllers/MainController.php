@@ -7,10 +7,10 @@
  */
 namespace backend\controllers;
 
+use Yii;
 use common\components\library\ShowMessage;
 use common\models\sys\Role;
 use common\models\sys\UserInfo;
-use Yii;
 use common\models\sys\User;
 use app\components\base\BaseController;
 
@@ -18,7 +18,7 @@ class MainController extends BaseController{
 
     public function actionIndex(){
         //获取菜单
-        $menuTree = $this->menuTreeByRole($this->siteid, $this->roleid);
+        $menuTree = $this->menuTreeByRole($this->roleid);
         return $this->render('index',[
             'menuTree' => $menuTree,
             'username' => $this->username,
@@ -36,11 +36,6 @@ class MainController extends BaseController{
         
     }
 
-    /**
-     * 开 发: 李效宾
-     * 时 间: 2016-11-09
-     * 说 明: 查看用户详情
-     */
     public function actionDetail(){
         if(!empty($this->userid)){
             $user = User::selUser($this->userid);

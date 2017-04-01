@@ -61,15 +61,11 @@ class BaseController extends Controller{
      * @Date:   2016-11-18
      * @Return: array
      */
-    protected function menuTreeByRole($siteid, $roleid) {
-        if ($this->_isAdmin()) {
-            return MenuModel::getSiteMenuTree($siteid);
-        }
-        return MenuModel::getRoleMenuTree($siteid, $roleid);
+    protected function menuTreeByRole($roleid) {
+        return MenuModel::getRoleMenuTree($roleid);
     }
 
     private function _isAdmin(){
-        //return Acl::isSuperAdminByRole($this->roleid);
         return Acl::isSuperAdmin($this->userid, $this->roleid);
     }
 

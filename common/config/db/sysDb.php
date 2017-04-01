@@ -17,8 +17,8 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=10.2.11.27;dbname=mps_sys;port=3309',
-    'username' => 'hjhdb',
+    'dsn' => 'mysql:host=127.0.0.1;dbname=mps_sys;port=3306',
+    'username' => 'root',
     'password' => '123456',
     'charset' => 'utf8',
 ];

@@ -17,16 +17,15 @@ class MenuModel extends Menu{
     /**
      * @Author: < 李效宾 >
      * @Desc:   根据当前站点id和角色id，获取菜单列表
-     * @Param:  int $siteid 站点ID
      * @Param:  int $roleid 角色ID
      * @Date:   2016-11-18
      * @Return: Array
     */
-    public static function getRoleMenuTree($siteid = 0, $roleid = 0){
+    public static function getRoleMenuTree($roleid = 0){
         $query = new Query();
         $query->from(['m'=> self::tableName()]);
         $query->leftJoin(['rm' => 'sys_user_role_menu'],'{{rm}}.menuid={{m}}.id');
-        $query->where('m.display=:display AND m.del_flag=:del_flag AND m.siteid=:siteid', [':display' => 0,':del_flag' => 0,':siteid' => (int)$siteid]);
+        $query->where('m.display=:display AND m.del_flag=:del_flag', [':display' => 0,':del_flag' => 0]);
         if(is_array($roleid)){
             $query->andWhere(['in', 'rm.roleid', $roleid]);
         }else{
@@ -35,7 +34,6 @@ class MenuModel extends Menu{
         $list = $query->orderBy(['sort'=> SORT_ASC,'id'=>SORT_ASC])
             ->all();;
         $list = Tools::getMenuTree($list, 0);
-
         return $list;
     }
 
