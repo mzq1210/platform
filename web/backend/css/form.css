@@ -1,0 +1,51 @@
+/*搜索框样式*/
+.search-nav{background-color:#f1f1f1;border:1px solid #ddd;padding:10px 12px;border-radius:4px;margin-bottom: 10px;}
+.search-nav label{font-size: 12px;color: #666;font-weight: normal;}
+.search-nav button{font-size: 12px;font-weight: normal;}
+.form-control{font-size: 12px;}
+.font-red{color: #d43f3a;}
+.font-green{color: #5cb85c;}
+.font-blue{color: #5bc0de;}
+.font-yellow{color: #f0ad4e;}
+.font-silvery{color: #666;}
+/*表格样式*/
+.table-bordered>thead>tr>th{font-size: 12px;color: #999;border-bottom-width: 0;font-weight: 700}
+.table-bordered>tbody>tr>td{font-size: 12px;color: #333;line-height: 25px;}
+table thead tr th, table tbody tr td {text-align: center;}
+table tbody tr td.name{text-align: left;padding-left: 30px;background-color: #F5F6FA;}
+table thead tr th{background-color: #F5F6FA;}
+.button{height:26px;font-size:12px;padding:3px 9px}
+.left{float: left;}
+.right{float: right;}
+.alert {padding: 10px 30px;margin-bottom: 10px;border-radius: 4px;text-align: center;box-shadow: 0 0 10px rgba(0,0,0,.2);}
+/*调查问卷切换窗*/
+#statistics-count{padding-right: 10px;}
+.tablist{margin:0 0 10px 0;width: 100%;}
+.tablist ul li a{font-size: 12px;color: #999;font-weight: 700;}
+.title-list{font-size: 12px;font-weight: 700;}
+.cat-action{display: inline-block;padding: 8px; margin: 10px 0 10px 5px;font-size:13px;}
+/*操作按钮样式*/
+.btn-group .dropdown-menu{border: none}
+.btn-group .min-w{min-width: 85px;}
+.btn-group .dropdown-menu li{margin: 2px 0}
+.dropdown-menu>li>a{padding: 3px 18px}
+/*状态*/
+.status{
+    font-size: 12px;
+    line-height: 24px;
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 8px;
+    background-repeat: no-repeat;
+    background-image: url("../images/ecs-icons.png");
+    font-style: italic;
+}
+.status-green{background-position: -61px -4px;}
+.status-red{background-position: -61px -28px;}
+.status-yellow{background-position: -61px -51px;}
+.status-blue{background-position: -61px -196px;}
+.status-silvery{background-position: -61px -76px;}
+
+.page-left{width: 350px;height: 34px; display: inline-block;border: solid 1px #ddd;border-radius: 4px;line-height: 34px;padding-left: 20px;font-size: 12px}
