@@ -1,0 +1,680 @@
+2017-04-01 06:59:21 [127.0.0.1][-][-][error][yii\base\InvalidConfigException] yii\base\InvalidConfigException: The directory is not writable by the Web process: /home/mzq/www/platform/web/assets in /home/mzq/www/platform/vendor/yiisoft/yii2/web/AssetManager.php:213
+Stack trace:
+#0 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Object.php(107): yii\web\AssetManager->init()
+#1 [internal function]: yii\base\Object->__construct(Array)
+#2 /home/mzq/www/platform/vendor/yiisoft/yii2/di/Container.php(373): ReflectionClass->newInstanceArgs(Array)
+#3 /home/mzq/www/platform/vendor/yiisoft/yii2/di/Container.php(154): yii\di\Container->build('yii\\web\\AssetMa...', Array, Array)
+#4 /home/mzq/www/platform/vendor/yiisoft/yii2/BaseYii.php(344): yii\di\Container->get('yii\\web\\AssetMa...', Array, Array)
+#5 /home/mzq/www/platform/vendor/yiisoft/yii2/di/ServiceLocator.php(133): yii\BaseYii::createObject(Array)
+#6 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Application.php(600): yii\di\ServiceLocator->get('assetManager')
+#7 /home/mzq/www/platform/vendor/yiisoft/yii2/web/View.php(223): yii\base\Application->getAssetManager()
+#8 /home/mzq/www/platform/vendor/yiisoft/yii2/web/View.php(283): yii\web\View->getAssetManager()
+#9 /home/mzq/www/platform/vendor/yiisoft/yii2/web/AssetBundle.php(123): yii\web\View->registerAssetBundle('app\\assets\\AppA...')
+#10 /home/mzq/www/platform/views/layouts/main.php(12): yii\web\AssetBundle::register(Object(yii\web\View))
+#11 /home/mzq/www/platform/vendor/yiisoft/yii2/base/View.php(325): require('/home/mzq/www/p...')
+#12 /home/mzq/www/platform/vendor/yiisoft/yii2/base/View.php(247): yii\base\View->renderPhpFile('/home/mzq/www/p...', Array)
+#13 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Controller.php(393): yii\base\View->renderFile('/home/mzq/www/p...', Array, Object(app\controllers\SiteController))
+#14 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Controller.php(379): yii\base\Controller->renderContent('<div class="sit...')
+#15 /home/mzq/www/platform/controllers/SiteController.php(63): yii\base\Controller->render('index')
+#16 [internal function]: app\controllers\SiteController->actionIndex()
+#17 /home/mzq/www/platform/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#18 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#19 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Module.php(454): yii\base\Controller->runAction('', Array)
+#20 /home/mzq/www/platform/vendor/yiisoft/yii2/web/Application.php(87): yii\base\Module->runAction('', Array)
+#21 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#22 /home/mzq/www/platform/web/index.php(12): yii\base\Application->run()
+#23 {main}
+2017-04-01 06:59:21 [127.0.0.1][-][-][info][application] $_SERVER = [
+    'USER' => 'www-data'
+    'HOME' => '/var/www'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/55.0.2883.87 Chrome/55.0.2883.87 Safari/537.36'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_HOST' => 'www.platform.com'
+    'REDIRECT_STATUS' => '200'
+    'SERVER_NAME' => 'www.platform.com'
+    'SERVER_PORT' => '80'
+    'SERVER_ADDR' => '127.0.0.1'
+    'REMOTE_PORT' => '36052'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'SERVER_SOFTWARE' => 'nginx/1.10.1'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'REQUEST_SCHEME' => 'http'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'DOCUMENT_ROOT' => '/home/mzq/www/platform/web'
+    'DOCUMENT_URI' => '/index.php'
+    'REQUEST_URI' => '/'
+    'SCRIPT_NAME' => '/index.php'
+    'CONTENT_LENGTH' => ''
+    'CONTENT_TYPE' => ''
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'SCRIPT_FILENAME' => '/home/mzq/www/platform/web/index.php'
+    'PATH_INFO' => ''
+    'FCGI_ROLE' => 'RESPONDER'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1491029961.5923
+    'REQUEST_TIME' => 1491029961
+]
+2017-04-01 06:59:21 [127.0.0.1][-][-][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception (Invalid Configuration) 'yii\base\InvalidConfigException' with message 'The directory is not writable by the Web process: /home/mzq/www/platform/web/assets' 
+
+in /home/mzq/www/platform/vendor/yiisoft/yii2/web/AssetManager.php:213
+
+Stack trace:
+#0 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Object.php(107): yii\web\AssetManager->init()
+#1 [internal function]: yii\base\Object->__construct(Array)
+#2 /home/mzq/www/platform/vendor/yiisoft/yii2/di/Container.php(373): ReflectionClass->newInstanceArgs(Array)
+#3 /home/mzq/www/platform/vendor/yiisoft/yii2/di/Container.php(154): yii\di\Container->build('yii\\web\\AssetMa...', Array, Array)
+#4 /home/mzq/www/platform/vendor/yiisoft/yii2/BaseYii.php(344): yii\di\Container->get('yii\\web\\AssetMa...', Array, Array)
+#5 /home/mzq/www/platform/vendor/yiisoft/yii2/di/ServiceLocator.php(133): yii\BaseYii::createObject(Array)
+#6 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Application.php(600): yii\di\ServiceLocator->get('assetManager')
+#7 /home/mzq/www/platform/vendor/yiisoft/yii2/web/View.php(223): yii\base\Application->getAssetManager()
+#8 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Component.php(130): yii\web\View->getAssetManager()
+#9 /home/mzq/www/platform/vendor/yiisoft/yii2-debug/panels/AssetPanel.php(53): yii\base\Component->__get('assetManager')
+#10 /home/mzq/www/platform/vendor/yiisoft/yii2-debug/LogTarget.php(54): yii\debug\panels\AssetPanel->save()
+#11 /home/mzq/www/platform/vendor/yiisoft/yii2-debug/LogTarget.php(118): yii\debug\LogTarget->export()
+#12 /home/mzq/www/platform/vendor/yiisoft/yii2/log/Dispatcher.php(188): yii\debug\LogTarget->collect(Array, true)
+#13 /home/mzq/www/platform/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
+#14 /home/mzq/www/platform/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
+#15 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\base\InvalidConfigException))
+#16 {main}
+2017-04-01 06:59:21 [127.0.0.1][-][-][info][application] $_SERVER = [
+    'USER' => 'www-data'
+    'HOME' => '/var/www'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/55.0.2883.87 Chrome/55.0.2883.87 Safari/537.36'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_HOST' => 'www.platform.com'
+    'REDIRECT_STATUS' => '200'
+    'SERVER_NAME' => 'www.platform.com'
+    'SERVER_PORT' => '80'
+    'SERVER_ADDR' => '127.0.0.1'
+    'REMOTE_PORT' => '36052'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'SERVER_SOFTWARE' => 'nginx/1.10.1'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'REQUEST_SCHEME' => 'http'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'DOCUMENT_ROOT' => '/home/mzq/www/platform/web'
+    'DOCUMENT_URI' => '/index.php'
+    'REQUEST_URI' => '/'
+    'SCRIPT_NAME' => '/index.php'
+    'CONTENT_LENGTH' => ''
+    'CONTENT_TYPE' => ''
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'SCRIPT_FILENAME' => '/home/mzq/www/platform/web/index.php'
+    'PATH_INFO' => ''
+    'FCGI_ROLE' => 'RESPONDER'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1491029961.5923
+    'REQUEST_TIME' => 1491029961
+]
+2017-04-01 06:59:35 [127.0.0.1][-][-][error][yii\base\InvalidConfigException] yii\base\InvalidConfigException: yii\web\Request::cookieValidationKey must be configured with a secret key. in /home/mzq/www/platform/vendor/yiisoft/yii2/web/Request.php:1232
+Stack trace:
+#0 /home/mzq/www/platform/vendor/yiisoft/yii2/web/Request.php(1214): yii\web\Request->loadCookies()
+#1 /home/mzq/www/platform/vendor/yiisoft/yii2/web/Request.php(1299): yii\web\Request->getCookies()
+#2 /home/mzq/www/platform/vendor/yiisoft/yii2/web/Request.php(1278): yii\web\Request->loadCsrfToken()
+#3 /home/mzq/www/platform/vendor/yiisoft/yii2/helpers/BaseHtml.php(295): yii\web\Request->getCsrfToken()
+#4 /home/mzq/www/platform/views/layouts/main.php(21): yii\helpers\BaseHtml::csrfMetaTags()
+#5 /home/mzq/www/platform/vendor/yiisoft/yii2/base/View.php(325): require('/home/mzq/www/p...')
+#6 /home/mzq/www/platform/vendor/yiisoft/yii2/base/View.php(247): yii\base\View->renderPhpFile('/home/mzq/www/p...', Array)
+#7 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Controller.php(393): yii\base\View->renderFile('/home/mzq/www/p...', Array, Object(app\controllers\SiteController))
+#8 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Controller.php(379): yii\base\Controller->renderContent('<div class="sit...')
+#9 /home/mzq/www/platform/controllers/SiteController.php(63): yii\base\Controller->render('index')
+#10 [internal function]: app\controllers\SiteController->actionIndex()
+#11 /home/mzq/www/platform/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#12 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#13 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Module.php(454): yii\base\Controller->runAction('', Array)
+#14 /home/mzq/www/platform/vendor/yiisoft/yii2/web/Application.php(87): yii\base\Module->runAction('', Array)
+#15 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#16 /home/mzq/www/platform/web/index.php(12): yii\base\Application->run()
+#17 {main}
+2017-04-01 06:59:35 [127.0.0.1][-][-][info][application] $_SERVER = [
+    'USER' => 'www-data'
+    'HOME' => '/var/www'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/55.0.2883.87 Chrome/55.0.2883.87 Safari/537.36'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_HOST' => 'www.platform.com'
+    'REDIRECT_STATUS' => '200'
+    'SERVER_NAME' => 'www.platform.com'
+    'SERVER_PORT' => '80'
+    'SERVER_ADDR' => '127.0.0.1'
+    'REMOTE_PORT' => '36052'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'SERVER_SOFTWARE' => 'nginx/1.10.1'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'REQUEST_SCHEME' => 'http'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'DOCUMENT_ROOT' => '/home/mzq/www/platform/web'
+    'DOCUMENT_URI' => '/index.php'
+    'REQUEST_URI' => '/'
+    'SCRIPT_NAME' => '/index.php'
+    'CONTENT_LENGTH' => ''
+    'CONTENT_TYPE' => ''
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'SCRIPT_FILENAME' => '/home/mzq/www/platform/web/index.php'
+    'PATH_INFO' => ''
+    'FCGI_ROLE' => 'RESPONDER'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1491029975.6849
+    'REQUEST_TIME' => 1491029975
+]
+2017-04-01 07:01:46 [127.0.0.1][-][-][error][yii\base\InvalidConfigException] yii\base\InvalidConfigException: yii\web\Request::cookieValidationKey must be configured with a secret key. in /home/mzq/www/platform/vendor/yiisoft/yii2/web/Request.php:1232
+Stack trace:
+#0 /home/mzq/www/platform/vendor/yiisoft/yii2/web/Request.php(1214): yii\web\Request->loadCookies()
+#1 /home/mzq/www/platform/vendor/yiisoft/yii2/web/Request.php(1299): yii\web\Request->getCookies()
+#2 /home/mzq/www/platform/vendor/yiisoft/yii2/web/Request.php(1278): yii\web\Request->loadCsrfToken()
+#3 /home/mzq/www/platform/vendor/yiisoft/yii2/helpers/BaseHtml.php(295): yii\web\Request->getCsrfToken()
+#4 /home/mzq/www/platform/views/layouts/main.php(21): yii\helpers\BaseHtml::csrfMetaTags()
+#5 /home/mzq/www/platform/vendor/yiisoft/yii2/base/View.php(325): require('/home/mzq/www/p...')
+#6 /home/mzq/www/platform/vendor/yiisoft/yii2/base/View.php(247): yii\base\View->renderPhpFile('/home/mzq/www/p...', Array)
+#7 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Controller.php(393): yii\base\View->renderFile('/home/mzq/www/p...', Array, Object(app\controllers\SiteController))
+#8 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Controller.php(379): yii\base\Controller->renderContent('<div class="sit...')
+#9 /home/mzq/www/platform/controllers/SiteController.php(63): yii\base\Controller->render('index')
+#10 [internal function]: app\controllers\SiteController->actionIndex()
+#11 /home/mzq/www/platform/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#12 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#13 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Module.php(454): yii\base\Controller->runAction('', Array)
+#14 /home/mzq/www/platform/vendor/yiisoft/yii2/web/Application.php(87): yii\base\Module->runAction('', Array)
+#15 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#16 /home/mzq/www/platform/web/index.php(12): yii\base\Application->run()
+#17 {main}
+2017-04-01 07:01:46 [127.0.0.1][-][-][info][application] $_SERVER = [
+    'USER' => 'www-data'
+    'HOME' => '/var/www'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/55.0.2883.87 Chrome/55.0.2883.87 Safari/537.36'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_HOST' => 'www.platform.com'
+    'REDIRECT_STATUS' => '200'
+    'SERVER_NAME' => 'www.platform.com'
+    'SERVER_PORT' => '80'
+    'SERVER_ADDR' => '127.0.0.1'
+    'REMOTE_PORT' => '43708'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'SERVER_SOFTWARE' => 'nginx/1.10.1'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'REQUEST_SCHEME' => 'http'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'DOCUMENT_ROOT' => '/home/mzq/www/platform/web'
+    'DOCUMENT_URI' => '/index.php'
+    'REQUEST_URI' => '/'
+    'SCRIPT_NAME' => '/index.php'
+    'CONTENT_LENGTH' => ''
+    'CONTENT_TYPE' => ''
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'SCRIPT_FILENAME' => '/home/mzq/www/platform/web/index.php'
+    'PATH_INFO' => ''
+    'FCGI_ROLE' => 'RESPONDER'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1491030106.8633
+    'REQUEST_TIME' => 1491030106
+]
+2017-04-01 07:01:47 [127.0.0.1][-][-][error][yii\base\InvalidConfigException] yii\base\InvalidConfigException: yii\web\Request::cookieValidationKey must be configured with a secret key. in /home/mzq/www/platform/vendor/yiisoft/yii2/web/Request.php:1232
+Stack trace:
+#0 /home/mzq/www/platform/vendor/yiisoft/yii2/web/Request.php(1214): yii\web\Request->loadCookies()
+#1 /home/mzq/www/platform/vendor/yiisoft/yii2/web/Request.php(1299): yii\web\Request->getCookies()
+#2 /home/mzq/www/platform/vendor/yiisoft/yii2/web/Request.php(1278): yii\web\Request->loadCsrfToken()
+#3 /home/mzq/www/platform/vendor/yiisoft/yii2/helpers/BaseHtml.php(295): yii\web\Request->getCsrfToken()
+#4 /home/mzq/www/platform/views/layouts/main.php(21): yii\helpers\BaseHtml::csrfMetaTags()
+#5 /home/mzq/www/platform/vendor/yiisoft/yii2/base/View.php(325): require('/home/mzq/www/p...')
+#6 /home/mzq/www/platform/vendor/yiisoft/yii2/base/View.php(247): yii\base\View->renderPhpFile('/home/mzq/www/p...', Array)
+#7 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Controller.php(393): yii\base\View->renderFile('/home/mzq/www/p...', Array, Object(app\controllers\SiteController))
+#8 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Controller.php(379): yii\base\Controller->renderContent('<div class="sit...')
+#9 /home/mzq/www/platform/controllers/SiteController.php(63): yii\base\Controller->render('index')
+#10 [internal function]: app\controllers\SiteController->actionIndex()
+#11 /home/mzq/www/platform/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#12 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#13 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Module.php(454): yii\base\Controller->runAction('', Array)
+#14 /home/mzq/www/platform/vendor/yiisoft/yii2/web/Application.php(87): yii\base\Module->runAction('', Array)
+#15 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#16 /home/mzq/www/platform/web/index.php(12): yii\base\Application->run()
+#17 {main}
+2017-04-01 07:01:47 [127.0.0.1][-][-][info][application] $_SERVER = [
+    'USER' => 'www-data'
+    'HOME' => '/var/www'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/55.0.2883.87 Chrome/55.0.2883.87 Safari/537.36'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_HOST' => 'www.platform.com'
+    'REDIRECT_STATUS' => '200'
+    'SERVER_NAME' => 'www.platform.com'
+    'SERVER_PORT' => '80'
+    'SERVER_ADDR' => '127.0.0.1'
+    'REMOTE_PORT' => '43710'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'SERVER_SOFTWARE' => 'nginx/1.10.1'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'REQUEST_SCHEME' => 'http'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'DOCUMENT_ROOT' => '/home/mzq/www/platform/web'
+    'DOCUMENT_URI' => '/index.php'
+    'REQUEST_URI' => '/'
+    'SCRIPT_NAME' => '/index.php'
+    'CONTENT_LENGTH' => ''
+    'CONTENT_TYPE' => ''
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'SCRIPT_FILENAME' => '/home/mzq/www/platform/web/index.php'
+    'PATH_INFO' => ''
+    'FCGI_ROLE' => 'RESPONDER'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1491030107.4174
+    'REQUEST_TIME' => 1491030107
+]
+2017-04-01 07:01:47 [127.0.0.1][-][-][error][yii\base\InvalidConfigException] yii\base\InvalidConfigException: yii\web\Request::cookieValidationKey must be configured with a secret key. in /home/mzq/www/platform/vendor/yiisoft/yii2/web/Request.php:1232
+Stack trace:
+#0 /home/mzq/www/platform/vendor/yiisoft/yii2/web/Request.php(1214): yii\web\Request->loadCookies()
+#1 /home/mzq/www/platform/vendor/yiisoft/yii2/web/Request.php(1299): yii\web\Request->getCookies()
+#2 /home/mzq/www/platform/vendor/yiisoft/yii2/web/Request.php(1278): yii\web\Request->loadCsrfToken()
+#3 /home/mzq/www/platform/vendor/yiisoft/yii2/helpers/BaseHtml.php(295): yii\web\Request->getCsrfToken()
+#4 /home/mzq/www/platform/views/layouts/main.php(21): yii\helpers\BaseHtml::csrfMetaTags()
+#5 /home/mzq/www/platform/vendor/yiisoft/yii2/base/View.php(325): require('/home/mzq/www/p...')
+#6 /home/mzq/www/platform/vendor/yiisoft/yii2/base/View.php(247): yii\base\View->renderPhpFile('/home/mzq/www/p...', Array)
+#7 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Controller.php(393): yii\base\View->renderFile('/home/mzq/www/p...', Array, Object(app\controllers\SiteController))
+#8 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Controller.php(379): yii\base\Controller->renderContent('<div class="sit...')
+#9 /home/mzq/www/platform/controllers/SiteController.php(63): yii\base\Controller->render('index')
+#10 [internal function]: app\controllers\SiteController->actionIndex()
+#11 /home/mzq/www/platform/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#12 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#13 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Module.php(454): yii\base\Controller->runAction('', Array)
+#14 /home/mzq/www/platform/vendor/yiisoft/yii2/web/Application.php(87): yii\base\Module->runAction('', Array)
+#15 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#16 /home/mzq/www/platform/web/index.php(12): yii\base\Application->run()
+#17 {main}
+2017-04-01 07:01:47 [127.0.0.1][-][-][info][application] $_SERVER = [
+    'USER' => 'www-data'
+    'HOME' => '/var/www'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/55.0.2883.87 Chrome/55.0.2883.87 Safari/537.36'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_HOST' => 'www.platform.com'
+    'REDIRECT_STATUS' => '200'
+    'SERVER_NAME' => 'www.platform.com'
+    'SERVER_PORT' => '80'
+    'SERVER_ADDR' => '127.0.0.1'
+    'REMOTE_PORT' => '43710'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'SERVER_SOFTWARE' => 'nginx/1.10.1'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'REQUEST_SCHEME' => 'http'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'DOCUMENT_ROOT' => '/home/mzq/www/platform/web'
+    'DOCUMENT_URI' => '/index.php'
+    'REQUEST_URI' => '/'
+    'SCRIPT_NAME' => '/index.php'
+    'CONTENT_LENGTH' => ''
+    'CONTENT_TYPE' => ''
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'SCRIPT_FILENAME' => '/home/mzq/www/platform/web/index.php'
+    'PATH_INFO' => ''
+    'FCGI_ROLE' => 'RESPONDER'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1491030107.8156
+    'REQUEST_TIME' => 1491030107
+]
+2017-04-01 07:01:48 [127.0.0.1][-][-][error][yii\base\InvalidConfigException] yii\base\InvalidConfigException: yii\web\Request::cookieValidationKey must be configured with a secret key. in /home/mzq/www/platform/vendor/yiisoft/yii2/web/Request.php:1232
+Stack trace:
+#0 /home/mzq/www/platform/vendor/yiisoft/yii2/web/Request.php(1214): yii\web\Request->loadCookies()
+#1 /home/mzq/www/platform/vendor/yiisoft/yii2/web/Request.php(1299): yii\web\Request->getCookies()
+#2 /home/mzq/www/platform/vendor/yiisoft/yii2/web/Request.php(1278): yii\web\Request->loadCsrfToken()
+#3 /home/mzq/www/platform/vendor/yiisoft/yii2/helpers/BaseHtml.php(295): yii\web\Request->getCsrfToken()
+#4 /home/mzq/www/platform/views/layouts/main.php(21): yii\helpers\BaseHtml::csrfMetaTags()
+#5 /home/mzq/www/platform/vendor/yiisoft/yii2/base/View.php(325): require('/home/mzq/www/p...')
+#6 /home/mzq/www/platform/vendor/yiisoft/yii2/base/View.php(247): yii\base\View->renderPhpFile('/home/mzq/www/p...', Array)
+#7 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Controller.php(393): yii\base\View->renderFile('/home/mzq/www/p...', Array, Object(app\controllers\SiteController))
+#8 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Controller.php(379): yii\base\Controller->renderContent('<div class="sit...')
+#9 /home/mzq/www/platform/controllers/SiteController.php(63): yii\base\Controller->render('index')
+#10 [internal function]: app\controllers\SiteController->actionIndex()
+#11 /home/mzq/www/platform/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#12 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#13 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Module.php(454): yii\base\Controller->runAction('', Array)
+#14 /home/mzq/www/platform/vendor/yiisoft/yii2/web/Application.php(87): yii\base\Module->runAction('', Array)
+#15 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#16 /home/mzq/www/platform/web/index.php(12): yii\base\Application->run()
+#17 {main}
+2017-04-01 07:01:48 [127.0.0.1][-][-][info][application] $_SERVER = [
+    'USER' => 'www-data'
+    'HOME' => '/var/www'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/55.0.2883.87 Chrome/55.0.2883.87 Safari/537.36'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_HOST' => 'www.platform.com'
+    'REDIRECT_STATUS' => '200'
+    'SERVER_NAME' => 'www.platform.com'
+    'SERVER_PORT' => '80'
+    'SERVER_ADDR' => '127.0.0.1'
+    'REMOTE_PORT' => '43710'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'SERVER_SOFTWARE' => 'nginx/1.10.1'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'REQUEST_SCHEME' => 'http'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'DOCUMENT_ROOT' => '/home/mzq/www/platform/web'
+    'DOCUMENT_URI' => '/index.php'
+    'REQUEST_URI' => '/'
+    'SCRIPT_NAME' => '/index.php'
+    'CONTENT_LENGTH' => ''
+    'CONTENT_TYPE' => ''
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'SCRIPT_FILENAME' => '/home/mzq/www/platform/web/index.php'
+    'PATH_INFO' => ''
+    'FCGI_ROLE' => 'RESPONDER'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1491030108.1
+    'REQUEST_TIME' => 1491030108
+]
+2017-04-01 07:02:07 [127.0.0.1][-][-][error][yii\base\InvalidConfigException] yii\base\InvalidConfigException: yii\web\Request::cookieValidationKey must be configured with a secret key. in /home/mzq/www/platform/vendor/yiisoft/yii2/web/Request.php:1232
+Stack trace:
+#0 /home/mzq/www/platform/vendor/yiisoft/yii2/web/Request.php(1214): yii\web\Request->loadCookies()
+#1 /home/mzq/www/platform/vendor/yiisoft/yii2/web/Request.php(1299): yii\web\Request->getCookies()
+#2 /home/mzq/www/platform/vendor/yiisoft/yii2/web/Request.php(1278): yii\web\Request->loadCsrfToken()
+#3 /home/mzq/www/platform/vendor/yiisoft/yii2/helpers/BaseHtml.php(295): yii\web\Request->getCsrfToken()
+#4 /home/mzq/www/platform/views/layouts/main.php(21): yii\helpers\BaseHtml::csrfMetaTags()
+#5 /home/mzq/www/platform/vendor/yiisoft/yii2/base/View.php(325): require('/home/mzq/www/p...')
+#6 /home/mzq/www/platform/vendor/yiisoft/yii2/base/View.php(247): yii\base\View->renderPhpFile('/home/mzq/www/p...', Array)
+#7 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Controller.php(393): yii\base\View->renderFile('/home/mzq/www/p...', Array, Object(app\controllers\SiteController))
+#8 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Controller.php(379): yii\base\Controller->renderContent('<div class="sit...')
+#9 /home/mzq/www/platform/controllers/SiteController.php(63): yii\base\Controller->render('index')
+#10 [internal function]: app\controllers\SiteController->actionIndex()
+#11 /home/mzq/www/platform/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#12 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#13 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Module.php(454): yii\base\Controller->runAction('', Array)
+#14 /home/mzq/www/platform/vendor/yiisoft/yii2/web/Application.php(87): yii\base\Module->runAction('', Array)
+#15 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#16 /home/mzq/www/platform/web/index.php(12): yii\base\Application->run()
+#17 {main}
+2017-04-01 07:02:07 [127.0.0.1][-][-][info][application] $_SERVER = [
+    'USER' => 'www-data'
+    'HOME' => '/var/www'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/55.0.2883.87 Chrome/55.0.2883.87 Safari/537.36'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_HOST' => 'www.platform.com'
+    'REDIRECT_STATUS' => '200'
+    'SERVER_NAME' => 'www.platform.com'
+    'SERVER_PORT' => '80'
+    'SERVER_ADDR' => '127.0.0.1'
+    'REMOTE_PORT' => '43710'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'SERVER_SOFTWARE' => 'nginx/1.10.1'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'REQUEST_SCHEME' => 'http'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'DOCUMENT_ROOT' => '/home/mzq/www/platform/web'
+    'DOCUMENT_URI' => '/index.php'
+    'REQUEST_URI' => '/'
+    'SCRIPT_NAME' => '/index.php'
+    'CONTENT_LENGTH' => ''
+    'CONTENT_TYPE' => ''
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'SCRIPT_FILENAME' => '/home/mzq/www/platform/web/index.php'
+    'PATH_INFO' => ''
+    'FCGI_ROLE' => 'RESPONDER'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1491030127.5912
+    'REQUEST_TIME' => 1491030127
+]
+2017-04-01 07:02:08 [127.0.0.1][-][-][error][yii\base\InvalidConfigException] yii\base\InvalidConfigException: yii\web\Request::cookieValidationKey must be configured with a secret key. in /home/mzq/www/platform/vendor/yiisoft/yii2/web/Request.php:1232
+Stack trace:
+#0 /home/mzq/www/platform/vendor/yiisoft/yii2/web/Request.php(1214): yii\web\Request->loadCookies()
+#1 /home/mzq/www/platform/vendor/yiisoft/yii2/web/Request.php(1299): yii\web\Request->getCookies()
+#2 /home/mzq/www/platform/vendor/yiisoft/yii2/web/Request.php(1278): yii\web\Request->loadCsrfToken()
+#3 /home/mzq/www/platform/vendor/yiisoft/yii2/helpers/BaseHtml.php(295): yii\web\Request->getCsrfToken()
+#4 /home/mzq/www/platform/views/layouts/main.php(21): yii\helpers\BaseHtml::csrfMetaTags()
+#5 /home/mzq/www/platform/vendor/yiisoft/yii2/base/View.php(325): require('/home/mzq/www/p...')
+#6 /home/mzq/www/platform/vendor/yiisoft/yii2/base/View.php(247): yii\base\View->renderPhpFile('/home/mzq/www/p...', Array)
+#7 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Controller.php(393): yii\base\View->renderFile('/home/mzq/www/p...', Array, Object(app\controllers\SiteController))
+#8 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Controller.php(379): yii\base\Controller->renderContent('<div class="sit...')
+#9 /home/mzq/www/platform/controllers/SiteController.php(63): yii\base\Controller->render('index')
+#10 [internal function]: app\controllers\SiteController->actionIndex()
+#11 /home/mzq/www/platform/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#12 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#13 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Module.php(454): yii\base\Controller->runAction('', Array)
+#14 /home/mzq/www/platform/vendor/yiisoft/yii2/web/Application.php(87): yii\base\Module->runAction('', Array)
+#15 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#16 /home/mzq/www/platform/web/index.php(12): yii\base\Application->run()
+#17 {main}
+2017-04-01 07:02:08 [127.0.0.1][-][-][info][application] $_SERVER = [
+    'USER' => 'www-data'
+    'HOME' => '/var/www'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/55.0.2883.87 Chrome/55.0.2883.87 Safari/537.36'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_HOST' => 'www.platform.com'
+    'REDIRECT_STATUS' => '200'
+    'SERVER_NAME' => 'www.platform.com'
+    'SERVER_PORT' => '80'
+    'SERVER_ADDR' => '127.0.0.1'
+    'REMOTE_PORT' => '43708'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'SERVER_SOFTWARE' => 'nginx/1.10.1'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'REQUEST_SCHEME' => 'http'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'DOCUMENT_ROOT' => '/home/mzq/www/platform/web'
+    'DOCUMENT_URI' => '/index.php'
+    'REQUEST_URI' => '/'
+    'SCRIPT_NAME' => '/index.php'
+    'CONTENT_LENGTH' => ''
+    'CONTENT_TYPE' => ''
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'SCRIPT_FILENAME' => '/home/mzq/www/platform/web/index.php'
+    'PATH_INFO' => ''
+    'FCGI_ROLE' => 'RESPONDER'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1491030128.2088
+    'REQUEST_TIME' => 1491030128
+]
+2017-04-01 07:02:08 [127.0.0.1][-][-][error][yii\base\InvalidConfigException] yii\base\InvalidConfigException: yii\web\Request::cookieValidationKey must be configured with a secret key. in /home/mzq/www/platform/vendor/yiisoft/yii2/web/Request.php:1232
+Stack trace:
+#0 /home/mzq/www/platform/vendor/yiisoft/yii2/web/Request.php(1214): yii\web\Request->loadCookies()
+#1 /home/mzq/www/platform/vendor/yiisoft/yii2/web/Request.php(1299): yii\web\Request->getCookies()
+#2 /home/mzq/www/platform/vendor/yiisoft/yii2/web/Request.php(1278): yii\web\Request->loadCsrfToken()
+#3 /home/mzq/www/platform/vendor/yiisoft/yii2/helpers/BaseHtml.php(295): yii\web\Request->getCsrfToken()
+#4 /home/mzq/www/platform/views/layouts/main.php(21): yii\helpers\BaseHtml::csrfMetaTags()
+#5 /home/mzq/www/platform/vendor/yiisoft/yii2/base/View.php(325): require('/home/mzq/www/p...')
+#6 /home/mzq/www/platform/vendor/yiisoft/yii2/base/View.php(247): yii\base\View->renderPhpFile('/home/mzq/www/p...', Array)
+#7 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Controller.php(393): yii\base\View->renderFile('/home/mzq/www/p...', Array, Object(app\controllers\SiteController))
+#8 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Controller.php(379): yii\base\Controller->renderContent('<div class="sit...')
+#9 /home/mzq/www/platform/controllers/SiteController.php(63): yii\base\Controller->render('index')
+#10 [internal function]: app\controllers\SiteController->actionIndex()
+#11 /home/mzq/www/platform/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#12 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#13 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Module.php(454): yii\base\Controller->runAction('', Array)
+#14 /home/mzq/www/platform/vendor/yiisoft/yii2/web/Application.php(87): yii\base\Module->runAction('', Array)
+#15 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#16 /home/mzq/www/platform/web/index.php(12): yii\base\Application->run()
+#17 {main}
+2017-04-01 07:02:08 [127.0.0.1][-][-][info][application] $_SERVER = [
+    'USER' => 'www-data'
+    'HOME' => '/var/www'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/55.0.2883.87 Chrome/55.0.2883.87 Safari/537.36'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_HOST' => 'www.platform.com'
+    'REDIRECT_STATUS' => '200'
+    'SERVER_NAME' => 'www.platform.com'
+    'SERVER_PORT' => '80'
+    'SERVER_ADDR' => '127.0.0.1'
+    'REMOTE_PORT' => '43708'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'SERVER_SOFTWARE' => 'nginx/1.10.1'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'REQUEST_SCHEME' => 'http'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'DOCUMENT_ROOT' => '/home/mzq/www/platform/web'
+    'DOCUMENT_URI' => '/index.php'
+    'REQUEST_URI' => '/'
+    'SCRIPT_NAME' => '/index.php'
+    'CONTENT_LENGTH' => ''
+    'CONTENT_TYPE' => ''
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'SCRIPT_FILENAME' => '/home/mzq/www/platform/web/index.php'
+    'PATH_INFO' => ''
+    'FCGI_ROLE' => 'RESPONDER'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1491030128.4492
+    'REQUEST_TIME' => 1491030128
+]
+2017-04-01 07:02:08 [127.0.0.1][-][-][error][yii\base\InvalidConfigException] yii\base\InvalidConfigException: yii\web\Request::cookieValidationKey must be configured with a secret key. in /home/mzq/www/platform/vendor/yiisoft/yii2/web/Request.php:1232
+Stack trace:
+#0 /home/mzq/www/platform/vendor/yiisoft/yii2/web/Request.php(1214): yii\web\Request->loadCookies()
+#1 /home/mzq/www/platform/vendor/yiisoft/yii2/web/Request.php(1299): yii\web\Request->getCookies()
+#2 /home/mzq/www/platform/vendor/yiisoft/yii2/web/Request.php(1278): yii\web\Request->loadCsrfToken()
+#3 /home/mzq/www/platform/vendor/yiisoft/yii2/helpers/BaseHtml.php(295): yii\web\Request->getCsrfToken()
+#4 /home/mzq/www/platform/views/layouts/main.php(21): yii\helpers\BaseHtml::csrfMetaTags()
+#5 /home/mzq/www/platform/vendor/yiisoft/yii2/base/View.php(325): require('/home/mzq/www/p...')
+#6 /home/mzq/www/platform/vendor/yiisoft/yii2/base/View.php(247): yii\base\View->renderPhpFile('/home/mzq/www/p...', Array)
+#7 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Controller.php(393): yii\base\View->renderFile('/home/mzq/www/p...', Array, Object(app\controllers\SiteController))
+#8 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Controller.php(379): yii\base\Controller->renderContent('<div class="sit...')
+#9 /home/mzq/www/platform/controllers/SiteController.php(63): yii\base\Controller->render('index')
+#10 [internal function]: app\controllers\SiteController->actionIndex()
+#11 /home/mzq/www/platform/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#12 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#13 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Module.php(454): yii\base\Controller->runAction('', Array)
+#14 /home/mzq/www/platform/vendor/yiisoft/yii2/web/Application.php(87): yii\base\Module->runAction('', Array)
+#15 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#16 /home/mzq/www/platform/web/index.php(12): yii\base\Application->run()
+#17 {main}
+2017-04-01 07:02:08 [127.0.0.1][-][-][info][application] $_SERVER = [
+    'USER' => 'www-data'
+    'HOME' => '/var/www'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/55.0.2883.87 Chrome/55.0.2883.87 Safari/537.36'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_HOST' => 'www.platform.com'
+    'REDIRECT_STATUS' => '200'
+    'SERVER_NAME' => 'www.platform.com'
+    'SERVER_PORT' => '80'
+    'SERVER_ADDR' => '127.0.0.1'
+    'REMOTE_PORT' => '43708'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'SERVER_SOFTWARE' => 'nginx/1.10.1'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'REQUEST_SCHEME' => 'http'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'DOCUMENT_ROOT' => '/home/mzq/www/platform/web'
+    'DOCUMENT_URI' => '/index.php'
+    'REQUEST_URI' => '/'
+    'SCRIPT_NAME' => '/index.php'
+    'CONTENT_LENGTH' => ''
+    'CONTENT_TYPE' => ''
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'SCRIPT_FILENAME' => '/home/mzq/www/platform/web/index.php'
+    'PATH_INFO' => ''
+    'FCGI_ROLE' => 'RESPONDER'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1491030128.5996
+    'REQUEST_TIME' => 1491030128
+]
+2017-04-01 07:02:08 [127.0.0.1][-][-][error][yii\base\InvalidConfigException] yii\base\InvalidConfigException: yii\web\Request::cookieValidationKey must be configured with a secret key. in /home/mzq/www/platform/vendor/yiisoft/yii2/web/Request.php:1232
+Stack trace:
+#0 /home/mzq/www/platform/vendor/yiisoft/yii2/web/Request.php(1214): yii\web\Request->loadCookies()
+#1 /home/mzq/www/platform/vendor/yiisoft/yii2/web/Request.php(1299): yii\web\Request->getCookies()
+#2 /home/mzq/www/platform/vendor/yiisoft/yii2/web/Request.php(1278): yii\web\Request->loadCsrfToken()
+#3 /home/mzq/www/platform/vendor/yiisoft/yii2/helpers/BaseHtml.php(295): yii\web\Request->getCsrfToken()
+#4 /home/mzq/www/platform/views/layouts/main.php(21): yii\helpers\BaseHtml::csrfMetaTags()
+#5 /home/mzq/www/platform/vendor/yiisoft/yii2/base/View.php(325): require('/home/mzq/www/p...')
+#6 /home/mzq/www/platform/vendor/yiisoft/yii2/base/View.php(247): yii\base\View->renderPhpFile('/home/mzq/www/p...', Array)
+#7 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Controller.php(393): yii\base\View->renderFile('/home/mzq/www/p...', Array, Object(app\controllers\SiteController))
+#8 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Controller.php(379): yii\base\Controller->renderContent('<div class="sit...')
+#9 /home/mzq/www/platform/controllers/SiteController.php(63): yii\base\Controller->render('index')
+#10 [internal function]: app\controllers\SiteController->actionIndex()
+#11 /home/mzq/www/platform/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#12 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#13 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Module.php(454): yii\base\Controller->runAction('', Array)
+#14 /home/mzq/www/platform/vendor/yiisoft/yii2/web/Application.php(87): yii\base\Module->runAction('', Array)
+#15 /home/mzq/www/platform/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#16 /home/mzq/www/platform/web/index.php(12): yii\base\Application->run()
+#17 {main}
+2017-04-01 07:02:08 [127.0.0.1][-][-][info][application] $_SERVER = [
+    'USER' => 'www-data'
+    'HOME' => '/var/www'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/55.0.2883.87 Chrome/55.0.2883.87 Safari/537.36'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_HOST' => 'www.platform.com'
+    'REDIRECT_STATUS' => '200'
+    'SERVER_NAME' => 'www.platform.com'
+    'SERVER_PORT' => '80'
+    'SERVER_ADDR' => '127.0.0.1'
+    'REMOTE_PORT' => '43708'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'SERVER_SOFTWARE' => 'nginx/1.10.1'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'REQUEST_SCHEME' => 'http'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'DOCUMENT_ROOT' => '/home/mzq/www/platform/web'
+    'DOCUMENT_URI' => '/index.php'
+    'REQUEST_URI' => '/'
+    'SCRIPT_NAME' => '/index.php'
+    'CONTENT_LENGTH' => ''
+    'CONTENT_TYPE' => ''
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'SCRIPT_FILENAME' => '/home/mzq/www/platform/web/index.php'
+    'PATH_INFO' => ''
+    'FCGI_ROLE' => 'RESPONDER'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1491030128.7425
+    'REQUEST_TIME' => 1491030128
+]
