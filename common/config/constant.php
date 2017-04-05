@@ -13,7 +13,5 @@ defined('MPS_REDIS_KEY') OR define('MPS_REDIS_KEY', 'mps_');
 defined('MPS_URL') OR define('MPS_URL','http://www.mps.com');
 defined('MPS_URL_API') OR define('MPS_URL_API','http://api.mps.com');
 
-ed('PHP_JAVA_KEY') OR define('PHP_JAVA_KEY', 'd31f18587e47ad6d');
-
 //设置默认分布条数
 define('PAGESIZE', 15);
