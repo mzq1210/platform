@@ -16,7 +16,7 @@ if(self.parent && self.parent!=self)self.parent.location.href=self.location.href
                         <tbody>
                             <tr>
                                 <td style="padding:0px 10px;"><img src="/images/xh829.png" height="34" width="34"></td>
-                                <td style="font-size:18px;padding-right:20px"><b>汇金行MPS系统</b></td>
+                                <td style="font-size:18px;padding-right:20px"><b>MPS系统</b></td>
                             </tr>
                         </tbody>
                     </table>

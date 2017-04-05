@@ -6,7 +6,7 @@
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>汇金行MPS系统</title>
+        <title>MPS系统</title>
         <script src="/js/jquery-1.9.1.min.js"></script>
         <script src="/js/bootstrap.min.js"></script>
         <script src="/js/common.js"></script>

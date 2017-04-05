@@ -32,7 +32,7 @@ class MenuModel extends Menu{
             $query->andWhere('rm.roleid=:roleid',[':roleid' => (int)$roleid]);
         }
         $list = $query->orderBy(['sort'=> SORT_ASC,'id'=>SORT_ASC])
-            ->all();;
+            ->all();
         $list = Tools::getMenuTree($list, 0);
         return $list;
     }

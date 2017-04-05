@@ -19,6 +19,7 @@ class MainController extends BaseController{
     public function actionIndex(){
         //获取菜单
         $menuTree = $this->menuTreeByRole($this->roleid);
+  
         return $this->render('index',[
             'menuTree' => $menuTree,
             'username' => $this->username,
