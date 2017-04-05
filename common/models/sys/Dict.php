@@ -2,7 +2,7 @@
 
 /*
  * 数据字典表
- * @author <liangpingzheng>
+ * @author <mzq>
  * @date Dec 1, 2016 10:43:48 AM
  */
 
@@ -38,7 +38,7 @@ class Dict extends BaseSys {
      * @params  int $id
      * @params  array $params 变更的数据
      * @return boolen
-     * @author <liangpingzheng>
+     * @author <mzq>
      */
 
     public static function delRecord($id, $params) {
@@ -58,7 +58,7 @@ class Dict extends BaseSys {
      * @params string $dictGroupId 字典组ID
      * @return array
      * @date 2016-12-19
-     * @author <lixiaobin>
+     * @author <mzq>
      */
     public static function getDectInfo($dictGroupId){
         if(!empty($dictGroupId)){

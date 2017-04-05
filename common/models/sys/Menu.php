@@ -96,7 +96,7 @@ class Menu extends BaseSys
     /**
      * @desc 加载CommonQuery类中的公共条件
      * @return CommonQuery
-     * @author <lixiaobin>
+     * @author <mzq>
      */
     public static function find(){
         return new CommonQuery(get_called_class());

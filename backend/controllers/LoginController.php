@@ -57,11 +57,7 @@ class LoginController extends Controller{
             if ($mInfo['status'] == 1) {
                 ShowMessage::info("该用户被禁用", $loginUrl);
             }
-
             $this->_saveUserInfo($mInfo);
-
-            $signUtil= new SignUtil();
-            $returnsignaturn = $signUtil->getSignature();
 
             if($mInfo->save()){
                 $mainUrl = "/main";

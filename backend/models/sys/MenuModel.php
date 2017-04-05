@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: leexb
+ * User: mzq
  * Date: 16-11-18
  * Time: 上午9:53
  */
@@ -15,7 +15,7 @@ class MenuModel extends Menu{
 
 
     /**
-     * @Author: < 李效宾 >
+     * @Author: < mzq >
      * @Desc:   根据当前站点id和角色id，获取菜单列表
      * @Param:  int $roleid 角色ID
      * @Date:   2016-11-18
@@ -53,7 +53,7 @@ class MenuModel extends Menu{
     }
 
     /**
-     * @Author: < 李效宾 >
+     * @Author: < mzq >
      * @Desc:   验证用户是否有这个菜单的权限
      * @Param:  string $m 模块名称
      * @Param:  string $c 控制器名称

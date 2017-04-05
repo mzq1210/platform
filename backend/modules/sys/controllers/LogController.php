@@ -1,7 +1,7 @@
 <?php
 /**
  * 日志管理控制器
- * @Author: leexb
+ * @Author: mzq
  * @Date: 16-11-7
  */
 namespace app\modules\sys\controllers;

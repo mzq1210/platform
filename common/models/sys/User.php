@@ -1,12 +1,10 @@
 <?php
 /**
  * 用户模型
- * User: zhangshaohua
+ * User: mzq
  * Date: 16-10-21
  */
 namespace common\models\sys;
-
-
 
 use Yii;
 use common\models\base\BaseSys;
@@ -102,7 +100,7 @@ class User extends BaseSys{
 
     /**
      * @Desc:   通过唯一码查询用户信息
-     * @Author: < 李效宾 >
+     * @Author: < mzq >
      * @Date:   2016-11-22
      * @param:  string $unique_code 唯一码
      * @return: Obj
@@ -119,7 +117,7 @@ class User extends BaseSys{
      * @Params string $username 用户名
      *         string $password 密码
      *         int    $siteId 站点ID
-     * @Author <lixiaobin>
+     * @Author <mzq>
      * @Date 2016-02-06
      * @Return Array
      */
@@ -141,7 +139,7 @@ class User extends BaseSys{
     }
 
     /**
-     * @author <lixiaobin>
+     * @author <mzq>
      * @deas 加载CommonQuery类中的公共条件
      *
     */

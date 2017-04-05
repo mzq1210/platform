@@ -61,7 +61,7 @@ class Role extends BaseSys
     }
 
     /**
-     * 开 发: 李效宾
+     * 开 发: mzq
      * 日 期: 2016-12-05
      * 参 数:
      * 说 明: 查询角色列表

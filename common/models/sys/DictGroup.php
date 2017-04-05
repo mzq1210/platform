@@ -2,7 +2,7 @@
 
 /*
  * 字典分组表  
- * @author <liangpingzheng>
+ * @author <mzq>
  * @date Dec 1, 2016 10:45:45 AM
  */
 
@@ -23,7 +23,7 @@ class DictGroup extends BaseSys {
      * @param arrat $params
      * @return array
      * @data 2016-12-02
-     * @author <liangpingzheng>
+     * @author <mzq>
      */
     public function search($params = []) {
         $info = [];
@@ -45,7 +45,7 @@ class DictGroup extends BaseSys {
      * @param  array $params 参数数组
      * @return boolen
      * @data 2016-12-02
-     * @author <liangpingzheng>
+     * @author <mzq>
      */
     public static function addRecord($params = []) {
         $model = new DictGroup;
@@ -64,7 +64,7 @@ class DictGroup extends BaseSys {
      * @param array $params 参数数组
      * @return boolen
      * @data 2016-12-02
-     * @author <liangpingzheng>
+     * @author <mzq>
      */
     public static function editRecord($id, $params = []) {
         $model = self::findOne($id);
@@ -81,7 +81,7 @@ class DictGroup extends BaseSys {
      * @params  int $id
      * @params  array $params 变更的数据
      * @return boolen
-     * @author <liangpingzheng>
+     * @author <mzq>
      */
 
     public static function delRecord($id, $params) {
@@ -107,7 +107,7 @@ class DictGroup extends BaseSys {
      *         int    $type 1默认按照code查询 2 按照name查询 3 按照ID查
      * @return object
      * @date 2016-12-19
-     * @author <lixiaobin>
+     * @author <mzq>
     */
     public static function getOneDictGroup($string = '', $type = 1){
         if(!empty($string) && $type == 1){

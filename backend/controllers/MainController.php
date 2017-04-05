@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: leexb
+ * User: mzq
  * Date: 16-10-27
  * Time: 下午5:22
  */
@@ -9,7 +9,6 @@ namespace backend\controllers;
 
 use Yii;
 use common\components\library\ShowMessage;
-use common\models\sys\Role;
 use common\models\sys\UserInfo;
 use common\models\sys\User;
 use app\components\base\BaseController;

@@ -1,7 +1,7 @@
 <?php
 /**
  * 用户信息模型
- * User: zhangshaohua
+ * User: mzq
  * Date: 16-11-8
  */
 
@@ -22,7 +22,7 @@ class UserInfo extends BaseSys
     }
 
     /**
-     * 开 发: zsh
+     * 开 发: mzq
      * 说 明:根据id获取用户信息详情
      * 参 数: $siteid 站点ID
      * 参 数: int $userid

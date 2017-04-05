@@ -2,7 +2,7 @@
 
 /*
  * 字典组管理
- * @author <liangpingzheng>
+ * @author <mzq>
  * @date Dec 1, 2016 10:52:58 AM
  */
 

@@ -2,12 +2,11 @@
 
 /*
  * 字典的管理
- * @author <liangpingzheng>
+ * @author <mzq>
  * @date Dec 1, 2016 10:52:58 AM
  */
 
 namespace app\modules\sys\controllers;
-
 
 use Yii;
 use yii\helpers\Url;

@@ -2,7 +2,6 @@
 
 namespace common\models\sys;
 
-
 use yii;
 use common\models\base\BaseSys;
 use yii\helpers\ArrayHelper;
@@ -16,7 +15,7 @@ class UserRole extends BaseSys
     }
 
     /*
-     * 开 发: zsh
+     * 开 发: mzq
      * 时 间: 2016-11-10
      * 说 明:查询一个用户的角色
      */

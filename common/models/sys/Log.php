@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: leexb
+ * User: mzq
  * Date: 16-11-7
  * Time: 上午10:17
  * Desc: 操作日志model
@@ -30,7 +30,7 @@ class Log extends BaseSys{
     }
 
     /**
-     * 开 发: 李效宾
+     * 开 发: mzq
      * 日 期: 2016-11-07
      *
     */

@@ -1,7 +1,7 @@
 <?php
 /**
  * 用户控制器类
- * User: zhangshaohua
+ * User: mzq
  * Date: 16-10-21
  */
 namespace app\modules\sys\controllers;
@@ -20,7 +20,7 @@ class UserController extends BaseController{
 
     /**
      * @Desc:   用户信息
-     * @Author: < zhangshaohua >
+     * @Author: < mzq >
      * @return: array
      */
     public function actionIndex(){
@@ -37,7 +37,7 @@ class UserController extends BaseController{
 
     /**
      * @Desc:   添加用戶
-     * @Author: < zhangshaohua >
+     * @Author: < mzq >
      * @return: bool
      */
     public function actionAdd(){
@@ -87,7 +87,7 @@ class UserController extends BaseController{
 
     /**
      * @Desc:   修改用户信息
-     * @Author: < zhangshaohua >
+     * @Author: < mzq >
      * @param:  int $id 用户id
      * @return: bool
      */
@@ -145,7 +145,7 @@ class UserController extends BaseController{
 
     /**
      * @Desc:   ajax验证user表里用户名是否已经存在
-     * @Author: < zhangshaohua >
+     * @Author: < mzq >
      * @param:  int $id 用户id
      * @param:  string $username 验证用户名
      * @return: string
@@ -171,7 +171,7 @@ class UserController extends BaseController{
 
     /**
      * @Desc:   ajax验证user表里手机是否已经存在
-     * @Author: < zhangshaohua >
+     * @Author: < mzq >
      * @param:  int $id 用户id
      * @param:  string $mobile 验证用户手机号
      * @return: string
@@ -197,7 +197,7 @@ class UserController extends BaseController{
 
     /**
      * @Desc:   ajax验证密码是否正确
-     * @Author: < zhangshaohua >
+     * @Author: < mzq >
      * @param:  string $oldpass 验证密码
      * @param:  int    $userid  验证用户id
      * @return: string
@@ -221,7 +221,7 @@ class UserController extends BaseController{
 
     /**
      * @Desc:   添加角色
-     * @Author: < zhangshaohua >
+     * @Author: < mzq >
      * @return: arrry
      */
     public function actionAllowrole ($id) {
@@ -259,7 +259,7 @@ class UserController extends BaseController{
 
     /**
      * @Desc:   删除用户
-     * @Author: < zhangshaohua >
+     * @Author: < mzq >
      * @return: bool
      */
     public function actionDelete($id) {
@@ -279,7 +279,7 @@ class UserController extends BaseController{
 
     /**
      * @Desc:   用户修改密码
-     * @Author: < zhangshaohua >
+     * @Author: < mzq >
      * @param:  string $oldPassword 验证原密码
      * @return: bool
      */
