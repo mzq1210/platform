@@ -123,13 +123,13 @@ class MenuController extends BaseController
             if(empty($params['name'])){
                 ShowMessage::info('菜单名称不可为空');
             }
-            if(empty($params['siteid'])){
+            if(empty($params['m'])){
                 ShowMessage::info('模块名称不可为空');
             }
-            if(empty($params['siteid'])){
+            if(empty($params['c'])){
                 ShowMessage::info('控制器名称不可为空');
             }
-            if(empty($params['siteid'])){
+            if(empty($params['a'])){
                 ShowMessage::info('方法名称不可为空');
             }
             $data = [
