@@ -5,12 +5,12 @@
  * User: <mzq>
  * Date: 16-12-20
  */
-namespace app\modules\oa\controllers;
+namespace app\modules\weixin\controllers;
 
 use Yii;
 use app\components\base\BaseController;
 
-class DeviceController extends BaseController
+class WeixinController extends BaseController
 {
 
 

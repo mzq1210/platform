@@ -14,6 +14,7 @@ return [
     'bootstrap' => ['log'],
     'modules' => [
         'sys' => ['class' => 'app\modules\sys\SysModule'], //用户管理+角色管理
+        'weixin' => ['class' => 'app\modules\weixin\WeixinModule'],
     ],
     'components' => [
         

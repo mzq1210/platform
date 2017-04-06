@@ -9,7 +9,7 @@ return [
     'components' => [
         //基础数据库
         'db' => require (__DIR__ . '/db/sysDb.php'),
-        'weixinDb' => require (__DIR__ . '/db/weixinDb.php'), //微信管理
+        'weixin' => require (__DIR__ . '/db/weixinDb.php'), //微信管理
         'urlManager' => array(
             'class' => 'yii\web\UrlManager',
             'enablePrettyUrl' => true,
