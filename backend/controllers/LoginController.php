@@ -102,7 +102,7 @@ class LoginController extends Controller{
      * 退出
      * @return \yii\web\Response
      */
-    public function actionLogout()
+    public function actionLoginout()
     {
         Yii::$app->session->removeAll();
         return $this->redirect(Url::toRoute('/login'));

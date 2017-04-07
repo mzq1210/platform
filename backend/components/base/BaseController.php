@@ -62,6 +62,9 @@ class BaseController extends Controller{
      * @Return: array
      */
     protected function menuTreeByRole($roleid) {
+        if ($this->_isAdmin()) {
+            return MenuModel::getSiteMenuTree();
+        }
         return MenuModel::getRoleMenuTree($roleid);
     }
 

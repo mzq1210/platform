@@ -189,7 +189,7 @@ class RoleController extends BaseController{
                             $insertData[$key][] = 1;
                             $insertData[$key][] = $this->datetime;
                         }
-                        if (! Yii::$app->db->createCommand()->batchInsert(RoleMenu::tableName(), ['siteid', 'roleid', 'menuid', 'creator', 'add_time'], $insertData)->execute()) {
+                        if (! Yii::$app->db->createCommand()->batchInsert(RoleMenu::tableName(), ['roleid', 'menuid', 'creator', 'add_time'], $insertData)->execute()) {
                             throw new \Exception('保存失败！');
                         }
                     }

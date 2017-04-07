@@ -39,11 +39,10 @@ class MenuModel extends Menu{
 
     /**
      * 获取菜单树
-     * @param int $siteid
      */
-    public static function getSiteMenuTree($siteid = 0){
+    public static function getSiteMenuTree(){
         $list = self::find()
-            ->where('display=:display AND del_flag=:del_flag AND siteid=:siteid', [':display' => 0,':del_flag' => 0,':siteid' => $siteid])
+            ->where('display=:display AND del_flag=:del_flag', [':display' => 0,':del_flag' => 0])
             ->orderBy(['sort'=> SORT_ASC,'id'=> SORT_ASC])
             ->asArray()
             ->all();;

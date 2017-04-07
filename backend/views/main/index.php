@@ -37,7 +37,7 @@ if(self.parent && self.parent!=self)self.parent.location.href=self.location.href
     </table>
 </div>
 <div class="topcenter" align="right">
-    <span id="indexexit">&nbsp;<a href="/login/loginout"> <i style="color:#fff" class="glyphicon glyphicon-log-in"></i></a></span>
+    <span id="indexexit">&nbsp;<a href="<?php echo Url::toRoute('/login/loginout'); ?>"> <i style="color:#fff" class="glyphicon glyphicon-log-in"></i></a></span>
     <span id="indexuserl" status="0">
         <div class="rockmenu" style="display: none">
             <div class="rockmenuli">
