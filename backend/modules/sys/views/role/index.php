@@ -32,7 +32,7 @@ use common\widgets\GoLinkPager;
 				<td><?=$val->name;?></td>
 				<td><?=$val->desc;?></td>
 				<td>
-					<a class="btn btn-warning button" href="javascript:dataSource.getOrganizTree('<?=$val->id;?>','<?=$val->siteid;?>')"><i class="glyphicon glyphicon-cog"></i> 权限设置</a>
+					<a class="btn btn-warning button" href="javascript:dataSource.getOrganizTree('<?=$val->id;?>')"><i class="glyphicon glyphicon-cog"></i> 权限设置</a>
 					<a class="btn btn-info button" href="javascript:Dialog('','修改角色','<?php echo Url::toRoute(['/sys/role/edit','id' =>$val->id]); ?>', 600, 320)"><i class="glyphicon glyphicon-edit"></i> 编辑</a>
 					<a class="btn btn-danger button" href="javascript:confirmurl('<?= Url::toRoute(['/sys/role/delete', 'id' => $val->id]); ?>', '确定要刪除吗?')" ><i class="glyphicon glyphicon-trash"></i> 删除</a>
 				</td>
@@ -50,9 +50,9 @@ use common\widgets\GoLinkPager;
 	 * 分配权限
 	 */
 	dataSource = {};//闭包函數中不用var申明变量,代表全局变量
-	dataSource.getOrganizTree = function(id,siteid){
+	dataSource.getOrganizTree = function(id){
 		var art = window.top;
-		$.post('/ajax/getmenu',{id:id, siteid:siteid}, function(data){
+		$.post('/ajax/getmenu',{id:id}, function(data){
 			art.dialog({
 				title: '菜单权限选择',
 				content: data,
