@@ -16,6 +16,11 @@ class WeixinController extends BaseController
 
     public function actionIndex()
     {
+        $wechat = Yii::$app->wechat;
+
+        //获取access_token
+        var_dump($wechat->accessToken);
+
         echo 123;die;
         return $this->render('index');
     }

@@ -47,7 +47,7 @@ class MenuController extends BaseController
         }
         $categorys = $this->_menuTree($data, 0, 'tr');
         $showWay = 1;//1为折叠显示。2为缩进显示
-
+        //var_dump($categorys);die;
         return $this->render('index', [
             'data' => $data,
             'categorys' => $categorys,

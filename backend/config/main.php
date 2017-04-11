@@ -17,7 +17,13 @@ return [
         'weixin' => ['class' => 'app\modules\weixin\WeixinModule'],
     ],
     'components' => [
-        
+        'wechat' => [
+            'class' => 'yii\wechat\Wechat',
+            'appId' => 'wx84cb2db9b98b4f62',
+            'appSecret' => 'b73889e11a6dc08b50d8b75ec37a830b',
+            'token' => '微信服务器对接您的服务器验证token'
+        ],
+
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'fE0FIJe9gHx7n4jrXBrUEjTNfpL2UE0P',

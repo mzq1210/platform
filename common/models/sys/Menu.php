@@ -31,6 +31,7 @@ class Menu extends BaseSys
     public static function search($params=[])
     {
         $siteid = Yii::$app->session->get('siteid');
+        //return $siteid;
         $query = self::find()->where(['del_flag' => 0]);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

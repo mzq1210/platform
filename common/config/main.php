@@ -10,6 +10,8 @@ return [
         //基础数据库
         'db' => require (__DIR__ . '/db/sysDb.php'),
         'weixin' => require (__DIR__ . '/db/weixinDb.php'), //微信管理
+        //配置Redis缓存
+        'cache' => require (__DIR__ . '/cache/redis.php'),
         'urlManager' => array(
             'class' => 'yii\web\UrlManager',
             'enablePrettyUrl' => true,

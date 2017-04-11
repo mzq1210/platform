@@ -84,4 +84,13 @@ return array(
             '@yii/elasticsearch' => $vendorDir . '/yiisoft/yii2-elasticsearch',
         ),
     ),
+    'yiisoft/yii2-wechat' =>
+    array(
+        'name' => 'yiisoft/yii2-wechat',
+        'version' => '2.0.0.1',
+        'alias' =>
+            array(
+                '@yii/wechat' => $vendorDir . '/yiisoft/yii2-wechat',
+            ),
+    )
 );
