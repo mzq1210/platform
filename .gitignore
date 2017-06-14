@@ -7,7 +7,7 @@ web/backend/data
 web/backend/assets
 runtime
 #data/
-#common/config/db
+common/config/db
 
 
 web/sweb/swagger/swagger.json
