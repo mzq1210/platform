@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!--echarts start-->
+    <script src="../utils/echarts/echarts.min.js"></script>
+    <!--echarts end-->
+    <link rel="stylesheet" href="../css/calc-detail.css">
+    <script src="../utils/zepto.js"></script>
+    <script src="../js/calc-detail.js"></script>
+</head>
+<body>
+    <nav class="nav text-center">
+		<div class="back-btn"><i class="icon iconfont">&#xe600;</i></div>
+		<span class="title text-ellipsis">房贷计算</span>
+    </nav>
+    <div class="gray-space"></div>
+    <div class="calc-detail">
+        <div class="calc">
+            <div class="list font-14 padding-left-double padding-right-double">
+                <div class="item-box item padding-top-double padding-bottom-double">
+                    <span class="color-light-font">选择户型</span>
+                    <div class="float-right">
+                        <span class="select" index="1">
+                            2室2厅1卫 78.0㎡
+                        </span>
+                        <i class="iconfont">&#xe601;</i>
+                    </div>
+                </div>
+                <div class="item padding-top-double padding-bottom-double">
+                    <span class="color-light-font">估算总价</span>
+                    <div class="float-right font-14 color-number" style="margin-right:22px;">
+                        74万(均价9487元/平)
+                    </div>
+                </div>
+                <div class="item-box item padding-top-double padding-bottom-double">
+                    <span class="color-light-font">按揭成数</span>
+                    <div class="float-right">
+                        <span class="select" index="2">
+                            7成
+                        </span>
+                        <i class="iconfont">&#xe601;</i>
+                    </div>
+                </div>
+                <div class="item-box item padding-top-double padding-bottom-double">
+                    <span class="color-light-font">贷款类别</span>
+                    <div class="float-right">
+                        <span class="select" index="3">
+                            公积金贷款
+                        </span>
+                        <i class="iconfont">&#xe601;</i>
+                    </div>
+                </div>
+                <div class="item-box item padding-top-double padding-bottom-double">
+                    <span class="color-light-font">贷款年限</span>
+                    <div class="float-right">
+                        <span class="select" index="4">
+                            20年(240个月)
+                        </span>
+                        <i class="iconfont">&#xe601;</i>
+                    </div>
+                </div>
+            </div>
+            <div class="padding-double font-14">
+                <div class="calc-btn margin-bottom-double">
+                    <i class="iconfont color-info">&#xe6a2;</i>
+                    重新计算
+                </div>
+                <div class="row">
+                    <div class="col-50">
+                        <div id="chart" style="width:140px;height:140px;"></div>
+                    </div>
+                    <div class="col-50">
+                        <div class="row margin-bottom">
+                            <div class="col-60 text-right"><span>参考月供：</span></div>
+                            <div class="col-40"><span class="color-number">25007元</span></div>
+                        </div>
+                        <div class="row margin-bottom">
+                            <div class="col-60 text-right">
+                                <div class="round-s vertical-middle"></div>
+                                <span class="font-12">首付总额：</span>
+                            </div>
+                            <div class="col-40">
+                                <span class="font-12">20万 3成</span>
+                            </div>
+                        </div>
+                        <div class="row margin-bottom">
+                            <div class="col-60 text-right">
+                                <div class="round-s vertical-middle" style="background:#5aaddf;"></div>
+                                <span class="font-12">贷款总额：</span>
+                            </div>
+                            <div class="col-40">
+                                <span class="font-12">62万 7成</span>
+                            </div>
+                        </div>
+                        <div class="row margin-bottom">
+                            <div class="col-60 text-right">
+                                <div class="round-s vertical-middle" style="background:#f1734c;"></div>
+                                <span class="font-12">利息总额：</span>
+                            </div>
+                            <div class="col-40">
+                                <span class="font-12">62万</span>
+                            </div>
+                        </div>
+                        <div class="row margin-bottom-double">
+                            <div class="col-60 text-right">
+                                <span class="font-12">贷款年限：</span>
+                            </div>
+                            <div class="col-40">
+                                <span class="font-12">62年</span>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="fix margin-bottom-double">
+                    <div class="color-light-font font-12 float-right text-right margin-bottom-double">
+                        <div style="margin-bottom:8px;">＊商业贷款4.90％，公积金3.25％</div>
+                        <div>＊按照等额本息方式计算，数据仅供参考</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="select-menu">
+        
+    </div>
+    <div class="menu-list list text-center">
+        <div class="item padding-double header">
+            选择户型
+        </div>
+        <div class="container">
+            <div class="item padding-double font-14">
+                2室2厅1卫 78.0㎡
+            </div>
+            <div class="item padding-double font-14">
+                2室2厅1卫 78.0㎡
+            </div>
+            <div class="item padding-double font-14">
+                2室2厅1卫 78.0㎡
+            </div>
+            <div class="item padding-double font-14">
+                2室2厅1卫 78.0㎡
+            </div>
+            <div class="item padding-double font-14 active">
+                3室2厅2卫 88.08㎡
+            </div>
+        </div>
+    </div>
+</body>
+</html>

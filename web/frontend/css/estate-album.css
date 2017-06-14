@@ -1,0 +1,48 @@
+/*detail-album.css*/
+@import 'common.css';
+.detail-album{
+    margin-top: -45px;
+    padding-top:45px;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    position: relative;
+}
+.detail-album .content{
+    padding-top: 20%;
+    padding-bottom: 55px;
+    height: 100%;
+    box-sizing: border-box;
+    background: black;
+}
+#detail_album_swiper{
+    position: static;
+    height: 100%;
+}
+#detail_album_swiper img{
+    width: 100%;
+}
+#detail_album_swiper .swiper-pagination{
+    position: absolute;
+    bottom: 75px;
+}
+.detail-album .list-btn{
+    position: absolute;
+    right: 10px;
+    width: 23px;
+    height: auto;
+    bottom: 78px;
+    z-index: 999;
+}
+.detail-album .menu{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 55px;
+    line-height: 55px;
+    border-top: 1px solid #a1a2a4;
+}
+.detail-album .menu .active-menu{
+    font-size: 16px;
+    color: white;
+}

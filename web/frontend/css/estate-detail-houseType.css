@@ -1,0 +1,52 @@
+@import 'common.css';
+
+@import 'common.css';
+
+#menu_swiper{
+    text-align:center;
+    line-height: 55px;
+}
+#menu_swiper .active-nav{
+    position: relative;
+    color: #0aa3e9;
+}
+#menu_swiper .active-nav:after{
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 30px;
+	height: 2px;
+	background-color: #0aa3e9;
+}
+#dynamic_swiper .swiper-slide{
+    box-sizing: border-box;
+}
+.item {
+    border: none;
+    padding-left:130px;
+    min-height: 106px;
+}
+.item img {
+    width: 120px;
+    height: 96px;
+}
+.item .area{
+    color:#909193;
+    position: absolute;
+    bottom: 20px;
+}
+.item .dynamic{
+    color:#909193;
+    position: absolute;
+    bottom: 50px;
+}
+.item .margin-bottom .font-15{
+    display: inline-block;
+    max-width: 91px;
+    vertical-align: bottom;
+    white-space:nowrap;
+    overflow-x: hidden;
+}

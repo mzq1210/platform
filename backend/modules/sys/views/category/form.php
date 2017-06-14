@@ -5,22 +5,7 @@ $form = ActiveForm::begin([
     'id' => 'menuForm'
 ]);
 ?>
-<style type="text/css">
-    #icons,.icon{
-        display: inline-block;
-        width: 30px;height: 26px;
-        color: #1ABC9C;
-        vertical-align: middle;
-        text-align: center;line-height: 24px;
-        border: solid 1px #ddd;border-radius: 6px;
-    }
-    .dropdown{display: inline-block;}
-    .dropdown>button{height: 27px;font-size: 12px;font-weight: 700;}
-    .dropdown>ul{width: 77px;height: 150px;overflow-y: auto;overflow-x: hidden;min-width: 0;}
-    .dropdown>ul>li{width: 60px;text-align: center;}
-    .dropdown>ul>li>a>i{color: #1ABC9C;margin-top: 3px;}
-    .dropdown>ul>li>a{padding: 3px 5px;}
-</style>
+
 <script type="text/javascript">
     $(function(){
         $.formValidator.initConfig({formid:"menuForm",autotip:true,onerror:function(msg,obj){}});
@@ -38,19 +23,15 @@ $form = ActiveForm::begin([
             <th width="120">分类名称：</th>
             <td>
                 <input type="text" name="name" value="<?=$model->name;?>" id="menu_name" class="input-text" >
-                <i id="icons" class=""></i>
-                <div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-expanded="false">
-                        <i class="glyphicon glyphicon-th"></i> 图标 <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-                        <?php if($iconList):?>
-                            <?php foreach($iconList as $val):?>
-                                <li class="iconList" index="<?=$val->id;?>" icon="<?=$val->icon;?>" role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="glyphicon <?=$val->icon?> icon"></i></a></li>
-                            <?php endforeach;?>
-                        <?php endif;?>
-                    </ul>
-                </div>
+            </td>
+        </tr>
+        <tr>
+            <th width="120">类型：</th>
+            <td>
+                <select name="type" class="select-option">
+                    <option value="1" <?php if($model->type == 1):?>selected<?php endif;?>>首页</option>
+                    <option value="2" <?php if($model->type == 2):?>selected<?php endif;?>>周边</option>
+                </select>
             </td>
         </tr>
         <tr>
@@ -80,12 +61,26 @@ $form = ActiveForm::begin([
             $("#menuForm").submit();
         });
 
-        //选择图标
-        $("#icons").addClass('glyphicon '+'<?php echo Icons::getIcon($model->icons);?>');
-        $(".iconList").click(function () {
-            var id = $(this).attr('index');
-            var icon = $(this).attr('icon');
-            $("#icon_id").val(id);
-            $("#icons").removeClass().addClass('glyphicon '+icon);
-        })
+        //选顶级菜单
+        $("#menulist").val(<?php echo isset($model->parentid)? $model->parentid:0;?>);
+
+        //异步获取菜单列表
+        $("#menu_site").change(function () {
+            var site_id = $(this).val();
+            if(site_id != 0){
+                $.ajax({
+                    'type':'POST',
+                    'url':'/sys/category/add',
+                    'dataType':"json",
+                    'data':{siteid:site_id},
+                    'success':function(data){
+                        if(data){
+                            $("#menulist").html('<option value="0" level = "0">请选择</option>'+data);
+                        }else{
+                            $("#menulist").html('<option value="0" level = "0">请选择</option>');
+                        }
+                    }
+                });
+            }
+        });
     </script>

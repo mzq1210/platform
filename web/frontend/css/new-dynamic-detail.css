@@ -1,0 +1,8 @@
+@import 'common.css';
+
+.new-dynamic-detail .summary{
+    color:#535D6A;
+    background: #fafafa;
+    line-height: 22px;
+    text-align: justify;
+}

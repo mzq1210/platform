@@ -1,0 +1,315 @@
+/* index.css */
+@import 'common.css';
+/*swiper start*/
+.index .swiper-slide{
+	width: 45%;
+}
+.index .swiper-slide img{
+	width: 100%;
+}
+/*swiper end*/
+.index .banner{
+	position: relative;
+}
+.index .banner img{
+	width: 100%;
+}
+.index .banner .search{
+	position: absolute;
+	bottom: 20px;
+	padding: 0 20px;
+	box-sizing: border-box;
+	width: 100%;
+}
+.index .banner .search input{
+	width: 100%;
+	height: 36px;
+	text-align: center;
+	outline: none;
+	border-radius: 2px;
+	border: 0px inset rgb(151,151,151);
+	font-size: 12px;
+}
+.index input::-webkit-input-placeholder { /* WebKit browsers */ 
+	color: #A1A2A4; 
+} 
+.index .modules{
+	width: 100%;
+	height: 84px;
+	font-size: 12px;
+	background: white;
+}
+.index .modules .grid-33{
+	padding-top: 19px;
+	height: 50px;
+}
+.index .modules .module-block{
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	overflow: hidden;
+}
+.index .modules .grid-33 img{
+	height: 30px;
+}
+.index .active-recommend .swiper-box{
+	position: relative;
+}
+.index .active-recommend .text{
+	position: absolute;
+	text-align: center;
+	color: white;
+	width: 100%;
+	top:50%;
+    left: 50%;
+	transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    font-size: 17px;
+}
+.index .active-recommend .text .line{
+	border-top: 1px solid white;
+	margin: 0 auto;width: 20px;
+	margin-bottom: 5px;
+
+}
+.index .active-recommend .shadow{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	margin: auto;
+	background: rgba(0,0,0,.5);
+}
+.index .active-recommend,.index .market,.index .headline{
+	width: 100%;
+	box-sizing: border-box;
+}
+.index .active-recommend .content,.index .market .content{
+	padding: 20px;
+}
+.index .active-recommend .title{
+	font-weight: bold;
+	padding-top:17px;
+	font-size: 16px;
+}
+.index .market .title,.index .headline .title,.index .recommend-estate .title{
+	font-weight: bold;
+	line-height: 50px;
+	font-size: 16px;
+}
+.index .market .title,.index .headline .title{
+	border-bottom: 1px solid rgb(229,231,236)
+}
+.index .market .content{
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+.index .market .font-26{
+	color: #0aa3e9;
+	line-height: 45px;
+}
+.index .market .content .grid-33 .label{
+    color: #A1A2A4;
+}
+.index .more{
+	width: 100%;
+	font-size: 12px;
+	padding: 19px;
+	box-sizing: border-box;
+	color: rgb(117,121,128);
+}
+.index .headline .item-title{
+	height: 38px;
+	padding-left: 10px;
+	padding-right: 20px;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.index .headline .item-subTitle{
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-top: 10px;
+	color: #A1A2A4;
+	
+}
+.index .menu .left-menu{
+	height: 135px;
+	background: white;
+	border-right: 1px solid rgb(238,239,244);
+	position: relative;
+	box-sizing: border-box;
+}
+.index .menu .left-menu .menu-block img{
+	width: 74px;
+	height: 74px;
+}
+.index .menu .left-menu span{
+	position: absolute;
+	left: 20px;
+	top: 20px;
+}
+.index .menu .left-menu .menu-block{
+	position: absolute;
+	right: 20px;
+	bottom: 10px;
+	width: 74px;
+	height: 74px;
+	border-radius: 50%;
+	overflow: hidden;
+}
+.index .menu .right-menu{
+	position: relative;
+	height: 67px;
+	background: white;
+	box-sizing: border-box;
+}
+.index .menu .right-menu span{
+	position: absolute;
+	line-height: 68px;
+	left: 20px;
+}
+.index .menu .right-menu .menu-block{
+	position: absolute;
+	right: 20px;
+	bottom: 10px;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	overflow: hidden;
+}
+.index .menu .right-menu img{
+	width: 40px;
+	height: 40px;
+}
+.index .recommend-estate .content .list .padding-left>div{
+	margin-bottom: 6px;
+}
+
+.index .recommend-estate .content .item-subTitle{
+	color: rgb(117,121,128)
+}
+.index .recommend-estate .content .item-price .font-14{
+	color: rgb(255,68,68)
+}
+.index .recommend-estate .content .item-price .font-12{
+	color: rgb(161,162,164)
+}
+.index .recommend-estate .info-block{
+	margin-top: 20px;
+	background: rgb(247,247,247);
+	color:#A1A2A4;
+	padding:8px 0;
+}
+.index .recommend-estate .top-tip{
+	font-size: 12px;
+	color:rgb(117,121,128);
+	padding: 1px 4px;
+	border-radius: 2px;
+	border:1px solid rgb(10,163,233);
+}
+.index .recommend-estate .item-box{
+	width: 100%;
+	box-sizing: border-box;
+	padding: 10px;
+	display: inline-block;
+	border-bottom: 1px solid rgb(229,231,236)
+}
+.index .recommend-estate .item-box .shade{
+	font-family: Light;
+	position: absolute;
+	bottom: 0;
+	font-size: 12px;
+	width: 100%;
+	color: rgb(229,231,236);
+	background: rgba(0,0,0,.5);
+	text-align: right;
+	width:100%;
+	padding: 0 2px;
+	box-sizing: border-box;
+}
+.index .recommend-estate .item-box .discount{
+	position: absolute;
+	top: 5px;
+	font-size: 12px;
+	width: 80%;
+	display: inline-block;
+	left: 0;
+	right:0;
+	margin:auto;
+	color: white;
+	background: rgb(255,68,68);
+}
+.search-page{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100%;
+	background: white;
+	display: none;
+	z-index: 9999;
+	overflow-y: scroll;
+}
+.search-page .searchbar{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+}
+.search-page .searchbar select{
+	-moz-appearance:none;
+	-webkit-appearance:none;
+	padding-left: 5px;
+	padding-right: 5px;
+	background: url("../img/filter_icon_unfold.png") no-repeat scroll right 5px center transparent;
+	padding-right: 14px;
+	border-radius: 2px 0 0 2px;
+	background-color: #ffffff;
+	border: 1px solid #f4f5f7;
+	color:#1c2627;
+	font-size: 14px;
+	outline: none;
+	width: 80px;
+}
+.search-page .searchbar .input-box{
+	flex:1;
+	position: relative
+}
+.search-page .searchbar .input-box .clear-btn{
+	position: absolute;
+	top:0;
+	right: 10px;
+	line-height: 36px;
+	display: none;
+}
+.search-page .searchbar input{
+	width: 100%;
+	height: 36px;
+	border-radius: 2px;
+	font-size: 14px;
+	border: none;
+	outline: none;
+	background-color: #f4f5f7;
+	padding-right: 10px;
+	box-sizing: border-box;
+}
+
+.search-page .msg-block .grid .grid-33{
+	padding: 10px 0;
+	background: #fafafa;
+	border: 1px solid #e5e7ec;
+	border-right: none;
+	color: #666666;
+	margin: -1px;
+}
+.search-page .msg-block{
+	padding: 20px 40px;
+}
+#serach_suggestion{
+	display: none;
+}

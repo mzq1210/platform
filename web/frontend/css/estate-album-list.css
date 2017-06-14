@@ -1,0 +1,12 @@
+@import 'common.css';
+.estate-album-list .content .box{
+    padding: 30px 20px 0 20px;
+}
+.estate-album-list .content .box .title{
+    padding-left:5px;
+    margin-bottom: 10px;
+}
+.estate-album-list .content .box .grid .grid-33{
+    padding:5px;
+    box-sizing: border-box;
+}

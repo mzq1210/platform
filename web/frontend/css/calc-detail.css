@@ -1,0 +1,40 @@
+@import 'common.css';
+body,html{
+    height: 100%;
+}
+.calc-detail .calc-btn{
+    width:100%;
+    height: 40px;
+	border-radius: 2px;
+    line-height: 40px;
+    text-align: center;
+	background-color: #ffffff;
+	border: solid 1px #0aa3e9;
+}
+.calc-detail .select{
+    font-size: 14px;
+    text-align: right;
+}
+.select-menu{
+    width: 100%;
+    background: rgba(0,0,0,.5);
+    position: fixed;
+    height: 100%;
+    top:0;
+    display: none;
+}
+.menu-list{
+    position: fixed;
+    width: 100%;
+    bottom: -100%;
+    transition: all .5s;
+    background: white;
+    /*display: none;*/
+}
+.menu-list .active{
+    color: #0aa3e9;
+}
+.menu-list .container{
+    max-height: 300px;
+    overflow-y: scroll;
+}

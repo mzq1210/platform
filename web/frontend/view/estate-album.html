@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+	<script src="../utils/zepto.js"></script>
+    <!--swiper start-->
+	<link rel="stylesheet" href="../utils/swiper/swiper-3.4.2.min.css">
+	<script src="../utils/swiper/swiper-3.4.2.min.js"></script>
+	<!--swiper end-->
+    <link rel="stylesheet" href="../css/estate-album.css">
+    <script src="../js/estate-album.js"></script>
+</head>
+<body>
+    <nav class="nav text-center">
+		<div class="back-btn"><i class="icon iconfont">&#xe600;</i></div>
+		<span>楼盘相册</span>
+	</nav>
+    <div class="detail-album">
+        <div class="content">
+            <div id="detail_album_swiper" class="swiper-container">
+				<div class="swiper-wrapper">
+				    <div class="swiper-slide">
+                        <img src="../img/pic_house.png" alt="">
+                    </div>
+				    <div class="swiper-slide">
+                        <img src="../img/pic_house.png" alt="">
+                    </div>
+				    <div class="swiper-slide">
+                        <img src="../img/pic_house.png" alt="">
+                    </div>
+				    <div class="swiper-slide">
+                        <img src="../img/pic_house.png">
+                    </div>
+				    <div class="swiper-slide">
+                        <img src="../img/pic_house.png">
+                    </div>
+				    <div class="swiper-slide">
+                        <img src="../img/pic_house.png">
+                    </div>
+				    <div class="swiper-slide">
+                        <img src="../img/pic_house.png">
+                    </div>
+				    <div class="swiper-slide">
+                        <img src="../img/pic_house.png">
+                    </div>
+				    <div class="swiper-slide">
+                        <img src="../img/pic_house.png">
+                    </div>
+				    <div class="swiper-slide">
+                        <img src="../img/pic_house.png">
+                    </div>
+				</div>
+                <!-- 分页器 -->
+                <div class="swiper-pagination color-white"></div>
+            </div>
+            <img class="list-btn" width="100%" src="../img/housephotos-button-view-switcher@2x.png" alt="">
+        </div>
+        <div class="menu color-light-font text-center font-14">
+            <div id="menu_swiper" class="swiper-container">
+                <div class="swiper-wrapper">
+				    <div class="swiper-slide active-menu" slide-index="0">
+                        效果图
+                    </div>
+				    <div class="swiper-slide" slide-index="3">
+                        实景图
+                    </div>
+				    <div class="swiper-slide" slide-index="5">
+                        位置图
+                    </div>
+				    <div class="swiper-slide" slide-index="7">
+                        配套图
+                    </div>
+				    <div class="swiper-slide" slide-index="9">
+                        规划图
+                    </div>
+                    <!--如果超出五个-->
+                    <div class="swiper-slide" slide-index="11">
+                        规划图
+                    </div>
+				</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

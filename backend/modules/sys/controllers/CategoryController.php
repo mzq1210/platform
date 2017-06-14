@@ -10,7 +10,7 @@ use Yii;
 use yii\helpers\Url;
 use common\models\sys\Icons;
 use app\components\TreeMenu;
-use common\models\sys\Category;
+use common\models\wechat\Category;
 use app\components\base\BaseController;
 use common\components\library\ShowMessage;
 
@@ -59,8 +59,8 @@ class CategoryController extends BaseController{
             $data=[
                 'name' => $params['name'],
                 'sort' => $params['sort'],
-                'icons' => $params['icons'],
                 'display' => $params['display'],
+                'type' => $params['type'],
             ];
             $model->setAttributes($data,false);
             if ($model->save()) {
@@ -90,7 +90,7 @@ class CategoryController extends BaseController{
             $data = [
                 'name' => $params['name'],
                 'sort' => $params['sort'],
-                'icons' => $params['icons'],
+                'type' => $params['type'],
                 'display' => $params['display'],
                 'parentid' => $params['parentid'],
             ];
@@ -125,7 +125,7 @@ class CategoryController extends BaseController{
             $data = [
                 'name' => $params['name'],
                 'sort' => $params['sort'],
-                'icons' => $params['icons'],
+                'type' => $params['type'],
                 'display' => $params['display']
             ];
             $model->setAttributes($data, false);

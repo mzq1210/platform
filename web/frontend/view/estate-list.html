@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../utils/zepto.js"></script>
+    <!--swiper start-->
+	<link rel="stylesheet" href="../utils/swiper/swiper-3.4.2.min.css">
+	<script src="../utils/swiper/swiper-3.4.2.min.js"></script>
+	<!--swiper end-->
+    <!--dropload.js:https://github.com/ximan/dropload-->
+    <link rel="stylesheet" href="../utils/dropload/dropload.css">
+	<script src="../utils/dropload/dropload.min.js"></script>
+    <!--dropload end-->
+    <link rel="stylesheet" href="../css/estate-list.css">
+    <script src="../js/estate-list.js"></script>
+</head>
+<body>
+    <nav class="nav text-center">
+		<div class="back-btn"><i class="icon iconfont">&#xe600;</i></div>
+		<span>新房</span>
+	</nav>
+    <div class="estate-list">
+        <div class="search flex padding-double">
+            <div class="input">
+                <i class="iconfont color-light-font">&#xe602;</i>
+                <input type="text" placeholder="输入楼盘名或地址"/>
+            </div>
+            <div class="location">
+                <i class="iconfont font-21 color-normal-font">&#xe604;</i>
+            </div>
+        </div>
+        <div class="filter border-bottom padding-left padding-right"> 
+            <div class="row text-center">
+                <div class="col-25">
+                    <select>
+                        <option value="区域">区域</option>
+                        <option value="区域">区域1</option>
+                        <option value="区域">区域2</option>
+                        <option value="区域">区域3</option>
+                        <option value="区域">区域4</option>
+                    </select>
+                </div>
+                <div class="col-25">
+                    <select>
+                        <option value="价格">价格</option>
+                        <option value="价格">价格1</option>
+                        <option value="价格">价格2</option>
+                        <option value="价格">价格3</option>
+                        <option value="价格">价格4</option>
+                    </select>
+                </div>
+                <div class="col-25">
+                    <select>
+                        <option value="户型">户型</option>
+                        <option value="户型">户型1</option>
+                        <option value="户型">户型2</option>
+                        <option value="户型">户型3</option>
+                        <option value="户型">户型4</option>
+                    </select>
+                </div>
+                <div class="col-25">
+                    <select>
+                        <option value="更多">更多</option>
+                        <option value="更多">更多1</option>
+                        <option value="更多">更多2</option>
+                        <option value="更多">更多3</option>
+                        <option value="更多">更多4</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="history padding-top padding-left-double padding-right-double border-bottom">
+            <div class="tag tag-disable">
+                <i class="iconfont">&#xe68f;</i>
+                <span>九龙仓时代</span>
+            </div>
+            <div class="tag tag-disable">
+                <i class="iconfont">&#xe68f;</i>
+                <span>九龙仓时代</span>
+            </div>
+            <div class="tag tag-disable">
+                <i class="iconfont">&#xe68f;</i>
+                <span>九龙</span>
+            </div>
+            <div class="tag tag-disable">
+                <i class="iconfont">&#xe68f;</i>
+                <span>九龙</span>
+            </div>
+            <div class="tag tag-disable">
+                <i class="iconfont">&#xe68f;</i>
+                <span>九龙仓时代</span>
+            </div>
+            <div class="tag tag-disable">
+                <i class="iconfont">&#xe68f;</i>
+                <span>九龙仓时代</span>
+            </div>
+        </div>
+        <div class="tips padding-left-double padding-right-double padding-top">
+            <div class="tip-box padding">
+                <i class="iconfont color-number">&#xe608;</i>
+                <span class="font-12">没有找到相关楼盘哦！</span>
+            </div>
+            <div class="line-text">
+            </div>
+        </div>
+        <div class="list">
+            <div class="list-wapper">
+                <div class="item-box padding-double border-bottom">
+                <div class="item item-thumbnail-left" style="border: none">
+                    <div class="img">
+                        <div class="discount text-ellipsis">
+                            交500抵1000万11111
+                        </div>
+                        <div class="shade text-ellipsis">普通住宅 公寓 别墅</div>
+                        <img width="100%" src="../img/houselistPicHouse@2x.png" alt="">
+                    </div>
+                    <div class="padding-left border-box">
+                        <div class="item-title font-16">
+                            山水文园五期
+                            <div class="float-right top-tip">置顶</div> 
+                        </div>
+                        <div class="item-subTitle font-12 text-ellipsis">昌平 · 东五环七棵树路口向东230米</div>
+                        <div class="item-keywords font-12 text-ellipsis">
+                            <span class="keywords-tag" >普通住宅</span>
+                            <span class="keywords-tag">高新区</span>
+                            <span class="keywords-tag">近地铁</span>
+                            <span class="keywords-tag">LOFTER</span>
+                        </div>
+                        <div class="item-price"><span class="font-14">9200元／平</span> <span class="font-12">80-120㎡</span></div>
+                    </div>
+                </div>
+                <div class="text-center info-block text-center font-12">
+                    关注87人｜看房45次｜评价16条
+                </div>
+            </div>
+            <div class="item-box padding-double border-bottom">
+                <div class="item item-thumbnail-left" style="border: none">
+                    <div class="img">
+                        <div class="discount text-ellipsis">
+                            交500抵1000
+                        </div>
+                        <div class="shade text-ellipsis">普通住宅 公寓 别墅</div>
+                        <img width="100%" src="../img/houselistPicHouse@2x.png" alt="">
+                    </div>
+                    <div class="padding-left border-box">
+                        <div class="item-title font-16">
+                            山水文园五期
+                            <div class="float-right top-tip">置顶</div> 
+                        </div>
+                        <div class="item-subTitle font-12 text-ellipsis">昌平 · 东五环七棵树路口向东230米</div>
+                        <div class="item-keywords font-12 text-ellipsis">
+                            <span class="keywords-tag" >普通住宅</span>
+                            <span class="keywords-tag">高新区</span>
+                            <span class="keywords-tag">近地铁</span>
+                            <span class="keywords-tag">LOFTER</span>
+                        </div>
+                        <div class="item-price"><span class="font-14">9200元／平</span> <span class="font-12">80-120㎡</span></div>
+                    </div>
+                </div>
+                <div class="text-center info-block text-center font-12">
+                    关注87人｜看房45次｜评价16条
+                </div>
+            </div>
+            <div class="item-box padding-double border-bottom">
+                <div class="item item-thumbnail-left" style="border: none">
+                    <div class="img">
+                        <div class="discount text-ellipsis">
+                            交500抵1000万111111111
+                        </div>
+                        <div class="shade text-ellipsis">普通住宅 公寓 别墅</div>
+                        <img width="100%" src="../img/houselistPicHouse@2x.png" alt="">
+                    </div>
+                    <div class="padding-left border-box">
+                        <div class="item-title font-16">
+                            山水文园五期
+                            <div class="float-right top-tip">置顶</div> 
+                        </div>
+                        <div class="item-subTitle font-12 text-ellipsis">昌平 · 东五环七棵树路口向东230米</div>
+                        <div class="item-keywords font-12 text-ellipsis">
+                            <span class="keywords-tag" >普通住宅</span>
+                            <span class="keywords-tag">高新区</span>
+                            <span class="keywords-tag">近地铁</span>
+                            <span class="keywords-tag">LOFTER</span>
+                        </div>
+                        <div class="item-price"><span class="font-14">9200元／平</span> <span class="font-12">80-120㎡</span></div>
+                    </div>
+                </div>
+                <div class="text-center info-block text-center font-12">
+                    关注87人｜看房45次｜评价16条
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

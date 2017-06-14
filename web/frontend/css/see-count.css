@@ -1,0 +1,28 @@
+@import 'common.css';
+
+.see-count .screen{
+    width: 100%;
+	height: 120px;
+    padding: 38px 20px 0 20px;
+	background-image: linear-gradient(to bottom, #0aa3e9, #41c4ff);
+    box-sizing: border-box;
+}
+.see-count .see-list .list-head{
+    width: 100%;
+    height: 56px;
+}
+.see-count .see-list .list-head .grid-33{
+    line-height: 56px;
+}
+.see-count .see-list .list-content .grid-33>.row{
+    padding-left: 20px;
+}
+.see-count .see-list .list-content .box{
+    padding:0 20px 20px;
+}
+.see-count .see-list .list-content .grid{
+    padding:16px 0;
+}
+.see-count .see-list .list-content .msg{
+    background: #f4f5f7;
+}

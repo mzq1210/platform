@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!--swiper start-->
+	<link rel="stylesheet" href="../utils/swiper/swiper-3.4.2.min.css">
+	<script src="../utils/swiper/swiper-3.4.2.min.js"></script>
+	<!--swiper end-->
+    <!--echarts start-->
+    <script src="../utils/echarts/echarts.min.js"></script>
+    <!--echarts end-->
+    <link rel="stylesheet" href="../css/estate-detail.css">
+	<script src="../js/estate-detail.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=gFr0kfjO6FBxvKkBU2FavjK5yd4FTiAq"></script>
+</head>
+<body>
+    <nav class="nav text-center">
+		<div class="back-btn"><i class="icon iconfont">&#xe600;</i></div>
+		<span>中港 CC PARK</span>
+        <div class="share-btn"><i class="icon iconfont">&#xe684;</i></div>
+	</nav>
+    <div class="detail">
+        <div class="banner">
+            <div id="banner_swiper" class="swiper-container">
+				<div class="swiper-wrapper">
+				    <div class="swiper-slide">
+                        <img src="../img/pic_house.png" alt="">
+                    </div>
+				    <div class="swiper-slide">
+                        <img src="../img/pic_house.png" alt="">
+                    </div>
+				    <div class="swiper-slide">
+                        <img src="../img/pic_house.png" alt="">
+                    </div>
+				    <div class="swiper-slide">
+                        <img src="../img/pic_house.png">
+                    </div>
+				    <div class="swiper-slide">
+                        <img src="../img/pic_house.png">
+                    </div>
+				    <div class="swiper-slide">
+                        <img src="../img/pic_house.png">
+                    </div>
+				    <div class="swiper-slide">
+                        <img src="../img/pic_house.png">
+                    </div>
+				    <div class="swiper-slide">
+                        <img src="../img/pic_house.png">
+                    </div>
+				    <div class="swiper-slide">
+                        <img src="../img/pic_house.png">
+                    </div>
+				    <div class="swiper-slide">
+                        <img src="../img/pic_house.png">
+                    </div>
+				</div>
+                <!-- 分页器 -->
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+        <div class="info-main">
+            <div class="title">
+                <span class="font-bold">中港 CC PARK</span>
+                <span class="subtitle font-14">[普通住宅]</span>
+            </div>
+            <div class="font-12">
+                均价 
+                <span class="price">8900</span> 
+                元／平
+            </div>
+            <div class="alias font-14 color-light-font">
+                <img src="../img/iconLocation@2x.png" alt="">
+                别名／佳兆业公园
+            </div>
+            <div class="keywords font-12">
+                <span class="keywords-tag" >普通住宅</span>
+				<span class="keywords-tag">高新区</span>
+				<span class="keywords-tag">近地铁</span>
+				<span class="keywords-tag">LOFTER</span>
+            </div>
+        </div>
+        <div class="gray-space"></div>
+        <div class="info-sub font-14">
+            <div class="border-bottom">
+                <div class="row margin-bottom">
+                    <div class="col-20 label">
+                        开盘时间
+                    </div>
+                    <div class="col-80 padding-left">
+                        2016-01-12
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-20 label">
+                        楼盘地址
+                    </div>
+                    <div class="col-80 padding-left article">
+                        高新二环琉璃路口（东湖公园旁）
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="row">
+                    <div class="col-30 label">
+                        预售许可证
+                    </div>
+                    <div class="col-70 padding-left article color-info">
+                        成房预售中心城区字第11300号
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="gray-space"></div>
+        <div class="activity">
+            <div class="title border-bottom padding-double">
+                <div class="font-16">
+                    最新动态
+                    <div class="float-right color-gray">
+                        <i class="float-right icon iconfont">&#xe601;</i>
+                    </div>
+                </div>
+            </div>
+            <div class="content padding-double">
+                <div id="activity_swiper" class="swiper-container">
+                    <div class="swiper-wrapper font-13">
+                        <div class="swiper-slide">
+                            <div class="box">
+                                <div class="img">
+                                    <img width='100%' src="../img/dynamicPic@2x.png" alt="">
+                                </div>
+                                <div class="text">
+                                    <div>
+                                        主推户型区间为项目在售
+                                        主推，型区间，为项目在
+                                        与琉璃二璃环琉二环路fdsf 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="box">
+                                <div class="img">
+                                    <img width='100%' src="../img/dynamicPic@2x.png" alt="">
+                                </div>
+                                <div class="text">
+                                    <div>
+                                        主推户型区间为项目在售
+                                        主推，型区间，为项目在
+                                        与琉璃二璃环琉二环路fdsf 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="box">
+                                <div class="img">
+                                    <img width='100%' src="../img/dynamicPic@2x.png" alt="">
+                                </div>
+                                <div class="text">
+                                    <div>
+                                        主推户型区间为项目在售
+                                        主推，型区间，为项目在
+                                        与琉璃二璃环琉二环路fdsf 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="box">
+                                <div class="img">
+                                    <img width='100%' src="../img/dynamicPic@2x.png" alt="">
+                                </div>
+                                <div class="text">
+                                    <div>
+                                        主推户型区间为项目在售
+                                        主推，型区间，为项目在
+                                        与琉璃二璃环琉二环路fdsf 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="gray-space"></div>
+        <div class="light">
+            <div class="title border-bottom padding-double">
+                <div class="font-16">
+                    楼盘亮点
+                </div>
+            </div>
+            <div class="content font-14 border-bottom padding-double">
+                <div class="row margin-bottom">
+                    <div class="col-20 label">
+                        核心卖点
+                    </div>
+                    <div class="col-80 padding-left">
+                        中港 CC PARK在售均21000/平米左右，主推户型区间为80-124㎡
+                    </div>
+                </div>
+                <div class="row margin-bottom">
+                    <div class="col-20 label">
+                        环境配套
+                    </div>
+                    <div class="col-80 padding-left article">
+                        中港 CC PARK主推4、6、7号楼，项目2批已经于1月9日盛大开盘。主推户型区间为项目在售均主推，型区间为项目在售均，二环与琉璃二、环与琉璃环二环与琉璃二环路二环环路…
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-20 label">
+                        主推户型
+                    </div>
+                    <div class="col-80 padding-left article">
+                        <div class="grid">
+                            <div class="grid-50">2居室（72㎡）</div>
+                            <div class="grid-50">3居室（82㎡）</div>
+                            <div class="grid-50">4居室（92㎡）</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="more text-center font-13">
+                更多详细信息
+            </div>
+        </div>
+        <div class="gray-space"></div>
+        <div class="see-count">
+            <div class="title border-bottom padding-double">
+                <div class="font-16">
+                    带看情况
+                    <div class="float-right color-gray">
+                        <i class="float-right icon iconfont">&#xe601;</i>
+                    </div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="grid">
+					<div class="grid-33 text-left">
+						<div class="font-12 label">近七日带看量</div>
+						<div class="font-26 font-bold">4860</div>
+						<div class="font-12">次</div>
+					</div>
+					<div class="grid-33 text-left">
+						<div class="font-12 label">近月带看量</div>
+						<div class="font-26 font-bold">28386</div>
+						<div class="font-12">次</div>
+					</div>
+					<div class="grid-33 text-left">
+						<div class="font-12 label">累计带看量</div>
+						<div class="font-26 font-bold">39513</div>
+						<div class="font-12">次</div>
+					</div>
+				</div>
+            </div>
+        </div>
+        <div class="gray-space"></div>
+        <div class="recommend">
+            <div class="title padding-double border-bottom">
+                <div class="font-16">
+                    主推户型
+                    <div class="float-right color-gray">
+                        <i class="float-right icon iconfont">&#xe601;</i>
+                    </div>
+                </div>
+            </div>
+            <div class="content padding-double">
+                <div id="recommend_swiper" class="swiper-container">
+                    <div class="swiper-wrapper font-13">
+                        <div class="swiper-slide">
+                            <div class="box">
+                                <img width='100%' src="../img/housetypePic@2x.png" alt="">
+                                <div class="font-14"><span>A1户型户型</span> </div>
+                                <div class="font-12 label">128.0㎡ · 4室2厅2卫</div>
+                                <div><span class="tag tag-danger">主推</span> <span class="tag tag-info">在售</span></div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="box">
+                                <img width='100%' src="../img/housetypePic@2x.png" alt="">
+                                <div class="font-14"><span>A1户型户型</span> </div>
+                                <div class="font-12 label">128.0㎡ · 4室2厅2卫</div>
+                                <div><span class="tag tag-danger">主推</span> <span class="tag tag-info">在售</span></div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="box">
+                                <img width='100%' src="../img/housetypePic@2x.png" alt="">
+                                <div class="font-14"><span>A1户型户型</span> </div>
+                                <div class="font-12 label">128.0㎡ · 4室2厅2卫</div>
+                                <div><span class="tag tag-danger">主推</span> <span class="tag tag-info">在售</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="gray-space"></div>
+        <div class="comment">
+            <div class="title border-bottom padding-double">
+                <div class="font-16">
+                    用户评论（23条）
+                    <div class="float-right color-gray">
+                        <i class="float-right icon iconfont">&#xe601;</i>
+                    </div>
+                </div>
+            </div>
+            <div class="padding-double border-bottom">
+                <span class="font-14">综合评分 </span>
+                <span class="score-main">
+                    <img src="../img/redheart.png" alt="">
+                    <img src="../img/redheart.png" alt="">
+                    <img src="../img/redheart.png" alt="">
+                    <img src="../img/halfheart.png" alt="">
+                    <img src="../img/grayheart.png" alt="">
+                </span>
+                &nbsp;
+                <span class="color-number font-14">
+                    7.0分
+                </span>
+                <div class="float-right">
+                    <span class="icon iconfont color-info font-14">&#xa3e9; 写评论</span>
+                </div>
+            </div>
+            <div class="content">
+                <div class="list">
+                    <div class="padding-double border-bottom">
+                        <div class="item item-ava">
+                        <img src="../img/pic_head.png" alt="">
+                        <div class="padding-left">
+                            <div>
+                                <span class="font-14">
+                                    132****3901
+                                </span>
+                                <span class="tag tag-disable">
+                                    暂不考虑
+                                </span>
+                                <div class="float-right color-light-font font-12 line-20">
+                                    2017-02-28
+                                </div>
+                            </div>
+                            <div>
+                                <span class="color-light-font font-12">评分指数</span>
+                                <span class="score">
+                                    <img src="../img/redheart.png" alt="">
+                                    <img src="../img/redheart.png" alt="">
+                                    <img src="../img/redheart.png" alt="">
+                                    <img src="../img/halfheart.png" alt="">
+                                    <img src="../img/grayheart.png" alt="">
+                                </span>
+                                &nbsp;
+                                <span class="color-number font-12">
+                                    7.0分
+                                </span>
+                            </div>
+                            <div class="text font-14">
+                                很耐心的带我看了很多我意向的房源，每次都是
+                                随叫随到，最后选到了理想的房子，感谢！
+                                很耐心的带我看了很多我意向的房源，每次都是
+                                随叫随到，最后选到了理想的房子，感谢！
+                                很耐心的带我看了很多我意向的房源，每次都是
+                                随叫随到，最后选到了理想的房子，感谢！
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="padding-double border-bottom">
+                        <div class="item item-ava">
+                            <img src="../img/pic_head.png" alt="">
+                            <div class="padding-left">
+                                <div>
+                                    <span class="font-14">
+                                        132****3901
+                                    </span>
+                                    <span class="tag tag-disable">
+                                        暂不考虑
+                                    </span>
+                                    <div class="float-right color-light-font font-12 line-20">
+                                        2017-02-28
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="color-light-font font-12">评分指数</span>
+                                    <span class="score">
+                                        <img src="../img/redheart.png" alt="">
+                                        <img src="../img/redheart.png" alt="">
+                                        <img src="../img/redheart.png" alt="">
+                                        <img src="../img/halfheart.png" alt="">
+                                        <img src="../img/grayheart.png" alt="">
+                                    </span>
+                                    &nbsp;
+                                    <span class="color-number font-12">
+                                        7.0分
+                                    </span>
+                                </div>
+                                <div class="text font-14">
+                                    很耐心的带我看了很多我意向的房源，每次都是
+                                    随叫随到，最后选到了理想的房子，感谢！
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="gray-space"></div>
+        <div class="location">
+            <div class="title border-bottom padding-double">
+                <div class="font-16">
+                    位置及周边配套
+                    <div class="float-right color-gray">
+                        <i class="float-right icon iconfont">&#xe601;</i>
+                    </div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="address font-14">
+                    <div class="row">
+                        <div class="col-20 text-center">
+                            <span class="color-light-font">地址:</span> 
+                        </div>
+                        <div class="col-80 text-left">
+                            锦江二环琉璃路口二环琉璃路口（东湖公园旁）
+                            锦江二环琉璃路口二环琉璃路口（东湖公园旁）
+                        </div>
+                    </div>
+                </div>
+                <!--key：gFr0kfjO6FBxvKkBU2FavjK5yd4FTiAq-->
+                <div class="map">
+                    <div id="map" style="width:100%;height:120px;"></div>
+                    <div class="navigation">
+                        <div class="tag">路线导航</div>
+                    </div>
+                </div>
+                <div class="area-info padding-double">
+                    <div class="grid text-center">
+                        <div class="grid-33">
+                            <div class="font-12 color-light-font">公交站点</div>
+                            <div><span class="font-26 color-info">10</span> <span class="font-12">座</span></div>
+                        </div>
+                        <div class="grid-33">
+                            <div class="font-12 color-light-font">教育学校</div>
+                            <div><span class="font-26 color-info">28</span> <span class="font-12">所</span></div>
+                        </div>
+                        <div class="grid-33">
+                            <div class="font-12 color-light-font">配套医院</div>
+                            <div><span class="font-26 color-info">13</span> <span class="font-12">所</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="gray-space"></div>
+        <div class="price">
+            <div class="title border-bottom padding-double">
+                <div class="font-16">
+                    均价走势
+                </div>
+            </div>
+            <div class="content">
+                <div class="price-info padding-double">
+                    <div class="grid text-center">
+                        <div class="grid-50">
+                            <div class="font-12 color-light-font">本月均价</div>
+                            <div><span class="font-26 color-info">11000</span> <span class="font-14">元／平</span></div>
+                        </div>
+                        <div class="grid-50">
+                            <div class="font-12 color-light-font">环比上月</div>
+                            <div><span class="font-26 color-info">5.83</span> <span class="font-14">% </span><span class="arrow">↑</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="price-msg font-12 color-light-font padding-double" style="padding-top: 0;">
+                    均价8000-10000元／平米，团购交1.5万抵2.5万，均享受团购再优惠2%，全款优惠4%，按揭优惠2%。
+                </div>
+                <div class="chart" style="padding:20px 0;">
+                    <div id="main" style="width: 100%;height:240px;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="gray-space"></div>
+        <div class="area-recommend">
+            <div class="title border-bottom padding-double">
+                <div class="font-16">
+                    同区域楼盘推荐
+                    <div class="float-right color-gray">
+                        <i class="float-right icon iconfont">&#xe601;</i>
+                    </div>
+                </div>
+            </div>
+            <div class="content padding-double">
+                <div id="area_recommend_swiper" class="swiper-container">
+                    <div class="swiper-wrapper font-13">
+                        <div class="swiper-slide">
+                            <div class="box">
+                                <div class="img">
+                                    <div class="img-label">
+                                        <img width='100%' src="../img/otherhouse-label-recommend@2x.png" alt="">
+                                    </div>
+                                    <img width='100%' src="../img/otherhouse-pic@2x.png" alt="">
+                                    <div class="grade font-12">9.0分</div>
+                                </div>
+                                <div class="font-14"><span>瑞声望江树林</span> </div>
+                                <div class="font-12 color-number">99990元／平米</div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="box">
+                                <div class="img">
+                                    <div class="img-label">
+                                        <img width='100%' src="../img/otherhouse-label-recommend@2x.png" alt="">
+                                    </div>
+                                    <img width='100%' src="../img/otherhouse-pic@2x.png" alt="">
+                                    <div class="grade font-12">9.0分</div>
+                                </div>
+                                <div class="font-14"><span>瑞声望江树林</span> </div>
+                                <div class="font-12 color-number">99990元／平米</div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="box">
+                                <div class="img">
+                                    <div class="img-label">
+                                        <img width='100%' src="../img/otherhouse-label-recommend@2x.png" alt="">
+                                    </div>
+                                    <img width='100%' src="../img/otherhouse-pic@2x.png" alt="">
+                                    <div class="grade font-12">9.0分</div>
+                                </div>
+                                <div class="font-14"><span>瑞声望江树林</span> </div>
+                                <div class="font-12 color-number">99990元／平米</div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="box">
+                                <div class="img">
+                                    <div class="img-label">
+                                        <img width='100%' src="../img/otherhouse-label-recommend@2x.png" alt="">
+                                    </div>
+                                    <img width='100%' src="../img/otherhouse-pic@2x.png" alt="">
+                                    <div class="grade font-12">9.0分</div>
+                                </div>
+                                <div class="font-14"><span>瑞声望江树林</span> </div>
+                                <div class="font-12 color-number">99990元／平米</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="gray-space"></div>
+        <div class="detail-footer text-center flex">
+            <div class="left-box">
+                <div class="heart padding">
+                    <!--两种状态-->
+                    <i class="iconfont font-16">&#xe609;</i>
+                    <!--<i class="iconfont font-16 color-number">&#xe607;</i>-->
+                    <div>关注(20)</div>
+                </div>
+                <div class="tel padding">
+                    <i class="iconfont font-16">&#xe67f;</i>
+                    <div>电话咨询</div>
+                </div>
+            </div>
+            <div class="right-btn">
+                咨询经纪人
+            </div>
+        </div>
+    </div>
+</body>
+</html>

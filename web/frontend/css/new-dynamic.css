@@ -1,0 +1,45 @@
+@import 'common.css';
+
+#menu_swiper{
+    text-align:center;
+    line-height: 55px;
+}
+#menu_swiper .active-nav{
+    position: relative;
+    color: #0aa3e9;
+}
+#menu_swiper .active-nav:after{
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 30px;
+	height: 2px;
+	background-color: #0aa3e9;
+}
+#dynamic_swiper .swiper-slide{
+    box-sizing: border-box;
+}
+.item {
+    border: none;
+    padding-left:110px;
+    min-height: 80px;
+}
+.item .img {
+    width: 100px;
+    height: 70px;
+}
+.item .font-12{
+    color:#909193;
+    position: absolute;
+    bottom: 10px;
+}
+.item .margin-bottom{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}

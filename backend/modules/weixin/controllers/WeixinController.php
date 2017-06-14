@@ -8,23 +8,37 @@
 namespace app\modules\weixin\controllers;
 
 use Yii;
-use app\components\base\BaseController;
+use app\components\base\WxController;
 
-class WeixinController extends BaseController
+class WeixinController extends WxController
 {
 
+    //创建菜单
+    public function actionSetMenu(){
+        $menu = [
+           [
+                'type' => 'view',
+                'name' => '广场',
+                'url' => 'http://www.onelog.cn/index/index'
+           ],
+            [
+                'type' => 'view',
+                'name' => '发布',
+                'url' => 'http://www.onelog.cn/release/index'
+            ],
+            [
+                'type' => 'view',
+                'name' => '我的',
+                'url' => 'http://www.onelog.cn/weixin/user/index'
+            ],
 
-    public function actionIndex()
-    {
+        ];
+
         $wechat = Yii::$app->wechat;
+        $res=$wechat->createMenu($menu);
+        var_dump($res);die;
 
-        //获取access_token
-        var_dump($wechat->accessToken);
-
-        echo 123;die;
-        return $this->render('index');
     }
-
 
 
 

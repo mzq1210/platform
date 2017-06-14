@@ -19,9 +19,10 @@ return [
     'components' => [
         'wechat' => [
             'class' => 'yii\wechat\Wechat',
-            'appId' => 'wx84cb2db9b98b4f62',
-            'appSecret' => 'b73889e11a6dc08b50d8b75ec37a830b',
-            'token' => '微信服务器对接您的服务器验证token'
+            'appId' => 'wx56ec9c9455dcefd0',
+            'appSecret' => 'd4624c36b6795d1d99dcf0547af5443d',
+            'token' => 'weixin'
+            /*'token' => '微信服务器对接您的服务器验证token'*/
         ],
 
         'request' => [

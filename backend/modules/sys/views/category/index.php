@@ -7,12 +7,6 @@ use yii\helpers\Url;
     <script src="/js/jquery.treetable.js"></script>
     <script>
         //屏蔽下面js则把所有组织机构都展示出来，
-
-
-
-
-
-
         $(document).ready(function() {
             $("#dnd-example").treeTable({
                 indent: 20
@@ -25,11 +19,6 @@ use yii\helpers\Url;
 <link href="/css/form.css" rel="stylesheet">
 <div class="search-nav">
     <form class="form-inline" name="searchform" action="<?php echo Url::toRoute(['/sys/category/index']); ?>" method="post">
-
-
-
-
-
         <div class="form-group input-group-sm">
             <label for="txtName">用户名：</label>
             <input class="form-control ipt" id="txtName" placeholder="名称" name="name" value="<?php if($params && isset($params['name'])):?><?=$params['name']?><?php endif;?>">
@@ -55,8 +44,6 @@ use yii\helpers\Url;
     }?>
     </tbody>
 </table>
-
-
 
 <script type="text/javascript">
     function createsonmenu(id) {

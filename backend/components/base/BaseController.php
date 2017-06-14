@@ -85,4 +85,5 @@ class BaseController extends Controller{
         if(!empty($isin)) return true;
         return false;
     }
+
 }

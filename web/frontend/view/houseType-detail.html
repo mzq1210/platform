@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!--swiper start-->
+	<link rel="stylesheet" href="../utils/swiper/swiper-3.4.2.min.css">
+	<script src="../utils/swiper/swiper-3.4.2.min.js"></script>
+	<!--swiper end-->
+    <!--echarts start-->
+    <script src="../utils/echarts/echarts.min.js"></script>
+    <!--echarts end-->
+    <script src="../utils/zepto.js"></script>
+    <link rel="stylesheet" href="../css/houseType-detail.css">
+    <script src="../js/houseType-detail.js"></script>
+</head>
+<body>
+    <nav class="nav text-center">
+		<div class="back-btn"><i class="icon iconfont">&#xe600;</i></div>
+		<span class="title text-ellipsis">1期A1户型</span>
+        <div class="share-btn"><i class="icon iconfont">&#xe684;</i></div>
+    </nav>
+    <div class="houseType-detail">
+        <div class="banner">
+            <div id="banner_swiper" class="swiper-container">
+				<div class="swiper-wrapper">
+				    <div class="swiper-slide">
+                        <img src="../img/pic_house.png" alt="">
+                    </div>
+				    <div class="swiper-slide">
+                        <img src="../img/pic_house.png" alt="">
+                    </div>
+				    <div class="swiper-slide">
+                        <img src="../img/pic_house.png" alt="">
+                    </div>
+				    <div class="swiper-slide">
+                        <img src="../img/pic_house.png">
+                    </div>
+				    <div class="swiper-slide">
+                        <img src="../img/pic_house.png">
+                    </div>
+				    <div class="swiper-slide">
+                        <img src="../img/pic_house.png">
+                    </div>
+				    <div class="swiper-slide">
+                        <img src="../img/pic_house.png">
+                    </div>
+				    <div class="swiper-slide">
+                        <img src="../img/pic_house.png">
+                    </div>
+				    <div class="swiper-slide">
+                        <img src="../img/pic_house.png">
+                    </div>
+				    <div class="swiper-slide">
+                        <img src="../img/pic_house.png">
+                    </div>
+				</div>
+                <!-- 分页器 -->
+                <div class="swiper-pagination color-white font-15 text-right margin-right"></div>
+            </div>
+        </div>
+        <div class="info padding-double border-bottom">
+            <div class="margin-bottom-double">
+                <span class="vertical-bottom font-21">A1户型</span> <span class="tag tag-danger">主推</span> <span class="tag tag-info">在售</span>
+            </div>
+            <div class="row">
+                <div class="col-50">
+                    <span class="font-14 color-light-font">预估价格</span> <span class="color-number font-25">56</span> <span class="font-12 color-number">万元起</span>
+                </div>
+                <div class="col-50">
+                    <div class="color-heavy-font">
+                        <span class="font-14 color-light-font">参考月供</span> <span class="font-24">2200</span><span class="font-12">元</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="padding-double">
+            <div class="row">
+                <div class="col-50">
+                    <div class="font-14 margin-bottom-double"><span class="color-light-font">户型</span>&nbsp;&nbsp;2室2厅1卫</div>
+                    <div class="font-14 margin-bottom-double"><span class="color-light-font">建筑面积</span>&nbsp;&nbsp;70.00㎡</div>
+                    <div class="font-14"><span class="color-light-font">实得面积</span>&nbsp;&nbsp;96.00㎡</div>
+                </div>
+                <div class="col-50">
+                    <div class="font-14 margin-bottom-double"><span class="color-light-font">朝向</span>&nbsp;&nbsp;南北朝向</div>
+                    <div class="font-14 margin-bottom-double"><span class="color-light-font">公摊面积</span>&nbsp;&nbsp;8.00㎡</div>
+                    <div class="font-14"><span class="color-light-font">不计价面积</span>&nbsp;&nbsp;0.00㎡</div>
+                </div>
+            </div>
+        </div>
+        <div class="gray-space"></div>
+        <div class="special">
+            <div class="title padding-double border-bottom">
+                <div>
+                    户型特色
+                </div>
+            </div>
+            <div class="content padding-double font-14 color-normal-font">
+                户型方正 动静分区
+            </div>
+        </div>
+        <div class="gray-space"></div>
+        <div class="description">
+            <div class="title padding-double border-bottom">
+                <div>
+                    户型描述
+                </div>
+            </div>
+            <div class="content padding-double font-14">
+                <div class="margin-bottom-double">
+                    <span class="color-light-font">客厅</span>&nbsp;&nbsp;<span>客厅带观景阳台，采光视野佳</span>
+                </div>
+                <div class="margin-bottom-double">
+                    <span class="color-light-font">卫生间</span>&nbsp;&nbsp;<span>双卫设计，生活更方便</span>
+                </div>
+                <div>
+                    <span class="color-light-font">厨房</span>&nbsp;&nbsp;<span>厨房带生活阳台</span>
+                </div>
+            </div>
+        </div>
+        <div class="gray-space"></div>
+        <div class="calc">
+            <div class="title padding-double border-bottom">
+                <div>
+                    房贷计算
+                </div>
+            </div>
+            <div class="content padding-double font-14">
+                <div class="row">
+                    <div class="col-50">
+                        <div id="chart" style="width:140px;height:140px;"></div>
+                    </div>
+                    <div class="col-50">
+                        <div class="row margin-bottom">
+                            <div class="col-60 text-right"><span>参考月供：</span></div>
+                            <div class="col-40"><span class="color-number">25007元</span></div>
+                        </div>
+                        <div class="row margin-bottom">
+                            <div class="col-60 text-right">
+                                <div class="round-s vertical-middle"></div>
+                                <span class="font-12">首付总额：</span>
+                            </div>
+                            <div class="col-40">
+                                <span class="font-12">20万 3成</span>
+                            </div>
+                        </div>
+                        <div class="row margin-bottom">
+                            <div class="col-60 text-right">
+                                <div class="round-s vertical-middle" style="background:#5aaddf;"></div>
+                                <span class="font-12">贷款总额：</span>
+                            </div>
+                            <div class="col-40">
+                                <span class="font-12">62万 7成</span>
+                            </div>
+                        </div>
+                        <div class="row margin-bottom">
+                            <div class="col-60 text-right">
+                                <div class="round-s vertical-middle" style="background:#f1734c;"></div>
+                                <span class="font-12">利息总额：</span>
+                            </div>
+                            <div class="col-40">
+                                <span class="font-12">62万</span>
+                            </div>
+                        </div>
+                        <div class="row margin-bottom-double">
+                            <div class="col-60 text-right">
+                                <span class="font-12">贷款年限：</span>
+                            </div>
+                            <div class="col-40">
+                                <span class="font-12">62年</span>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="fix margin-bottom-double">
+                    <div class="color-light-font font-12 float-right text-right margin-bottom-double">
+                        <div style="margin-bottom:8px;">＊商业贷款4.90％，公积金3.25％</div>
+                        <div>＊按照等额本息方式计算，数据仅供参考</div>
+                    </div>
+                </div>
+                <div class="calc-btn">
+                    <i class="iconfont color-info">&#xe6a2;</i>
+                    重新计算
+                </div>
+            </div>
+        </div>
+        <div class="gray-space"></div>
+    </div>
+</body>
+</html>
