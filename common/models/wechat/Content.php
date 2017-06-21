@@ -8,6 +8,7 @@
 
 namespace common\models\wechat;
 
+use yii\data\Pagination;
 use common\models\base\BaseWechat;
 
 class Content extends BaseWechat
@@ -18,6 +19,21 @@ class Content extends BaseWechat
     public static function tableName()
     {
         return 'wechat_content';
+    }
+
+    public static function search($params=[]){
+        $query = self::find()->where(['del_flag' => 0])->orderBy(['id' => SORT_ASC]);
+        $pageSize = isset($params['per-page']) ? $params['per-page'] : 10;
+
+        if(isset($params['title'])) {
+            $query->andFilterWhere(['like', 'title', $params['title']]);
+        }
+
+        $countQuery = clone $query;
+        $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => $pageSize]);
+        $info['data'] = $query->offset($pages->offset)->limit($pages->limit)->all();
+        $info['pages'] = $pages;
+        return $info;
     }
 
     //获取所有话题列表

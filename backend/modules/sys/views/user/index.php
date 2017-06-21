@@ -1,8 +1,6 @@
 <?php
 use yii\helpers\Url;
 use common\models\sys\UserInfo;
-use common\models\sys\Dept;
-use common\models\sys\UserSite;
 use common\widgets\GoLinkPager;
 
 ?>
