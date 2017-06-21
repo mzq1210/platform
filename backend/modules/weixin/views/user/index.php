@@ -41,7 +41,7 @@ use common\widgets\GoLinkPager;
             <td><?= $val->id; ?></td>
             <td><?= $val->name;?></td>
             <td><?= $val->openid;?></td>
-            <td><?= $val->sex; ?></td>
+            <td><?php echo ($val->sex == 1)? '男':'女'; ?></td>
             <td><?php echo mb_substr($val->headimgurl, 0, 25).'...';?></td>
             <td><?= date('Y-m-d H:i:s', $val->ctime); ?></td>
             <td><?= $val->phone; ?></td>
