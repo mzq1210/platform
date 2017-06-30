@@ -51,10 +51,10 @@ use yii\helpers\Url;
         text-align: right;
     }
     .biaoti{
-        font-weight: 400;
+        font-weight: 700;
     }
     .neirong{
-        color: #ccc;
+        color: #333;
     }
 </style>
 
