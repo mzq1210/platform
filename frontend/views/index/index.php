@@ -54,7 +54,7 @@ use yii\helpers\Url;
         font-weight: 700;
     }
     .neirong{
-        color: #333;
+        color: #666;
     }
 </style>
 
