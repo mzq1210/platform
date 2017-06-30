@@ -92,7 +92,7 @@ use yii\helpers\Url;
                 <div class="item-box">
                     <div class="font-12" style="color: #A1A2A4;padding: 8px 0;">
                         <img class="img-circle" src="<?php echo $value['headimgurl'];?>" style="width: 35px;height: 35px;">&nbsp;
-                        <?= $value['uname'];?>　　<span><?php echo date("m-d h:m",$value['ctime']);?></span>
+                        <?= $value['uname'];?><span><?php $value['ctime'];?></span>
                         <!--<div class="float-right top-tip" style="margin-top: 4px;">置顶</div>-->
                     </div>
                     <a href="<?php echo Url::toRoute(['/release/look','id' => $value['id']]);?>">
@@ -107,10 +107,9 @@ use yii\helpers\Url;
                                     <?= $value['content'];?>
                                 </div>
                             </div>
-                            <?php if($value['pic']):?>
-                                <span class="imgnum"><span class="glyphicon glyphicon-picture"></span>&nbsp;<?= count(explode(',', $value['pic']))?></span>
-                                <?php foreach ($pics = explode(',', $value['pic']) as $k => $v): ?>
-                                    <div class="imgbox"><img class="img-rounded" src="<?= $v['pic'].'_200x200.jpg';?>"></div>
+                            <?php if(isset($value['pics'])):?>
+                                <?php foreach ($value['pics'] as $k => $v): ?>
+                                    <div class="imgbox"><img class="img-rounded" src="<?= $v;?>"></div>
                                 <?php endforeach;?>
                             <?php endif;?>
                         </div>

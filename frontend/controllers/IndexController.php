@@ -20,32 +20,45 @@ class IndexController extends BaseController {
      * @return string
      */
     public function actionIndex(){
-        $Content=new Content();
-        $Category=new Category();
         if (Yii::$app->request->isAjax) {   //门店
             $post = Yii::$app->request->get();
             $page = isset($post['page'])? $post['page'] : 0;
             $size = isset($post['size'])? $post['size'] : 10;
-            $data=$Content->getContentList($page, $size);
+            $data=Content::getContentList($page, $size);
+            foreach ($data as $key => $value){
+                $data[$key]['ctime'] = date('Y-m-d: H:i:s', $value['ctime']);
+                if($value['pic'] != ''){
+                    foreach (explode(',', $value['pic']) as $k => $v){
+                        $type = substr($v, strrpos($v, '.'));
+                        $data[$key]['pics'][$k] = $v.'_200x200'.$type;
+                    }
+                }
+            }
             echo Json::encode($data);exit;
         }
-
+        
+        $Content=Content::getContentList(0, 10);
+        foreach ($Content as $key => $value){
+            $Content[$key]['ctime'] = date('Y-m-d: H:i:s', $value['ctime']);
+            if($value['pic'] != ''){
+                foreach (explode(',', $value['pic']) as $k => $v){
+                    $type = substr($v, strrpos($v, '.'));
+                    $Content[$key]['pics'][$k] = $v.'_200x200'.$type;
+                }
+            }
+        }
         $config=$this->wxJsConfig();
-        $Content=$Content->getContentList(0, 10);
-        $Category=$Category->getCategoryData();
+        $category=Category::getCategoryData();
 
         return $this->render('index',[
         	'Content'=>$Content,
-            'Category'=>$Category,
+            'Category'=>$category,
             'config'=>$config
         ]);
     }
 
 
     public function actionGames(){
-        //echo '111';die;
-//        $url='14078772-3.hd.faisco.cn';
-//        return header('location:'.$url);
         return $this->render('games');
     }
 

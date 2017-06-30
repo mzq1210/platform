@@ -100,16 +100,16 @@ window.onload = function () {
                         for (var i = 0; i < arrLen; i++) {
                             var picHtml = '';
                             if(data[i].pic != ''){
-                                var pics = data[i].pic.split(",");
+                                var pics = data[i].pics;
                                 for (var j = 0; j < pics.length; j++) {
-                                    picHtml += '<div class="imgbox"><img class="img-rounded" src="'+pics[j]+'_200x200.jpg"></div>';
+                                    picHtml += '<div class="imgbox"><img class="img-rounded" src="'+pics[j]+'"></div>';
                                 }
                             }
                             result += '<a href="/release/look?id='+data[i].id+'">\
                             <div class="item-box">\
                                 <div class="font-12" style="color: #A1A2A4;padding: 8px 0;">\
                                     <img class="img-circle" src="'+data[i].headimgurl+'" style="width: 35px;height: 35px;">&nbsp;'+
-                                    data[i].uname+'<span>2017-2-5</span>\
+                                    data[i].uname+'<span>'+data[i].ctime+'</span>\
                                 </div>\
                                 <div class="item item-thumbnail-left" style="border: none;">'+
                                     '<div class="border-box">\
