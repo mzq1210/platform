@@ -113,7 +113,7 @@ window.onload = function () {
                                 </div>\
                                 <div class="item item-thumbnail-left" style="border: none;">'+
                                     '<div class="border-box">\
-                                        <div class="item-title font-16 biaoti">'+data[i].title+'</div>'+
+                                        <div class="item-title font-16 biaoti" style="max-height: 50px;">'+data[i].title+'</div>'+
                                     '</div>'+
                                     '<div class="border-box">\
                                         <div class="item-title font-14 neirong" style="max-height: 80px;">'+data[i].content+'</div>'+
@@ -138,6 +138,8 @@ window.onload = function () {
                     setTimeout(function () {
                         // 插入数据到页面，放到最后面
                         $('.article-list').append(result);
+                        $(".biaoti").dotdotdot();//省略号
+                        $(".neirong").dotdotdot();//省略号
                         // 每次数据插入，必须重置
                         me.resetload();
                     }, 600);

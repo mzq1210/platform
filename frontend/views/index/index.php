@@ -132,20 +132,22 @@ use yii\helpers\Url;
 </div>
 
 <script type='text/javascript'>
-    $(".biaoti").dotdotdot();//省略号
-    $(".neirong").dotdotdot();//省略号
-    $(".add_zan").click(function () {
-        var zan_num = parseInt($(this).text());
-        var zan_new_num = zan_num + 1;
-        $(this).find(".zan_num").text(zan_new_num);
-        $(this).find(".zan_num").css('color','green');
-        var id=$(this).find(".zan_num").attr('id');
+    $(function(){
+        $(".biaoti").dotdotdot();//省略号
+        $(".neirong").dotdotdot();//省略号
+        $(".add_zan").click(function () {
+            var zan_num = parseInt($(this).text());
+            var zan_new_num = zan_num + 1;
+            $(this).find(".zan_num").text(zan_new_num);
+            $(this).find(".zan_num").css('color','green');
+            var id=$(this).find(".zan_num").attr('id');
 
-        $.get("<?= Yii::$app->urlManager->createUrl(['release/zan']); ?>", { 'id': id }, function(data){
+            $.get("<?= Yii::$app->urlManager->createUrl(['release/zan']); ?>", { 'id': id }, function(data){
+            });
+            $(this).unbind('click');
+
         });
-        $(this).unbind('click');
-
-    });
+    })
 </script>
 
 <script type='text/javascript' src='http://res.wx.qq.com/open/js/jweixin-1.2.0.js' charset='utf-8'></script>
