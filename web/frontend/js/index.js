@@ -111,7 +111,7 @@ window.onload = function () {
                                     <img class="img-circle" src="'+data[i].headimgurl+'" style="width: 35px;height: 35px;">&nbsp;'+
                                     data[i].uname+'<span>2017-2-5</span>\
                                 </div>\
-                                <div class="item item-thumbnail-left" style="border: none;">'+
+                                <div class="item item-thumbnail-left biaoti" style="border: none;">'+
                                     '<div class="border-box">\
                                         <div class="item-title font-16">'+data[i].title+'</div>'+
                                     '</div>'+

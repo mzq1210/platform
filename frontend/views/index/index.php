@@ -50,6 +50,12 @@ use yii\helpers\Url;
     .item-box .info-block{
         text-align: right;
     }
+    .biaoti{
+        font-weight: 400;
+    }
+    .neirong{
+        color: #ccc;
+    }
 </style>
 
 <div class="index">
