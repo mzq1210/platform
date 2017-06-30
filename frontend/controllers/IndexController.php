@@ -40,4 +40,14 @@ class IndexController extends BaseController {
             'config'=>$config
         ]);
     }
+
+
+    public function actionGames(){
+        //echo '111';die;
+//        $url='14078772-3.hd.faisco.cn';
+//        return header('location:'.$url);
+        return $this->render('games');
+    }
+
+
 }

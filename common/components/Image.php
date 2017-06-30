@@ -14,7 +14,7 @@ class Image extends \yii\base\Component
 
     //图片展示域名
     //const IMG_DOMAIN = 'http://img.99yijia.com/';
-    const IMG_DOMAIN = 'http://show.onelog.cn/';
+    const IMG_DOMAIN = 'http://show.onelog.cn';
 
     //授权token
     const AUTH_TOKEN = 'u0eew2y17mZZCaaZv43dqdWalA';

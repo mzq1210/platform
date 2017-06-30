@@ -134,7 +134,7 @@ class ReleaseController extends BaseController{
      */
     public function fileMerge($files)
     {
-        $imgPath = Image::upload($files);
+        $imgPath = Image::upload($files, 'platform');
         return rtrim($imgPath, ',');
     }
 
