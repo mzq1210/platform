@@ -92,7 +92,7 @@ use yii\helpers\Url;
                 <div class="item-box">
                     <div class="font-12" style="color: #A1A2A4;padding: 8px 0;">
                         <img class="img-circle" src="<?php echo $value['headimgurl'];?>" style="width: 35px;height: 35px;">&nbsp;
-                        <?= $value['uname'];?><span><?php $value['ctime'];?></span>
+                        <?= $value['uname'];?><span style="margin-left: 10px;"><?= $value['ctime'];?></span>
                         <!--<div class="float-right top-tip" style="margin-top: 4px;">置顶</div>-->
                     </div>
                     <a href="<?php echo Url::toRoute(['/release/look','id' => $value['id']]);?>">
