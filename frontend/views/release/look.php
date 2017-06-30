@@ -33,7 +33,7 @@ use yii\helpers\Url;
 
             <div style="width: 95%;margin:0 auto;">
                 <?php foreach (explode(',', $data['pic']) as $kk => $vv): ?>
-                    <img src="<?php echo $vv ?>" width="100%"
+                    <img src="<?php echo $vv.'_600x600.jpg'; ?>" width="100%"
                          style="margin-right: 1%; margin-top: 8px;display: inline-block;">
                 <?php endforeach; ?>
             </div>
@@ -43,13 +43,11 @@ use yii\helpers\Url;
 </div>
 
 <div class="comment-detail">
-
     <div class="all-comments">
         <div class="title border-bottom padding-double">
             <div class="font-16">
                 用户评论<span class="font-14">（<?= $data['coments']; ?>条）</span>
                 <span class="glyphicon glyphicon-eye-open look"></span><span class="num"><?= $data['look'];?></span>
-<!--                <span class="glyphicon glyphicon-heart-empty zan"></span><span class="num">--><?//= $data['zan'];?><!--</span>-->
             </div>
         </div>
         <div class="content comment-list">
