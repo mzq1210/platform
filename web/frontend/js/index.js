@@ -101,21 +101,24 @@ window.onload = function () {
                             var picHtml = '';
                             if(data[i].pic != ''){
                                 var pics = data[i].pic.split(",");
-                                picHtml = '<span class="imgnum"><span class="glyphicon glyphicon-picture"></span>&nbsp;'+pics.length+'</span>'+
-                                    '<img width="100%" src="'+pics[0]+'" alt="">';
+                                for (var j = 0; j < pics.length; j++) {
+                                    picHtml += '<div class="imgbox"><img class="img-rounded" src="'+pics[j]+'_200x200.jpg"></div>';
+                                }
                             }
                             result += '<a href="/release/look?id='+data[i].id+'">\
                             <div class="item-box">\
                                 <div class="font-12" style="color: #A1A2A4;padding: 8px 0;">\
                                     <img class="img-circle" src="'+data[i].headimgurl+'" style="width: 35px;height: 35px;">&nbsp;'+
-                                    data[i].uname+'　　<span>2017-2-5</span>\
-                                    <div class="float-right top-tip" style="margin-top: 4px;">置顶</div>\
+                                    data[i].uname+'<span>2017-2-5</span>\
                                 </div>\
-                                <div class="item item-thumbnail-left" style="border: none;">'+picHtml+
+                                <div class="item item-thumbnail-left" style="border: none;">'+
                                     '<div class="border-box">\
-                                        <div class="item-title font-16">'+data[i].title+'</div> \
-                                    </div>\
-                                </div>\
+                                        <div class="item-title font-16">'+data[i].title+'</div>'+
+                                    '</div>'+
+                                    '<div class="border-box">\
+                                        <div class="item-title font-14 neirong" style="max-height: 80px;">'+data[i].content+'</div>'+
+                                    '</div>'+picHtml+
+                                '</div>\
                                 <div class="info-block font-12" style="margin-top: 10px;padding-right: 5px;">\
                                     <span style="float: left;">发布于｜'+data[i].cname+'</span>\
                                     <span class="glyphicon glyphicon-eye-open look"></span><span class="num">'+data[i].look+'</span>\

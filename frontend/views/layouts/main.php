@@ -19,6 +19,7 @@ use yii\helpers\Url;
     <!--dropload.js:https://github.com/ximan/dropload-->
     <link rel="stylesheet" href="/utils/dropload/dropload.css">
     <script src="/utils/dropload/dropload.min.js"></script>
+    <script src="/js/plug/jquery.dotdotdot.js"></script>
     <!--dropload end-->
     <link rel="stylesheet" href="/css/index.css" />
 

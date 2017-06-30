@@ -29,12 +29,6 @@ use yii\helpers\Url;
     .cate-list a span{
         line-height: 44px;font-size: 30px;
     }
-    .left{
-        float: left;
-    }
-    .right{
-        float: right;
-    }
     .title{
         padding-left: 20px;
     }
@@ -51,7 +45,7 @@ use yii\helpers\Url;
     .item-box .info-block .num{
         display: inline-block;
         font-size: 16px;
-        margin: 0px;
+        margin: 0;
     }
     .item-box .info-block{
         text-align: right;
@@ -77,71 +71,8 @@ use yii\helpers\Url;
                 <div style="margin-top: 7px;font-size: 12px;"><?= $value['name'];?></div>
             </div>
         <?php endforeach;?>
-<!--        <div class="cate-list">-->
-<!--            <a href="--><?php //echo Url::toRoute(['/category/index']); ?><!--" class="label label-success"><span style="color: #fff" class="glyphicon glyphicon-briefcase"></span></a>-->
-<!--            <div style="margin-top: 7px;font-size: 12px;">更多</div>-->
-<!--        </div>-->
     </div>
-    <div class="gray-space"></div>
-    <!--<div class="active-recommend">
-        <div class="title">
-            活动行
-        </div>
-        <div class="content">
-            <div id="index_swiper" class="swiper-container">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div class="shadow"></div>
-                        <div class="text">
-                            <div class="line"></div>
-                            <div>山水文化</div>
-                        </div>
-                        <img src="/images/pic_activityhouse.png" alt="">
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="shadow"></div>
-                        <div class="text">
-                            <div class="line"></div>
-                            <div>碧桂园</div>
-                        </div>
-                        <img src="/images/pic_activityhouse.png" alt="">
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="shadow"></div>
-                        <div class="text">
-                            <div class="line"></div>
-                            <div>碧桂园</div>
-                        </div>
-                        <img src="/images/pic_activityhouse.png" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="gray-space"></div>-->
-<!--    <div class="headline">-->
-<!--        <div class="title">-->
-<!--            今日头条-->
-<!--        </div>-->
-<!--        <div class="content">-->
-<!--            <div class="list">-->
-<!--                <div class="item item-thumbnail-right padding">-->
-<!--                    <img src="/images/toutiao_pic.png" alt="">-->
-<!--                    <div class="item-title font-15">杭州厦门同日发布楼市调控新政杭州厦门同日发布楼市调控新政杭州厦门同日发布楼市调控新政杭州厦门同日发布楼市调控新政</div>-->
-<!--                    <div class="item-subTitle font-12 text-ellipsis">2017-03-28  17:56丨我爱我家111</div>-->
-<!--                </div>-->
-<!--                <div class="item item-thumbnail-right padding">-->
-<!--                    <img src="/images/toutiao_pic.png" alt="">-->
-<!--                    <div class="item-title font-15">杭州厦门同日发布</div>-->
-<!--                    <div class="item-subTitle font-12 text-ellipsis">2017-03-28  17:56丨我爱我家</div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-        <!--<div class="more">
-            更多
-            <i class="float-right icon iconfont">&#xe601;</i>
-        </div>-->
-<!--    </div>-->
+
     <div class="gray-space"></div>
     <div class="recommend-estate">
         <div class="title border-bottom">为您推荐</div>
@@ -154,19 +85,26 @@ use yii\helpers\Url;
                     <div class="font-12" style="color: #A1A2A4;padding: 8px 0;">
                         <img class="img-circle" src="<?php echo $value['headimgurl'];?>" style="width: 35px;height: 35px;">&nbsp;
                         <?= $value['uname'];?>　　<span><?php echo date("m-d h:m",$value['ctime']);?></span>
-<!--                        <div class="float-right top-tip" style="margin-top: 4px;">置顶</div>-->
+                        <!--<div class="float-right top-tip" style="margin-top: 4px;">置顶</div>-->
                     </div>
 
                     <div class="item item-thumbnail-left" style="border: none;">
-                        <?php if($value['pic']):?>
-                        <span class="imgnum"><span class="glyphicon glyphicon-picture"></span>&nbsp;<?= count(explode(',', $value['pic']))?></span>
-                        <img width="100%" src="<?= explode(',', $value['pic'])[0]?>" alt="">
-                        <?php endif;?>
                         <div class="border-box">
-                            <div class="item-title font-16">
+                            <div class="item-title font-16 biaoti" style="max-height: 50px;">
                                 <?= $value['title'];?>
                             </div>
                         </div>
+                        <div class="border-box">
+                            <div class="item-title font-14 neirong" style="max-height: 80px;">
+                                <?= $value['content'];?>
+                            </div>
+                        </div>
+                        <?php if($value['pic']):?>
+                            <span class="imgnum"><span class="glyphicon glyphicon-picture"></span>&nbsp;<?= count(explode(',', $value['pic']))?></span>
+                            <?php foreach ($pics = explode(',', $value['pic']) as $k => $v): ?>
+                                <div class="imgbox"><img class="img-rounded" src="<?= $v['pic'].'_200x200.jpg';?>"></div>
+                            <?php endforeach;?>
+                        <?php endif;?>
                     </div>
                     <div class="info-block font-12" style="margin-top: 10px;padding-right: 5px;">
                         <span style="float: left;">发布于｜<?= $value['cname'];?></span>
@@ -180,10 +118,6 @@ use yii\helpers\Url;
 
             </div>
         </div>
-        <!--<div class="more">
-            查看更多动态
-            <i class="float-right icon iconfont">&#xe601;</i>
-        </div>-->
     </div>
 </div>
 <div class="IM-btn">
@@ -192,6 +126,8 @@ use yii\helpers\Url;
 </div>
 
 <script type='text/javascript'>
+    $(".biaoti").dotdotdot();//省略号
+    $(".neirong").dotdotdot();//省略号
     $(".add_zan").click(function () {
         var zan_num = parseInt($(this).text());
         var zan_new_num = zan_num + 1;
@@ -210,7 +146,6 @@ use yii\helpers\Url;
 <script>
     wx.config(<?= json_encode($config) ?>);
     wx.ready(function(){
-
         //分享朋友圈
         wx.onMenuShareTimeline({
             title: '怀来县还有你不知道的事情？', // 分享标题

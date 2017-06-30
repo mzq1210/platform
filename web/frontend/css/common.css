@@ -341,8 +341,11 @@ a,button,input{
   padding-right: 0;
   overflow: hidden;
 }
-.item-thumbnail-left img{
-    width: 120px;height: 90px;padding-left: 10px;float: right
+.item-thumbnail-left .imgbox{
+    width: 33.3%;max-height: 120px;padding: 1%;float: left;overflow: hidden;
+}
+.item-thumbnail-left .imgbox img{
+    width: 100%;
 }
 .item-ava{
   padding-left: 40px;
