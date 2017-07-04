@@ -30,10 +30,10 @@ use yii\helpers\Url;
 
 <nav class="nav text-center">
     <a href="javascript:history.back(-1);"><div class="back-btn"><i class="icon iconfont">&#xe600;</i></div></a>
-    <span class="title text-ellipsis">评论</span>
+    <span class="title text-ellipsis">回复</span>
 </nav>
 <div class="gray-space"></div>
-<form class="form-horizontal" action="<?php echo Url::to(['release/comment']); ?>" method="post">
+<form class="form-horizontal" action="<?php echo Url::to(['release/reply']); ?>" method="post">
 <div class="comment-edit">
 
     <div class="editor padding-double">
@@ -41,10 +41,11 @@ use yii\helpers\Url;
     </div>
     <div class="gray-space"></div>
 
-    <input type="hidden" name="postId" value="<?= $id; ?>">
+    <input type="hidden" name="postId" value="<?= $pid; ?>">
+    <input type="hidden" name="commenId" value="<?= $mid; ?>">
     <div class="footer flex border-top">
         <div class="commit" onclick="submit();">
-            评论
+            回复
         </div>
     </div>
 </div>

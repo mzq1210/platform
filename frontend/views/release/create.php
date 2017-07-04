@@ -74,7 +74,7 @@ use yii\helpers\Url;
     <div class="editor padding-double">
         <textarea name="content" placeholder="请输入内容"></textarea>
         <div style="width: 60px;height: 60px;border: dashed 2px #ccc;position: relative;line-height: 60px;text-align: center;font-size: 25px;color: #ccc;">
-            <input type="file" name="file" id="txt_file" multiple="multiple" class="file-loading"/>
+            <input type="file" name="file" id="txt_file" multiple class="file-loading"/>
         </div>
     </div>
     <div class="gray-space"></div>

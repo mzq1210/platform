@@ -63,6 +63,12 @@ class WxController extends Controller{
     public function actionOpenid(){
         if(isset($_GET['code'])){
             $res=Yii::$app->wechat->getOauth2AccessToken($_GET['code']);
+            //检验授权凭证（access_token）是否有效
+            $status = Yii::$app->wechat->checkOauth2AccessToken($res['access_token'], $res['openid']);
+            if($status){//当access_token超时后，可以使用refresh_token进行刷新
+                $res = Yii::$app->wechat->refreshOauth2AccessToken($res['refresh_token']);
+            }
+
             if($res['openid']){
                 $params=Yii::$app->wechat->getMemberInfo($res['openid']);
                 //如果获取不到用户名称跳转关注
@@ -91,7 +97,6 @@ class WxController extends Controller{
                             //保存redis
                             $redisKey = $userId.$res['openid'];
                             Yii::$app->cache->set(md5($redisKey), $data);
-                            //header('location:http://www.onelog.cn/index/index');
                             header('location:https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzIxNTg0MzU2OQ==&scene=123&from=groupmessage&isappinstalled=0#wechat_redirect');
                         }else{
                             echo "失败";

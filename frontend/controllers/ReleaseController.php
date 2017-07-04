@@ -107,6 +107,7 @@ class ReleaseController extends BaseController{
         //评论列表
         $comment = new Comment();
         $comment = $comment->getCommentList($id);
+       
 
         return $this->render('look', [
             'data' => $ContentInfo,
@@ -146,16 +147,18 @@ class ReleaseController extends BaseController{
         if ($this->request->isPost) {
             $params = $this->request->post();
             $openid = Cookie::getCookie('openid');
+            $userInfo = User::getUserInfo($openid);
             $data = [
-                'cid' => $params['parentId'],
+                'cid' => $params['postId'],
                 'comment' => $params['content'],
                 'ctime' => time(),
-                'openid' => $openid
+                'uid' => $userInfo['id'],
+                'fromUsername' => $userInfo['name'],
             ];
             $comment->setAttributes($data, false);
             $res = $comment->save();
             if ($res) {
-                $Content = Content::getThisContent($params['parentId']);
+                $Content = Content::getThisContent($params['postId']);
                 $coments = $Content->coments + 1;
                 $data = [
                     'coments' => $coments
@@ -164,17 +167,58 @@ class ReleaseController extends BaseController{
                 $Content->save();
 
                 //获取评论人信息
-                $user = new User();
-                $userInfo = $user->getUserInfo($openid);
                 if ($userInfo) {
                     $masage = $userInfo['name'] . "评论您的帖子:" . $params['content'];
-                    $this->massage($Content['openid'], $masage);
+                    $info = Content::getThisContent($params['postId']);
+                    $postUserInfo = User::getUserInfo2($info->uid);
+                    $this->massage($postUserInfo['openid'], $masage);
                 }
-                $this->redirect(['/release/look?id=' . $params['parentId']]);
+                $this->redirect(['/release/look?id=' . $params['postId']]);
             }
         } else {
             return $this->render('commen', [
                 'id' => $id
+            ]);
+        }
+    }
+
+    //回复
+    public function actionReply()
+    {
+        $pid = $this->request->get('pid', 0);
+        $mid = $this->request->get('mid', 0);
+        if ($this->request->isPost) {
+            $params = $this->request->post();
+            $openid = Cookie::getCookie('openid');
+            $userInfo = User::getUserInfo($openid);
+            $comment = Comment::getInfo($params['commenId']);
+            $toUserInfo = User::getUserInfo2($comment['uid']);
+            $data = [
+                'cid' => $params['postId'],
+                'parentID' => $params['commenId'],
+                'comment' => $params['content'],
+                'ctime' => time(),
+                'uid' => $userInfo['id'],
+                'fromUsername' => $userInfo['name'],
+                'toID' => $toUserInfo['id'],
+                'toUsername' => $toUserInfo['name'],
+            ];
+
+            $model = new Comment();
+            $model->setAttributes($data, false);
+            $res = $model->save();
+            if ($res) {
+                //获取评论人信息
+                if ($userInfo) {
+                    $masage = $userInfo['name'] . "回复了您的评论:" . $params['content'];
+                    $this->massage($toUserInfo['openid'], $masage);
+                }
+                $this->redirect(['/release/look?id=' . $params['postId']]);
+            }
+        } else {
+            return $this->render('reply', [
+                'pid' => $pid,
+                'mid' => $mid
             ]);
         }
     }

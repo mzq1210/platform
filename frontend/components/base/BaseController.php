@@ -35,6 +35,7 @@ class BaseController extends Controller
         $this->userid = $this->session->get('userid');
         $this->username = $this->session->get('username');
         $this->datetime = date('Y-m-d H:i:s');
+
         /*if (Cookie::getCookie('openid') == "") {
             header('location:http://www.onelog.cn/wx/getcode');
         }*/
