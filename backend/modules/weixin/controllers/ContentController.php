@@ -9,6 +9,8 @@ namespace app\modules\weixin\controllers;
 use Yii;
 use yii\helpers\Url;
 use common\models\wechat\Content;
+use common\models\wechat\Order;
+use common\models\wechat\Menu;
 use app\components\base\BaseController;
 use common\components\library\ShowMessage;
 
@@ -55,4 +57,72 @@ class ContentController extends BaseController{
             ShowMessage::info('该数据不存在');
         }
     }
+
+
+    //数据列表
+    public function actionDatalist(){
+
+
+        $menu=new Menu;
+
+        $data=Order::find()->select(['shop_name','order_id','create_time','num','price','moneny','menu_data'])->batch(100);
+
+
+        foreach ($data as $key => $value){
+
+
+
+            foreach ($value as $k => $item){
+
+                $cookBooks = explode(",", $item->menu_data);
+
+                $count = count($cookBooks);
+
+                $avgNum = ceil($item->num/$count) ;
+
+                foreach ($cookBooks as $index=> $goodsName){
+                    $_menu= clone $menu;
+
+                    $nums = !$index ?  $avgNum+ $item->num %$count : $avgNum;
+                    $_menu->num = $nums;
+                    $_menu->order_id  = $item->order_id;
+                    $_menu->shop_name = $item->shop_name;
+                    $_menu->menu_name = $goodsName;
+                    $_menu->create_at = $item->create_time;
+
+
+                    $_menu->setAttributes($index);
+
+                    $res= $_menu->save();
+
+                    //$menuData[$index] = [
+//                        $nums,
+//                        $item->shop_name,
+//                        $goodsName,
+//                        $item->create_time
+//                    ];
+
+                }
+
+               // Yii::$app->db->createCommand()->batchInsert(menu::tableName(), ['num','shop_name','menu_name','create_at'], $menuData)->execute();
+
+            }
+
+        }
+
+    }
+
+
+
+    public function pr(){
+
+        $arr = func_get_args();
+
+        echo "<pre>";
+
+        print_r($arr);
+
+        echo "</pre>";
+    }
+
 }

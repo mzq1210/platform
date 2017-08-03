@@ -273,4 +273,79 @@ class Tools {
         return false;
     }
 
+    /**
+     * 递归创建目录
+     * @param $dir
+     * @param $mode
+     * @return bool
+     */
+    public static function createDir($dir, $mode) {
+        if (!is_dir($dir)) {
+            if (!self::createDir(dirname($dir), $mode)) {
+                return false;
+            }
+            if (!mkdir($dir, $mode, true)) {
+                return false;
+            } else {
+                chmod($dir, $mode);
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * @desc 保存微信图片素材
+     * @param $filecontent
+     */
+    public static function saveWeixinFile($filecontent)
+    {
+        //创建对应目录(注意权限)
+        $basePath = 'upload/'.date('Y/m/d');
+        self::createDir($basePath, 0777);
+        //拼接文件名
+        $str = self::createRandomStr(10);
+        $file = $basePath.'/'.$str.'.jpg';
+        //写入图片
+        $local_file = fopen($file, 'w');
+        if (false !== $local_file){
+            if (false !== fwrite($local_file, $filecontent)) {
+                fclose($local_file);
+            }
+        }
+        return '/'.$file;
+    }
+
+    /**
+     * @desc curl获取微信图片素材
+     * @param $url
+     * @return mixed
+     */
+    public static function https_request($url)
+    {
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, FALSE);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        $output = curl_exec($curl);
+        curl_close($curl);
+        return $output;
+    }
+
+    /**
+     * 创建随机数
+     * @param $length
+     * @return string
+     */
+    public static function createRandomStr($length){
+        $str = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';//62个字符
+        $strlen = 62;
+        while($length > $strlen){
+            $str .= $str;
+            $strlen += 62;
+        }
+        $str = str_shuffle($str);
+        return substr($str,0,$length);
+    }
 }

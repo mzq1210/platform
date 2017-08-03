@@ -47,12 +47,12 @@ class Content extends BaseWechat
     }
 
     //获取用户话题列表
-    public static function getUserContentList($openid){
+    public static function getUserContentList($id){
         return self::find()->select(['content','title','wechat_user.name as uname','wechat_user.openid','pic','headimgurl','cid','wechat_content.ctime','zan','wechat_content.id','look','wechat_category.name as cname','coments'])
             ->innerJoin("`wechat_user` on `wechat_content`.`uid` = `wechat_user`.`id`")
             ->innerJoin("`wechat_category` on `wechat_content`.`cid` = `wechat_category`.`id`")
             ->orderBy(['wechat_content.id'=>SORT_DESC])
-            ->where(['wechat_content.openid'=>$openid])
+            ->where(['wechat_content.uid'=>$id])
             ->asArray()
             ->all();
     }
