@@ -10,35 +10,45 @@ namespace app\components\base;
 use Yii;
 use yii\web\Controller;
 use app\components\Cookie;
+use common\models\wechat\User;
 
 class BaseController extends Controller
 {
 
     //总的redis对象
-    public $cache;
     public $request;
-    public $session;
     public $userid;
+    public $openid;
     public $username;
     public $datetime;
-
-    public $wechat;
-    public $actoken;
-    public $appid;
-    public $secret;
+    public $accessToken;
 
     public function init()
     {
         parent::init();
-        $this->request = Yii::$app->request;
-        $this->session = Yii::$app->session;
-        $this->userid = $this->session->get('userid');
-        $this->username = $this->session->get('username');
+        /*$this->request = Yii::$app->request;
         $this->datetime = date('Y-m-d H:i:s');
-
-        /*if (Cookie::getCookie('openid') == "") {
-            header('location:http://www.onelog.cn/wx/getcode');
+        $this->accessToken = Yii::$app->wechat->getAccessToken();
+        //var_dump($_COOKIE);die;
+        $this->openid = Cookie::getCookie('openid');
+        $accessToken = Cookie::getCookie('access_token');
+        $refreshToken = Cookie::getCookie('refresh_token');
+        //验证access_token是否有效
+        $status = Yii::$app->wechat->checkOauth2AccessToken($accessToken, $this->openid);
+        if(!$this->openid || !$status){
+            if($refreshToken){//刷新access_token
+                $res = Yii::$app->wechat->refreshOauth2AccessToken($refreshToken);
+                Cookie::setCookie('openid', $res['openid'], time()+3600);
+                Cookie::setCookie('access_token', $res['access_token'], time()+3600);
+                $this->openid = $res['openid'];
+            }else{
+                header('location:http://www.onelog.cn/wx/getcode');
+            }
         }*/
+
+        $info = User::getUserInfo($this->openid);
+        $this->userid = $info['id'];
+        $this->username = $info['name'];
     }
 
     //验证token
@@ -67,9 +77,20 @@ class BaseController extends Controller
     }
 
     //消息
-    public function massage($openid, $data)
+    public function massage($data)
     {
         $wechat = Yii::$app->wechat;
-        return $wechat->sendText($openid, $data);
+        return $wechat->sendMessage($data);
+    }
+
+    public function pr($arr){
+
+        $arr = func_get_args();
+
+        echo "<pre>";
+
+        print_r($arr);
+
+        echo "</pre>";
     }
 }

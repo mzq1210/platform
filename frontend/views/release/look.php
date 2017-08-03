@@ -25,7 +25,13 @@ use yii\helpers\Url;
         <div class="back-btn"><i class="icon iconfont">&#xe600;</i></div>
     </a>
     <span class="title text-ellipsis">帖子详情</span>
-    <!--    <div class="share-btn"><i class="icon iconfont">&#xe684;</i></div>-->
+<!--        <div class="share-btn">-->
+<!--            <a href="--><?php //echo Url::toRoute(['/release/guanzhu']); ?><!--">-->
+<!--                <i class="icon iconfont" style="color: dodgerblue">-->
+<!--                    关注-->
+<!--                </i>-->
+<!--            </a>-->
+<!--        </div>-->
 </nav>
 
 <div class="new-dynamic-detail padding-double">
@@ -36,15 +42,12 @@ use yii\helpers\Url;
     <div class="content">
         <?= $data['content']; ?>
         <?php if ($data['pic']) { ?>
-
             <div style="width: 95%;margin:0 auto;">
                 <?php foreach (explode(',', $data['pic']) as $kk => $vv): ?>
-                    <img src="<?php echo $vv . '_600x600.jpg'; ?>" width="100%"
-                         style="margin-right: 1%; margin-top: 8px;display: inline-block;">
+                    <img src="<?php echo $vv; ?>" width="100%" style="margin-right: 1%; margin-top: 8px;display: inline-block;">
                 <?php endforeach; ?>
             </div>
         <?php } ?>
-
     </div>
 </div>
 
@@ -122,6 +125,9 @@ use yii\helpers\Url;
         写评论
     </div>
 </a>
+
+
+
 <script src="/js/look.js"></script>
 <script type='text/javascript' src='http://res.wx.qq.com/open/js/jweixin-1.2.0.js' charset='utf-8'></script>
 <script>

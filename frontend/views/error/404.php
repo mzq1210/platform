@@ -57,16 +57,10 @@
         <div class="null-txt">
             <p class="pc-img"><img src="http://www.99moshou.com/img/icon_404.47629b2233e18ac5c8a03cbd8ed08194.png" alt=""></p>
             <p class="ft-18 f-bold pd-10">很抱歉！您查看的页面暂时找不到了</p>
-
             <p class="f-gray01 pb-20">可能页面已被删除或暂时不可用，也可能该页面内容暂时被下架</p>
-
-            <p class="f-gray pb-5">请尝试以下方式：</p>
-
-            <p class="f-gray pb-5"><a href="" class="f-red" id="preUrl">1、返回上一页</a></p>
-
-            <p class="f-gray pb-5">2、去其他地方逛逛：<a href="http://www.99moshou.com/cd/" class="f-red">专住网首页</a>|<a
-                    href="http://www.99moshou.com/cd/house" class="f-red">新房</a>|<a href="http://www.99moshou.com/cd/account"
-                                                                                    class="f-red">房服务</a></p>
+            <p class="f-gray pb-5">请联系管理员：</p>
+            <p class="f-gray pb-5"><a href="javascript:void(0)" class="f-red">Q1 : 578377590</a></p>
+            <p class="f-gray pb-5"><a href="javascript:void(0)" class="f-red">Q2 : 283335400</a></p>
         </div>
     </div>
     </div>

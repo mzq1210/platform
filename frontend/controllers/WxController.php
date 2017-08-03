@@ -22,62 +22,26 @@ class WxController extends Controller{
         parent::init();
     }
 
-    //创建菜单
-    public function actionSetMenu(){
-        $menu = [
-            [
-                'type' => 'view',
-                'name' => '广场',
-                'url' => 'http://www.onelog.cn/index/index'
-            ],
-            [
-                'type' => 'view',
-                'name' => '发布',
-                'url' => 'http://www.onelog.cn/release/index'
-            ],
-            [
-                'type' => 'view',
-                'name' => '我的',
-                'url' => 'http://www.onelog.cn/user/index'
-            ],
-
-        ];
-
-        $res=Yii::$app->wechat->createMenu($menu);
-        var_dump($res);die;
-    }
-
     /**
-     * @desc 获取ceode
+     * @desc 获取code
      */
     public function actionGetcode(){
         $this->secret=Yii::$app->wechat->appSecret;
-        $url="http://www.onelog.cn/wx/openid";
-        $url=Yii::$app->wechat->getOauth2AuthorizeUrl($url);
+        $backUrl="http://www.onelog.cn/wx/openid";
+        $url=Yii::$app->wechat->getOauth2AuthorizeUrl($backUrl);
         header('location:'.$url);
     }
 
-    /**
-     * @desc 获取open_id
-     */
     public function actionOpenid(){
         if(isset($_GET['code'])){
             $res=Yii::$app->wechat->getOauth2AccessToken($_GET['code']);
-            //检验授权凭证（access_token）是否有效
-            $status = Yii::$app->wechat->checkOauth2AccessToken($res['access_token'], $res['openid']);
-            if($status){//当access_token超时后，可以使用refresh_token进行刷新
-                $res = Yii::$app->wechat->refreshOauth2AccessToken($res['refresh_token']);
-            }
-
-            if($res['openid']){
-                $params=Yii::$app->wechat->getMemberInfo($res['openid']);
-                //如果获取不到用户名称跳转关注
-                if(!empty($params['nickname'])){
-
-                    $model=new User();
-                    if(!$model->getUserOpenId($params['openid'])){
-                        $data=[
-                            "openid"=>$params['openid'],
+            if($res){
+				$model = new User();
+                $params=Yii::$app->wechat->getSnsUserInfo($res['openid'],$res['access_token']);
+                if($params){
+                    if(!User::getUserOpenId($params['openid'])){
+                         $data=[
+                            'openid'=>$params['openid'],
                             'name'=>$params['nickname'],
                             'ctime'=>time(),
                             'phone'=>'',
@@ -88,48 +52,42 @@ class WxController extends Controller{
                         $model->setAttributes($data,false);
                         if ($model->save()) {
                             //保存cookie
-                            Cookie::setCookie('openid', $params['openid'], time()+300);
-                            //保存session
-                            $userId = $model->attributes['id'];
-                            Yii::$app->session->set("userid",$userId);
-                            Yii::$app->session->set("openid",$params['openid']);
-                            Yii::$app->session->set("username", $params['nickname']);
-                            //保存redis
-                            $redisKey = $userId.$res['openid'];
-                            Yii::$app->cache->set(md5($redisKey), $data);
-                            header('location:https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzIxNTg0MzU2OQ==&scene=123&from=groupmessage&isappinstalled=0#wechat_redirect');
+                            Cookie::setCookie('openid', $params['openid'], time()+3600);
+                            Cookie::setCookie('access_token', $res['access_token'], time()+3600);
+                            Cookie::setCookie('refresh_token', $res['refresh_token'], time()+3600*24*25);
+                            //redis保存个人资料
+                            Yii::$app->cache->set($res['openid'], $params);
+                            //header('location:https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzIxNTg0MzU2OQ==&scene=123&from=groupmessage&isappinstalled=0#wechat_redirect');
+                            return $this->redirect(['index/index']);
                         }else{
                             echo "失败";
                         }
                     }else{
                         //保存cookie
-                        Cookie::setCookie('openid', $params['openid'], time()+300);
-                        $userInfo = $model->getUserInfo($params['openid']);
-                        //var_dump($userInfo);die;
-                        //保存session
-                        Yii::$app->session->set("userid",$userInfo['id']);
-                        Yii::$app->session->set("openid",$params['openid']);
-                        Yii::$app->session->set("username", $userInfo['name']);
-                        //保存redis
-                        $redisKey = 'sso_'.md5($userInfo['id'].$res['openid']);
-                        $redisInfo = Yii::$app->cache->get($redisKey);
-                        if(!$redisInfo){Yii::$app->cache->set($redisKey, $userInfo);}
-                        header('location:http://www.onelog.cn/index/index');
+                        Cookie::setCookie('openid', $params['openid'], time()+7200);
+                        Cookie::setCookie('access_token', $res['access_token'], time()+3600);
+                        //redis保存个人资料
+                        Yii::$app->cache->set($res['openid'], $params);
+                        return $this->redirect(['index/index']);
                     }
                 }else{
-                	header("Location: https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzIxNTg0MzU2OQ==&scene=123&from=groupmessage&isappinstalled=0#wechat_redirect");
+                    //header("Location: https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzIxNTg0MzU2OQ==&scene=123&from=groupmessage&isappinstalled=0#wechat_redirect");
+                    return $this->redirect(['index/index']);
                 }
+            }else{
+                return $this->redirect(['error/index']);
             }
         } else {
             echo "获取code失败";
         }
     }
 
+
     /**
      * @desc 验证token
      */
     public function getToken(){
-        $token = Yii::$app->wechat->token;
+        $token = Yii::$app->wechat->requestAccessToken();
         $signature = $_GET["signature"];
         $timestamp = $_GET["timestamp"];
         $nonce = $_GET["nonce"];
@@ -148,6 +106,16 @@ class WxController extends Controller{
     }
 
 
+    public function pr($arr){
+
+        $arr = func_get_args();
+
+        echo "<pre>";
+
+        print_r($arr);
+
+        echo "</pre>";
+    }
 
 
 }

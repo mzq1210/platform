@@ -32,23 +32,13 @@ use yii\helpers\Url;
     .title{
         padding-left: 20px;
     }
-    .imgnum{
-        position: absolute;
-        left: 88%;
-        top: 58px;
-        color: #fff;
-        font-size: 16px;
-    }
-    .look, .zan, .coments{
-        font-size: 18px;
+    .look, .coments{
+        font-size: 18px;line-height: 36px;
     }
     .item-box .info-block .num{
         display: inline-block;
-        font-size: 16px;
-        margin: 0;
-    }
-    .item-box .info-block{
-        text-align: right;
+        font-size: 18px;
+        margin-left: 10px;line-height: 36px;
     }
     .biaoti{
         font-weight: 700;
@@ -58,6 +48,10 @@ use yii\helpers\Url;
     }
     .info-block{
         border-radius: 5px;
+        margin-top: 10px !important;height: 36px;padding: 0 !important;
+    }
+    .info-block div{
+        width: 50%;float: left;text-align: center;
     }
 </style>
 
@@ -65,9 +59,8 @@ use yii\helpers\Url;
     <!--轮波图-->
     <div class="swiper-container lunbo" id="lunbo">
         <div class="swiper-wrapper">
-            <div class="swiper-slide lunbo"><img src="/images/01.jpg"/></div>
-            <div class="swiper-slide lunbo"><img src="/images/02.jpg" alt=""></div>
-            <div class="swiper-slide lunbo"><img src="/images/03.jpg" alt=""></div>
+            <div class="swiper-slide lunbo"><img src="http://show.onelog.cn/platform/platform/2017/07/14/18031449207986.jpg_600x300.jpg" alt=""></div>
+            <div class="swiper-slide lunbo"><img src="http://show.onelog.cn/platform/platform/2017/07/14/6d0b6e7fab96437f82692d83abf0c40e.jpg_600x300.jpg" alt=""></div>
         </div>
         <!-- 如果需要分页器 -->
         <div class="swiper-pagination"></div>
@@ -93,7 +86,7 @@ use yii\helpers\Url;
                     <div class="font-12" style="color: #A1A2A4;padding: 8px 0;">
                         <img class="img-circle" src="<?php echo $value['headimgurl'];?>" style="width: 35px;height: 35px;">&nbsp;
                         <?= $value['uname'];?><span style="margin-left: 10px;"><?= $value['ctime'];?></span>
-                        <!--<div class="float-right top-tip" style="margin-top: 4px;">置顶</div>-->
+                        <div class="float-right top-tip" style="margin-top: 4px;"><?= $value['cname'];?></div>
                     </div>
                     <a href="<?php echo Url::toRoute(['/release/look','id' => $value['id']]);?>">
                         <div class="item item-thumbnail-left" style="border: none;">
@@ -114,11 +107,9 @@ use yii\helpers\Url;
                             <?php endif;?>
                         </div>
                     </a>
-                    <div class="info-block font-16" style="margin-top: 10px;padding-right: 5px;">
-                        <span style="float: left;">发布于｜<?= $value['cname'];?></span>
-                        <span class="glyphicon glyphicon-eye-open look font-14"></span><span class="num"><?= $value['look'];?></span>
-                        <span class="glyphicon glyphicon-heart-empty zan"></span><span class="num"><?= $value['zan'];?></span>
-                        <span class="glyphicon glyphicon-comment coments"></span><span class="num"><?= $value['coments'];?></span>
+                    <div class="info-block font-16">
+                        <div><i class="glyphicon glyphicon-eye-open look font-14"></i><span class="num"><?= $value['look'];?></span></div>
+                        <div><i class="glyphicon glyphicon-comment coments font-14"></i><span class="num"><?= $value['coments'];?></span></div>
                     </div>
                 </div>
                 <?php endforeach;?>
@@ -128,8 +119,7 @@ use yii\helpers\Url;
     </div>
 </div>
 <div class="IM-btn">
-    <div class="mark"></div>
-    <a href="<?php echo Url::toRoute(['/release/index']);?>"><img width="100%" src="/images/hoverButtonIM@2x.png" alt=""></a>
+    <a href="<?php echo Url::toRoute(['/release/index']);?>"></a>
 </div>
 
 <script type='text/javascript'>

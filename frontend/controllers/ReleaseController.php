@@ -16,15 +16,18 @@ use common\models\wechat\Category;
 use common\models\wechat\Comment;
 use common\components\Image;
 use common\models\wechat\User;
+use common\components\Tools;
 
 class ReleaseController extends BaseController{
 
     public function actionIndex(){
         $model = new Category();
         $data = $model->getCategoryData();
+        $config = $this->wxJsConfig();
 
         return $this->render('add', [
             'data' => $data,
+            'config' =>$config
         ]);
     }
 
@@ -32,13 +35,24 @@ class ReleaseController extends BaseController{
         $model = new Content();
         $params = Yii::$app->request->post();
 
-        $pic = isset($params['imgfile']) ? implode(',', $params['imgfile']) : '';
+        //微信图片处理
+        $serverids = isset($params['serverid']) ? $params['serverid'] : [];
+        if(!empty($serverids)){
+            $picArr = [];
+            foreach ($serverids as $key => $value){
+                $url = "https://api.weixin.qq.com/cgi-bin/media/get?access_token=".$this->accessToken."&media_id=".$value;
+                $ret = Tools::https_request($url);
+                $picArr[] = Tools::saveWeixinFile($ret);
+            }
+        }
+        
+        $pic = empty($picArr) ? '':implode(',', $picArr);
         $data = [
             "title" => $params['title'],
             'content' => $params['content'],
             'ctime' => time(),
             'cid' => $params['cid'],
-            'uid' => Yii::$app->session->get("userid"),
+            'uid' => $this->userid,
             'openid' => Cookie::getCookie('openid'),
             'pic' => $pic,
         ];
@@ -54,7 +68,6 @@ class ReleaseController extends BaseController{
     //赞
     public function actionZan(){
         $id = Yii::$app->request->get('id');
-
         $model = Content::getThisContent($id);
         $zan = $model->zan + 1;
         $data = [
@@ -68,8 +81,6 @@ class ReleaseController extends BaseController{
             $data['status'] = 0;
         }
         return json_encode($data);
-        die;
-
     }
 
     //查看
@@ -135,7 +146,7 @@ class ReleaseController extends BaseController{
      */
     public function fileMerge($files)
     {
-        $imgPath = Image::upload($files, 'platform');
+        $imgPath = Image::upload($files, 'platform', true);
         return rtrim($imgPath, ',');
     }
 
@@ -171,7 +182,14 @@ class ReleaseController extends BaseController{
                     $masage = $userInfo['name'] . "评论您的帖子:" . $params['content'];
                     $info = Content::getThisContent($params['postId']);
                     $postUserInfo = User::getUserInfo2($info->uid);
-                    $this->massage($postUserInfo['openid'], $masage);
+                    $data = [
+                        'touser' => $postUserInfo['openid'],
+                        'msgtype' => 'text',
+                        'text' => [
+                            'content' => $masage
+                        ]
+                    ];
+                    $this->massage($data);
                 }
                 $this->redirect(['/release/look?id=' . $params['postId']]);
             }
@@ -211,7 +229,14 @@ class ReleaseController extends BaseController{
                 //获取评论人信息
                 if ($userInfo) {
                     $masage = $userInfo['name'] . "回复了您的评论:" . $params['content'];
-                    $this->massage($toUserInfo['openid'], $masage);
+                    $data = [
+                        'touser' => $toUserInfo['openid'],
+                        'msgtype' => 'text',
+                        'text' => [
+                            'content' => $masage
+                        ]
+                    ];
+                    $this->massage($data);
                 }
                 $this->redirect(['/release/look?id=' . $params['postId']]);
             }

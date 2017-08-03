@@ -36,8 +36,12 @@ class UserController extends BaseController{
 
     //我的话题
     public function actionTopic(){
-        $Content=new Content();
-        $data=$Content->getUserContentList(Cookie::getCookie('openid'));
+        $openid = Cookie::getCookie('openid');
+        if(empty($openid)){
+            echo '请登录...';die;
+        }
+        $info = User::getUserInfo($openid);
+        $data=Content::getUserContentList($info['id']);
 
         return $this->render('topic',[
             'data'=>$data,

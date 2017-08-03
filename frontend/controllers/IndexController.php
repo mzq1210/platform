@@ -55,10 +55,7 @@ class IndexController extends BaseController {
         foreach ($data as $key => $value){
             $data[$key]['ctime'] = $this->_timeTran($value['ctime']);
             if($value['pic'] != ''){
-                foreach (explode(',', $value['pic']) as $k => $v){
-                    $type = substr($v, strrpos($v, '.'));
-                    $data[$key]['pics'][$k] = $v.'_200x200'.$type;
-                }
+                $data[$key]['pics'] = explode(',', $value['pic']);
             }
         }
         return $data;

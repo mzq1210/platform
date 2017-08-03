@@ -8,12 +8,13 @@ return [
     'defaultRoute' => 'index/index',
     'components' => [
         'wechat' => [
-            'class' => 'yii\wechat\Wechat',
+            'class' => 'yii\wechat\MpWechat',
             'appId' => 'wx570477a9e2c7711f',
              //'appId' => 'wx56ec9c9455dcefd0',//测试
              'appSecret' => '3188b3aa10eab2e2ba00c1fb1ecdb136',
             //'appSecret' => 'd4624c36b6795d1d99dcf0547af5443d',//测试
-            'token' => 'weixin'
+            'token' => 'weixin',
+            'encodingAesKey' => 'platform'
         ],
         'urlManager' => array(
             'class' => 'yii\web\UrlManager',

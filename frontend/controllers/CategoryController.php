@@ -14,15 +14,6 @@ use app\components\base\BaseController;
 
 class CategoryController extends BaseController{
 
-    //分类列表
-    public function actionIndex(){
-        $data=Category::getCategoryData();
-        
-        return $this->render('index',[
-            'data'=>$data,
-        ]);
-    }
-
     //分类下的帖子
     public function actionInfo(){
         $id=Yii::$app->request->get('id');
@@ -31,7 +22,7 @@ class CategoryController extends BaseController{
 
         $Content = $this->_optimizeData($data);
         
-        return$this->render('info',[
+        return$this->render('index',[
             'Content'=>$Content,
             'Category'=>$Category
         ]);
