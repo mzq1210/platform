@@ -28,7 +28,7 @@ return [
                 'port' => 6379,
                 'database' => 0,
             ],
-            'keyPrefix' => "sso_"
+            'keyPrefix' => "session_"
         ],
         
         //去除自带的jquery

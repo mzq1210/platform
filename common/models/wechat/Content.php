@@ -79,10 +79,8 @@ class Content extends BaseWechat
             ->one();
     }
 
-
     //获得当前话题
     public static function getThisContent($id){
         return self::findOne($id);
     }
-
 }

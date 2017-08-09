@@ -21,6 +21,7 @@ use yii\helpers\Url;
     <script src="/utils/dropload/dropload.min.js"></script>
     <script src="/js/plug/jquery.dotdotdot.js"></script>
     <!--dropload end-->
+    <script src="/js/common.js"></script>
     <link rel="stylesheet" href="/css/index.css" />
 
     <!--当网站添加到主屏幕快速启动方式，将网站添加到主屏幕快速启动方式-->

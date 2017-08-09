@@ -7,9 +7,7 @@ use common\models\base\BaseWechat;
 class Comment extends BaseWechat
 {
 
-
-    public static function tableName()
-    {
+    public static function tableName(){
         return 'wechat_comment';
     }
 
@@ -23,7 +21,6 @@ class Comment extends BaseWechat
             ->all();
         return self::getTree($comment);
     }
-
 
     /**
      * 把返回的数据集转换成Tree
@@ -48,9 +45,7 @@ class Comment extends BaseWechat
         return $tree;
     }
 
-
     public static function getInfo($id){
         return self::find()->where(['id'=>$id])->asArray()->one();
     }
-
 }

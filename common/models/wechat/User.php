@@ -47,4 +47,8 @@ class User extends BaseWechat
     public static function getUserInfo2($uid){
         return self::find()->where(['id'=>$uid])->asArray()->one();
     }
+
+    public static function getThisUid($uid){
+        return self::find()->where(['id'=>$uid])->one();
+    }
 }

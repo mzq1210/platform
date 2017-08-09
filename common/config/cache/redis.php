@@ -8,6 +8,7 @@
 
 return [
         'class' => 'yii\redis\Cache',
+        'keyPrefix' => 'openid_',
         'redis' => [
             'class' => 'yii\redis\Connection',
             //'hostname' => '10.10.115.161',

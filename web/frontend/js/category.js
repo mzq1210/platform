@@ -36,39 +36,14 @@ window.onload = function () {
             domNoData: '<div class="dropload-noData">到底了</div>'
         },
         loadUpFn: function (me) {
+            var result = '';
             $.ajax({
                 type: 'GET',
                 data:{page:0, size:10},
-                url: '/ajax/index',
+                url: '/index/index',
                 dataType: 'json',
                 success: function (data) {
-                    if (data.length > 0) {
-                        var result = createList(data);
-                    } else{
-                        me.lock();me.noData();
-                    }
-                    setTimeout(function () {
-                        $('.article-list').html(result);
-                        $(".biaoti").dotdotdot();//省略号
-                        $(".neirong").dotdotdot();//省略号
-                        me.resetload();
-                    }, 600);
-                },
-                error: function (xhr, type) {
-                    me.resetload();
-                }
-            });
-        },
-        loadDownFn: function (me) {
-            page++;
-            // 拼接HTML
-            $.ajax({
-                type: 'GET',
-                data:{page:page,size:size},
-                url: '/ajax/index',
-                dataType: 'json',
-                success: function (data) {
-                    var arrLen = data.length; var result = '';
+                    var arrLen = data.length;
                     if (arrLen > 0) {
                         for (var i = 0; i < arrLen; i++) {
                             var picHtml = '';
@@ -79,21 +54,78 @@ window.onload = function () {
                                 }
                             }
                             result += '<a href="/release/look?id='+data[i].id+'">\
-                                <div class="item-box">\
-                                    <div class="font-12" style="color: #A1A2A4;padding: 8px 0;">'+data[i].ctime+
-                                        '<div class="float-right top-tip" style="margin-top: 4px;">'+data[i].cname+'</div>'+
-                                    '</div>'+
-                                    '<div class="item item-thumbnail-left" style="border: none;">'+
-                                        '<div class="border-box">\
-                                            <div class="item-title font-16 biaoti" style="max-height: 50px;">'+data[i].content+'</div>'+
-                                        '</div>'+picHtml+
-                                    '</div>\
-                                    <div class="info-block font-16">\
-                                        <div><i class="glyphicon glyphicon-eye-open look font-14"></i><span class="num">'+data[i].look+'</span></div>\
-                                        <div><i class="glyphicon glyphicon-comment coments font-14"></i><span class="num">'+data[i].coments+'</span></div>\
-                                    </div>\
+                            <div class="item-box">\
+                                <div class="font-12" style="color: #A1A2A4;padding: 8px 0;">'+data[i].ctime+
+                                '</div>'+
+                                '<div class="item item-thumbnail-left" style="border: none;">'+
+                                    '<div class="border-box">\
+                                        <div class="item-title font-16 biaoti" style="max-height: 50px;">'+data[i].content+'</div>'+
+                                    '</div>'+picHtml+
+                                '</div>\
+                                <div class="info-block font-16">\
+                                    <div><i class="glyphicon glyphicon-eye-open look font-14"></i><span class="num">'+data[i].look+'</span></div>\
+                                    <div><i class="glyphicon glyphicon-comment coments font-14"></i><span class="num">'+data[i].coments+'</span></div>\
                                 </div>\
-                            </a>';
+                            </div>\
+                        </a>';
+                        }
+                    } else{
+                        // 锁定
+                        me.lock();
+                        // 无数据
+                        me.noData();
+                    }
+                    // 为了测试，延迟1秒加载
+                    setTimeout(function () {
+                        // 插入数据到页面，放到最后面
+                        $('.article-list').html(result);
+                        $(".biaoti").dotdotdot();//省略号
+                        $(".neirong").dotdotdot();//省略号
+                        // 每次数据插入，必须重置
+                        me.resetload();
+                    }, 600);
+                },
+                error: function (xhr, type) {
+                    // 即使加载出错，也得重置
+                    me.resetload();
+                }
+            });
+        },
+        loadDownFn: function (me) {
+            page++;
+            // 拼接HTML
+            var result = '';
+            $.ajax({
+                type: 'GET',
+                data:{page:page,size:size},
+                url: '/index/index',
+                dataType: 'json',
+                success: function (data) {
+                    var arrLen = data.length;
+                    if (arrLen > 0) {
+                        for (var i = 0; i < arrLen; i++) {
+                            var picHtml = '';
+                            if(data[i].pic != ''){
+                                var pics = data[i].pics;
+                                for (var j = 0; j < pics.length; j++) {
+                                    picHtml += '<div class="imgbox"><img class="img-rounded" src="'+pics[j]+'"></div>';
+                                }
+                            }
+                            result += '<a href="/release/look?id='+data[i].id+'">\
+                            <div class="item-box">\
+                                <div class="font-12" style="color: #A1A2A4;padding: 8px 0;">'+data[i].ctime+
+                                '</div>'+
+                                '<div class="item item-thumbnail-left" style="border: none;">'+
+                                    '<div class="border-box">\
+                                        <div class="item-title font-16 biaoti" style="max-height: 50px;">'+data[i].content+'</div>'+
+                                    '</div>'+picHtml+
+                                '</div>\
+                                <div class="info-block font-16">\
+                                    <div><i class="glyphicon glyphicon-eye-open look font-14"></i><span class="num">'+data[i].look+'</span></div>\
+                                    <div><i class="glyphicon glyphicon-comment coments font-14"></i><span class="num">'+data[i].coments+'</span></div>\
+                                </div>\
+                            </div>\
+                        </a>';
                         }
                     } else{
                         // 锁定
@@ -112,40 +144,11 @@ window.onload = function () {
                     }, 600);
                 },
                 error: function (xhr, type) {
+                    // 即使加载出错，也得重置
                     me.resetload();
                 }
             });
         },
         threshold: 50
     });
-};
-
-function createList(data) {
-    var html = '';
-    for(var i = 0; i < data.length; i++) {
-        var picHtml = '';
-        if(data[i].pic != ''){
-            var pics = data[i].pics;
-            for (var j = 0; j < pics.length; j++) {
-                picHtml += '<div class="imgbox"><img class="img-rounded" src="'+pics[j]+'"></div>';
-            }
-        }
-        html += '<a href="/release/look?id='+data[i].id+'">\
-            <div class="item-box">\
-                <div class="font-12" style="color: #A1A2A4;padding: 8px 0;">'+data[i].ctime+
-            '<div class="float-right top-tip" style="margin-top: 4px;">'+data[i].cname+'</div>'+
-            '</div>'+
-            '<div class="item item-thumbnail-left" style="border: none;">'+
-            '<div class="border-box">\
-                <div class="item-title font-16 biaoti" style="max-height: 50px;">'+data[i].content+'</div>'+
-            '</div>'+picHtml+
-            '</div>\
-            <div class="info-block font-16">\
-                <div><i class="glyphicon glyphicon-eye-open look font-14"></i><span class="num">'+data[i].look+'</span></div>\
-                    <div><i class="glyphicon glyphicon-comment coments font-14"></i><span class="num">'+data[i].coments+'</span></div>\
-                </div>\
-            </div>\
-        </a>';
-    }
-    return html;
 }

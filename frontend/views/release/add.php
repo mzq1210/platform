@@ -46,6 +46,17 @@ use yii\helpers\Url;
         width: 60px;height: 60px;margin-right: 10px;float: left;margin-bottom: 5px;
         border: dashed 2px #ccc;display: inline-block;
         text-align: center;font-size: 38px;color: #999;line-height: 60px;
+        position: relative;top: 0;left: 0;
+    }
+    .imgbox img{
+        position: relative;top: 0;left: 0;
+    }
+    .imgclose{
+        font-size: 22px;
+        position: absolute;
+        top:0;
+        right: 0;
+        color: red;
     }
 </style>
 
@@ -119,6 +130,13 @@ use yii\helpers\Url;
 
 <script type='text/javascript' src='http://res.wx.qq.com/open/js/jweixin-1.2.0.js' charset='utf-8'></script>
 <script>
+    $(function () {
+        $(document).on('click', '.imgclose', function() {
+            $(this).parent().remove();
+            var i = $(this).index();
+            $('input[type=hidden]').eq(i).remove();
+        });
+    });
     //分类
     var json = '<?php echo json_encode($data);?>';
     var test_data = JSON.parse(json);
@@ -135,7 +153,7 @@ use yii\helpers\Url;
                 var html = '';
                 if(localIds.length>0){
                     $.each(localIds, function(key, value) {
-                        html += '<div style="overflow: hidden;" class="imgbox"><img style="width: 100%;" src="'+value+'" alt=""></div>';
+                        html += '<div style="overflow: hidden;" class="imgbox"><img style="width: 100%;" src="'+value+'" alt=""><span class="glyphicon glyphicon-remove-circle imgclose"></span></div>';
                     });
                     uploadImg(localIds);
                 }

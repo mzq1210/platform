@@ -57,14 +57,14 @@ use yii\helpers\Url;
 
 <div class="index">
     <!--轮波图-->
-    <div class="swiper-container lunbo" id="lunbo">
+<!--     <div class="swiper-container lunbo" id="lunbo">
         <div class="swiper-wrapper">
             <div class="swiper-slide lunbo"><img src="http://show.onelog.cn/platform/platform/2017/07/14/18031449207986.jpg_600x300.jpg" alt=""></div>
             <div class="swiper-slide lunbo"><img src="http://show.onelog.cn/platform/platform/2017/07/14/6d0b6e7fab96437f82692d83abf0c40e.jpg_600x300.jpg" alt=""></div>
-        </div>
+        </div> -->
         <!-- 如果需要分页器 -->
-        <div class="swiper-pagination"></div>
-    </div>
+        <!-- <div class="swiper-pagination"></div> -->
+    <!-- </div> -->
     <!--轮波图-->
     <div class="cate">
         <?php foreach ($Category as $key => $value): ?>
@@ -81,37 +81,31 @@ use yii\helpers\Url;
         <div class="content">
             <div class="list article-list">
 
-                <?php foreach ($Content as $key => $value): ?>
-                <div class="item-box">
-                    <div class="font-12" style="color: #A1A2A4;padding: 8px 0;">
-                        <img class="img-circle" src="<?php echo $value['headimgurl'];?>" style="width: 35px;height: 35px;">&nbsp;
-                        <?= $value['uname'];?><span style="margin-left: 10px;"><?= $value['ctime'];?></span>
-                        <div class="float-right top-tip" style="margin-top: 4px;"><?= $value['cname'];?></div>
-                    </div>
-                    <a href="<?php echo Url::toRoute(['/release/look','id' => $value['id']]);?>">
-                        <div class="item item-thumbnail-left" style="border: none;">
-                            <div class="border-box">
-                                <div class="item-title font-16 biaoti" style="max-height: 50px;">
-                                    <?= $value['title'];?>
-                                </div>
-                            </div>
-                            <div class="border-box">
-                                <div class="item-title font-14 neirong" style="max-height: 80px;">
-                                    <?= $value['content'];?>
-                                </div>
-                            </div>
-                            <?php if(isset($value['pics'])):?>
-                                <?php foreach ($value['pics'] as $k => $v): ?>
-                                    <div class="imgbox"><img class="img-rounded" src="<?= $v;?>"></div>
-                                <?php endforeach;?>
-                            <?php endif;?>
+                <?php foreach ($content as $key => $value): ?>
+                    <div class="item-box">
+                        <div class="font-12" style="color: #A1A2A4;padding: 8px 0;">
+                            <?= $value['ctime'];?>
+                            <div class="float-right top-tip" style="margin-top: 4px;"><?= $value['cname'];?></div>
                         </div>
-                    </a>
-                    <div class="info-block font-16">
-                        <div><i class="glyphicon glyphicon-eye-open look font-14"></i><span class="num"><?= $value['look'];?></span></div>
-                        <div><i class="glyphicon glyphicon-comment coments font-14"></i><span class="num"><?= $value['coments'];?></span></div>
+                        <a href="<?php echo Url::toRoute(['/release/look','id' => $value['id']]);?>">
+                            <div class="item item-thumbnail-left" style="border: none;">
+                                <div class="border-box">
+                                    <div class="item-title font-16 biaoti" style="max-height: 50px;">
+                                        <?= $value['content'];?>
+                                    </div>
+                                </div>
+                                <?php if(isset($value['pics'])):?>
+                                    <?php foreach ($value['pics'] as $k => $v): ?>
+                                        <div class="imgbox"><img class="img-rounded" src="<?= $v;?>"></div>
+                                    <?php endforeach;?>
+                                <?php endif;?>
+                            </div>
+                        </a>
+                        <div class="info-block font-16">
+                            <div><i class="glyphicon glyphicon-eye-open look font-14"></i><span class="num"><?= $value['look'];?></span></div>
+                            <div><i class="glyphicon glyphicon-comment coments font-14"></i><span class="num"><?= $value['coments'];?></span></div>
+                        </div>
                     </div>
-                </div>
                 <?php endforeach;?>
 
             </div>
@@ -136,7 +130,6 @@ use yii\helpers\Url;
             $.get("<?= Yii::$app->urlManager->createUrl(['release/zan']); ?>", { 'id': id }, function(data){
             });
             $(this).unbind('click');
-
         });
     })
 </script>
@@ -147,7 +140,7 @@ use yii\helpers\Url;
     wx.ready(function(){
         //分享朋友圈
         wx.onMenuShareTimeline({
-            title: '怀来县还有你不知道的事情？', // 分享标题
+            title: '发广告，找合作，关注怀来便民网，还您个干净的朋友圈', // 分享标题
             link: '', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
             imgUrl: 'http://wx.qlogo.cn/mmopen/JeDmEdykfArU3pCbCGC9EQFGiaxsiccuHpHJyvXYy9LONWIxBEPp1zzbqIZVXJAdDB3R2aSQr6levvicXc0ZY4ykbpRIh7ib4Lxs/0', // 分享图标
             success: function () {
@@ -160,8 +153,8 @@ use yii\helpers\Url;
 
         //分享给朋友
         wx.onMenuShareAppMessage({
-            title:'怀来县还有你不知道的事情？', // 分享标题
-            desc: '好我的老天爷也这是闹刷呀', // 分享描述
+            title:'怀来便民网-无需手机验证', // 分享标题
+            desc: '发广告，找合作，关注怀来便民网，还您个干净的朋友圈', // 分享描述
             link: '', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
             imgUrl: 'http://wx.qlogo.cn/mmopen/JeDmEdykfArU3pCbCGC9EQFGiaxsiccuHpHJyvXYy9LONWIxBEPp1zzbqIZVXJAdDB3R2aSQr6levvicXc0ZY4ykbpRIh7ib4Lxs/0', // 分享图标
             type: '', // 分享类型,music、video或link，不填默认为link

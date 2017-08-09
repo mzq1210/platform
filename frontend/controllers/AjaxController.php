@@ -8,28 +8,27 @@
 namespace frontend\controllers;
 
 use Yii;
+use yii\helpers\Json;
 use common\components\Tools;
 use common\models\wechat\Content;
 use common\models\wechat\Category;
 use app\components\base\BaseController;
 
-class IndexController extends BaseController {
+class AjaxController extends BaseController {
 
     /**
      * @desc 帖子列表
      * @return string
      */
     public function actionIndex(){
-        $config=$this->wxJsConfig();
-        $category=Category::getCategoryData();
-        $data = Content::getContentList(0, 10);
-        $content = $this->_optimizeData($data);
-
-        return $this->render('index',[
-            'content'=>$content,
-            'Category'=>$category,
-            'config'=>$config
-        ]);
+        if (Yii::$app->request->isAjax) {   //门店
+            $params = Yii::$app->request->get();
+            $page = isset($params['page'])? $params['page'] : 0;
+            $size = isset($params['size'])? $params['size'] : 10;
+            $data = Content::getContentList($page, $size);
+            $content = $this->_optimizeData($data);
+            echo Json::encode($content);exit;
+        }
     }
 
     /**

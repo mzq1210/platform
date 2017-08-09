@@ -24,6 +24,7 @@ class ReleaseController extends BaseController{
         $model = new Category();
         $data = $model->getCategoryData();
         $config = $this->wxJsConfig();
+//        var_dump($config);die;
 
         return $this->render('add', [
             'data' => $data,
@@ -33,7 +34,18 @@ class ReleaseController extends BaseController{
 
     public function actionCreate(){
         $model = new Content();
+        $user=User::getThisUid($this->userid);
+
         $params = Yii::$app->request->post();
+
+        if(!empty($params['content'])){
+            preg_match_all("/[a-z]+:\/\/[a-z0-9_\-\/.%]+/i", $params['content'], $array);
+            if(!empty($array[0])) {
+                foreach ($array[0] as $k=>$v){
+                    $params['content'] = str_replace($v, '<a style="color:#00f;" href="'.$v.'">'.$v.'</a>', $params['content']);
+                }
+            }
+        }
 
         //微信图片处理
         $serverids = isset($params['serverid']) ? $params['serverid'] : [];
@@ -47,19 +59,34 @@ class ReleaseController extends BaseController{
         }
         
         $pic = empty($picArr) ? '':implode(',', $picArr);
+
         $data = [
             "title" => $params['title'],
-            'content' => $params['content'],
+            'content' => trim($params['content']),
             'ctime' => time(),
             'cid' => $params['cid'],
             'uid' => $this->userid,
             'openid' => Cookie::getCookie('openid'),
             'pic' => $pic,
         ];
+
         $model->setAttributes($data, false);
         if ($model->save()) {
-            $this->redirect(['/index/index']);
-            echo "成功";
+
+            //同步用户表手机号
+            $phone=$user->phone=$params['title'];
+            $data=[
+                'phone'=>$phone,
+            ];
+
+            $user->setAttributes($data, false);
+            $res = $user->save();
+
+            if($res){
+                $this->redirect(['/index/index']);
+                echo "成功";
+            }
+
         } else {
             echo "失败";
         }
@@ -69,7 +96,8 @@ class ReleaseController extends BaseController{
     public function actionZan(){
         $id = Yii::$app->request->get('id');
         $model = Content::getThisContent($id);
-        $zan = $model->zan + 1;
+
+        $zan = $model->zan + rand(1,15);
         $data = [
             'zan' => $zan
         ];
@@ -103,9 +131,13 @@ class ReleaseController extends BaseController{
         }
 
         $config = $this->wxJsConfig();
+//        var_dump($config);die;
         //查看
         $model = Content::getThisContent($id);
-        $look = $model->look + 1;
+
+        //var_dump($model);die;
+        $look = $model->look + rand(1,15);
+
         $data = [
             'look' => $look
         ];
@@ -114,6 +146,7 @@ class ReleaseController extends BaseController{
 
         //详情
         $ContentInfo = $model->getUserContentInfo($id);
+        var_dump($ContentInfo);die;
 
         //评论列表
         $comment = new Comment();
@@ -128,6 +161,16 @@ class ReleaseController extends BaseController{
         ]);
     }
 
+    //关注
+    public function actionGuanzhu(){
+        //echo "string";die;
+        return $this->render('guanzhu');
+    }
+
+    public function actionGuanzhu2(){
+
+        header('location:https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzIxNTg0MzU2OQ==&scene=123&from=groupmessage&isappinstalled=0#wechat_redirect');
+    }
     //上传图片
     public function actionUpload()
     {
