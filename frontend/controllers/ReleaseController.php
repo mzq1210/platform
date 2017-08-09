@@ -10,13 +10,13 @@ namespace frontend\controllers;
 use Yii;
 use yii\helpers\Json;
 use app\components\Cookie;
-use app\components\base\BaseController;
+use common\components\Image;
+use common\components\Tools;
+use common\models\wechat\User;
 use common\models\wechat\Content;
 use common\models\wechat\Category;
 use common\models\wechat\Comment;
-use common\components\Image;
-use common\models\wechat\User;
-use common\components\Tools;
+use app\components\base\BaseController;
 
 class ReleaseController extends BaseController{
 
@@ -24,7 +24,6 @@ class ReleaseController extends BaseController{
         $model = new Category();
         $data = $model->getCategoryData();
         $config = $this->wxJsConfig();
-//        var_dump($config);die;
 
         return $this->render('add', [
             'data' => $data,
@@ -33,11 +32,8 @@ class ReleaseController extends BaseController{
     }
 
     public function actionCreate(){
-        $model = new Content();
-        $user=User::getThisUid($this->userid);
-
         $params = Yii::$app->request->post();
-
+        //动态网址过滤
         if(!empty($params['content'])){
             preg_match_all("/[a-z]+:\/\/[a-z0-9_\-\/.%]+/i", $params['content'], $array);
             if(!empty($array[0])) {
@@ -46,7 +42,6 @@ class ReleaseController extends BaseController{
                 }
             }
         }
-
         //微信图片处理
         $serverids = isset($params['serverid']) ? $params['serverid'] : [];
         if(!empty($serverids)){
@@ -57,9 +52,9 @@ class ReleaseController extends BaseController{
                 $picArr[] = Tools::saveWeixinFile($ret);
             }
         }
-        
         $pic = empty($picArr) ? '':implode(',', $picArr);
-
+        //存储
+        $model = new Content();
         $data = [
             "title" => $params['title'],
             'content' => trim($params['content']),
@@ -69,24 +64,21 @@ class ReleaseController extends BaseController{
             'openid' => Cookie::getCookie('openid'),
             'pic' => $pic,
         ];
-
         $model->setAttributes($data, false);
         if ($model->save()) {
-
+            $arr = ['id' => $this->userid];
+            $user=User::getUserInfo($arr, '', false);
             //同步用户表手机号
             $phone=$user->phone=$params['title'];
             $data=[
                 'phone'=>$phone,
             ];
-
             $user->setAttributes($data, false);
             $res = $user->save();
-
             if($res){
                 $this->redirect(['/index/index']);
                 echo "成功";
             }
-
         } else {
             echo "失败";
         }
@@ -131,11 +123,8 @@ class ReleaseController extends BaseController{
         }
 
         $config = $this->wxJsConfig();
-//        var_dump($config);die;
         //查看
         $model = Content::getThisContent($id);
-
-        //var_dump($model);die;
         $look = $model->look + rand(1,15);
 
         $data = [
@@ -146,7 +135,6 @@ class ReleaseController extends BaseController{
 
         //详情
         $ContentInfo = $model->getUserContentInfo($id);
-        var_dump($ContentInfo);die;
 
         //评论列表
         $comment = new Comment();
@@ -163,14 +151,13 @@ class ReleaseController extends BaseController{
 
     //关注
     public function actionGuanzhu(){
-        //echo "string";die;
         return $this->render('guanzhu');
     }
 
     public function actionGuanzhu2(){
-
         header('location:https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzIxNTg0MzU2OQ==&scene=123&from=groupmessage&isappinstalled=0#wechat_redirect');
     }
+
     //上传图片
     public function actionUpload()
     {
@@ -201,7 +188,8 @@ class ReleaseController extends BaseController{
         if ($this->request->isPost) {
             $params = $this->request->post();
             $openid = Cookie::getCookie('openid');
-            $userInfo = User::getUserInfo($openid);
+            $data = ['openid' => $openid];
+            $userInfo = User::getUserInfo($data);
             $data = [
                 'cid' => $params['postId'],
                 'comment' => $params['content'],
@@ -222,14 +210,16 @@ class ReleaseController extends BaseController{
 
                 //获取评论人信息
                 if ($userInfo) {
-                    $masage = $userInfo['name'] . "评论您的帖子:" . $params['content'];
+                    $url = 'http://www.onelog.cn/release/look?id='.$params["postId"];
+                    $masage = $userInfo['name'] . "@了你:" . $params['content'];
                     $info = Content::getThisContent($params['postId']);
-                    $postUserInfo = User::getUserInfo2($info->uid);
+                    $arr = ['id' => $info->uid];
+                    $postUserInfo = User::getUserInfo($arr);
                     $data = [
                         'touser' => $postUserInfo['openid'],
                         'msgtype' => 'text',
                         'text' => [
-                            'content' => $masage
+                            'content' => $masage. "<a href='". $url ."'>回复</a>",
                         ]
                     ];
                     $this->massage($data);
@@ -251,9 +241,11 @@ class ReleaseController extends BaseController{
         if ($this->request->isPost) {
             $params = $this->request->post();
             $openid = Cookie::getCookie('openid');
-            $userInfo = User::getUserInfo($openid);
+            $data = ['openid' => $openid];
+            $userInfo = User::getUserInfo($data);
             $comment = Comment::getInfo($params['commenId']);
-            $toUserInfo = User::getUserInfo2($comment['uid']);
+            $arr = ['id' => $comment['uid']];
+            $toUserInfo = User::getUserInfo($arr);
             $data = [
                 'cid' => $params['postId'],
                 'parentID' => $params['commenId'],
@@ -271,16 +263,20 @@ class ReleaseController extends BaseController{
             if ($res) {
                 //获取评论人信息
                 if ($userInfo) {
-                    $masage = $userInfo['name'] . "回复了您的评论:" . $params['content'];
+
+                    $url = 'http://www.onelog.cn/release/look?id='.$params["postId"];
+
+                    $masage = $userInfo['name'] . "@了你:" . $params['content'];
                     $data = [
                         'touser' => $toUserInfo['openid'],
                         'msgtype' => 'text',
                         'text' => [
-                            'content' => $masage
+                            'content' => $masage. "<a href='". $url ."'>回复</a>"
                         ]
                     ];
                     $this->massage($data);
                 }
+
                 $this->redirect(['/release/look?id=' . $params['postId']]);
             }
         } else {

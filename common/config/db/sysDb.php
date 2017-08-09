@@ -12,5 +12,5 @@ return [
     'dsn' => 'mysql:host=106.14.118.108;dbname=mps_sys;port=3306',
     'username' => 'root',
     'password' => '123456',
-    'charset' => 'utf8',
+    'charset' => 'utf8mb4',
 ];

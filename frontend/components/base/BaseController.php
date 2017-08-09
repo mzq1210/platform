@@ -26,10 +26,10 @@ class BaseController extends Controller
     public function init()
     {
         parent::init();
-        /*$this->request = Yii::$app->request;
+        $this->request = Yii::$app->request;
         $this->datetime = date('Y-m-d H:i:s');
         $this->accessToken = Yii::$app->wechat->getAccessToken();
-        //var_dump($_COOKIE);die;
+   // var_dump($_COOKIE);die;
         $this->openid = Cookie::getCookie('openid');
         $accessToken = Cookie::getCookie('access_token');
         $refreshToken = Cookie::getCookie('refresh_token');
@@ -44,9 +44,13 @@ class BaseController extends Controller
             }else{
                 header('location:http://www.onelog.cn/wx/getcode');
             }
-        }*/
+        }
 
-        $info = User::getUserInfo($this->openid);
+        $data = ['openid' => $this->openid];
+        $info = User::getUserInfo($data);
+        if(!$info){
+			header('location:http://www.onelog.cn/wx/getcode');
+		}
         $this->userid = $info['id'];
         $this->username = $info['name'];
     }
@@ -93,4 +97,30 @@ class BaseController extends Controller
 
         echo "</pre>";
     }
+
+
+    /**
+     * 处理数据
+     * @param $data
+     * @return mixed
+     */
+//    public function _optimizeData($data){
+//        foreach ($data as $key => $value){
+//            $data[$key]['ctime'] = $this->_timeTran($value['ctime']);
+//            if($value['pic'] != ''){
+//                $data[$key]['pics'] = explode(',', $value['pic']);
+//            }
+//            //处理超链接
+//            preg_match_all("/http:[\/]{2}[a-z]+[.]{1}[a-z]+[\/]*[A-Za-z\d]+/", $value['content'], $array);
+//            if(!empty($array[0])) {
+//                foreach ($array[0] as $k=>$v){
+//                    $value['content'] = str_replace($v, '<a style="color:#00f;" href="'.$v.'">'.$v.'</a>', $value['content']);
+//                }
+//                $data[$key]['content'] = $value['content'];
+//            }
+//        }
+//        return $data;
+//    }
+//
+
 }

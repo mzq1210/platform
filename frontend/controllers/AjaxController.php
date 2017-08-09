@@ -27,6 +27,7 @@ class AjaxController extends BaseController {
             $size = isset($params['size'])? $params['size'] : 10;
             $data = Content::getContentList($page, $size);
             $content = $this->_optimizeData($data);
+
             echo Json::encode($content);exit;
         }
     }

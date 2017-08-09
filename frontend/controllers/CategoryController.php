@@ -7,7 +7,6 @@
  */
 namespace frontend\controllers;
 
-use common\components\Tools;
 use Yii;
 use common\models\wechat\Content;
 use common\models\wechat\Category;
@@ -22,10 +21,11 @@ class CategoryController extends BaseController{
         $data=Content::getCateContentList($id);
 
         $Content = $this->_optimizeData($data);
-        
+        $config = $this->wxJsConfig();
         return$this->render('index',[
             'Content'=>$Content,
-            'Category'=>$Category
+            'Category'=>$Category,
+            'config' =>$config
         ]);
     }
 
@@ -36,15 +36,45 @@ class CategoryController extends BaseController{
      */
     private function _optimizeData($data){
         foreach ($data as $key => $value){
-            $data[$key]['ctime'] = Tools::timeTran($value['ctime']);
+            $data[$key]['ctime'] = $this->_timeTran($value['ctime']);
             if($value['pic'] != ''){
-                foreach (explode(',', $value['pic']) as $k => $v){
-                    $type = substr($v, strrpos($v, '.'));
-                    $data[$key]['pics'][$k] = $v.'_200x200'.$type;
-                }
+                $data[$key]['pics'] = explode(',', $value['pic']);
             }
         }
         return $data;
     }
 
+    /**
+     * 处理时间
+     * @param $the_time
+     * @return bool|string
+     */
+    private function _timeTran($the_time) {
+        header("Content-type: text/html; charset=utf8");
+        date_default_timezone_set("Asia/Shanghai");   //设置时区
+        $now_time = date("Y-m-d H:i:s", time());
+        $now_time = strtotime($now_time);
+        $dur = $now_time - $the_time;
+        if ($dur < 0) {
+            return $the_time;
+        } else {
+            if ($dur < 60) {
+                return $dur . '秒前';
+            } else {
+                if ($dur < 3600) {
+                    return floor($dur / 60) . '分钟前';
+                } else {
+                    if ($dur < 86400) {
+                        return floor($dur / 3600) . '小时前';
+                    } else {
+                        if ($dur < 259200) {//3天内
+                            return floor($dur / 86400) . '天前';
+                        } else {
+                            return date("Y-m-d H:i:s", $the_time);
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

@@ -17,8 +17,9 @@ class UserController extends BaseController{
 
     //个人中心
     public function actionIndex(){
-        $model=new User();
-        $UserInfo=$model->getUserInfo(Cookie::getCookie('openid'));
+        $openid = Cookie::getCookie('openid');
+        $data = ['openid' => $openid];
+        $UserInfo=User::getUserInfo($data);
 
         return $this->render('index',[
             'UserInfo'=>$UserInfo,
@@ -27,8 +28,10 @@ class UserController extends BaseController{
 
     //我的资料
     public function actionInfo(){
-        $model=new User();
-        $UserInfo=$model->getUserInfo(Cookie::getCookie('openid'));
+        $openid = Cookie::getCookie('openid');
+        $data = ['openid' => $openid];
+        $UserInfo=User::getUserInfo($data);
+        
         return $this->render('info',[
                 'UserInfo'=>$UserInfo,
             ]);
@@ -40,7 +43,8 @@ class UserController extends BaseController{
         if(empty($openid)){
             echo '请登录...';die;
         }
-        $info = User::getUserInfo($openid);
+        $data = ['openid' => $openid];
+        $info = User::getUserInfo($data);
         $data=Content::getUserContentList($info['id']);
 
         return $this->render('topic',[

@@ -31,7 +31,6 @@ class CustomController extends BaseController{
             "nickname" => "客服1"
         ];
         $bool = $customService->addAccount($account);
-        var_dump($bool);
     }
 
     //删除客服

@@ -36,19 +36,11 @@ class User extends BaseWechat
         return $info;
     }
 
-    public static function getUserOpenId($openid){
-        return self::find()->select(['openid'])->where(['openid'=>$openid])->one();
-    }
-
-    public static function getUserInfo($openid){
-        return self::find()->where(['openid'=>$openid])->asArray()->one();
-    }
-
-    public static function getUserInfo2($uid){
-        return self::find()->where(['id'=>$uid])->asArray()->one();
-    }
-
-    public static function getThisUid($uid){
-        return self::find()->where(['id'=>$uid])->one();
+    public static function getUserInfo($params, $field='*', $bool=true){
+        $info = self::find()->select($field)->where($params);
+        if($bool){
+            $info = $info->asArray();
+        }
+        return $info->one();
     }
 }

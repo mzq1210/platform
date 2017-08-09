@@ -33,13 +33,16 @@ class WxController extends Controller{
     }
 
     public function actionOpenid(){
+
         if(isset($_GET['code'])){
             $res=Yii::$app->wechat->getOauth2AccessToken($_GET['code']);
+
             if($res){
 				$model = new User();
                 $params=Yii::$app->wechat->getSnsUserInfo($res['openid'],$res['access_token']);
                 if($params){
-                    if(!User::getUserOpenId($params['openid'])){
+                    $data = ['openid' => $params['openid']];
+                    if(!User::getUserInfo($data)){
                          $data=[
                             'openid'=>$params['openid'],
                             'name'=>$params['nickname'],
@@ -52,7 +55,7 @@ class WxController extends Controller{
                         $model->setAttributes($data,false);
                         if ($model->save()) {
                             //保存cookie
-                            Cookie::setCookie('openid', $params['openid'], time()+3600);
+                            Cookie::setCookie('openid', $params['openid'], time()+3600*24*365);
                             Cookie::setCookie('access_token', $res['access_token'], time()+3600);
                             Cookie::setCookie('refresh_token', $res['refresh_token'], time()+3600*24*25);
                             //redis保存个人资料
@@ -64,7 +67,7 @@ class WxController extends Controller{
                         }
                     }else{
                         //保存cookie
-                        Cookie::setCookie('openid', $params['openid'], time()+7200);
+                        Cookie::setCookie('openid', $params['openid'], time()+3600*24*365);
                         Cookie::setCookie('access_token', $res['access_token'], time()+3600);
                         //redis保存个人资料
                         Yii::$app->cache->set($res['openid'], $params);
@@ -105,6 +108,17 @@ class WxController extends Controller{
         }
     }
 
+
+//    function userTextEncode($str){
+//        if(!is_string($str))return $str;
+//        if(!$str || $str=='undefined')return '';
+//
+//        $text = json_encode($str); //暴露出unicode
+//        $text = preg_replace_callback("/(\\\u[ed][0-9a-f]{3})/i",function($str){
+//            return addslashes($str[0]);
+//        },$text); //将emoji的unicode留下，其他不动，这里的正则比原答案增加了d，因为我发现我很多emoji实际上是\ud开头的，反而暂时没发现有\ue开头。
+//        return json_decode($text);
+//    }
 
     public function pr($arr){
 

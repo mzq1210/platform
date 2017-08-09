@@ -61,7 +61,7 @@ use yii\helpers\Url;
 </style>
 
 <nav class="nav text-center">
-    <a href="javascript:history.back(-1);"><div class="back-btn"><i class="icon iconfont">&#xe600;</i></div></a>
+    <a href="<?php echo Url::toRoute(['/index/index']); ?>"><div class="back-btn"><i class="icon iconfont">&#xe600;</i>首页</div></a>
     <span class="title text-ellipsis">发布帖子</span>
 </nav>
 <div class="gray-space"></div>
@@ -72,7 +72,7 @@ use yii\helpers\Url;
             <div class="item-box item padding-top-double padding-bottom-double">
                 <span class="color-light-font">选择分类</span>
                 <div class="float-right">
-                    <span class="select">求购</span>
+                    <span class="select">买卖</span>
                     <i class="iconfont">&#xe601;</i>
                 </div>
             </div>
@@ -80,9 +80,10 @@ use yii\helpers\Url;
         <div class="gray-space"></div>
     </div>
 
-    <div class="editor padding-double">
+    
+<!--     <div class="editor padding-double">
         <input type="text" name="title" placeholder="请输入标题">
-    </div>
+    </div> -->
     <div class="gray-space"></div>
     <div class="editor padding-double">
         <textarea name="content" placeholder="请输入内容"></textarea>
@@ -98,6 +99,9 @@ use yii\helpers\Url;
 
     <div class="gray-space"></div>
 
+    <div class="editor padding-double">
+        <input type="text" name="title" placeholder="请输入手机号">
+    </div>
     <input type="hidden" name="cid" value="1">
     <div class="footer flex border-top">
         <div class="commit">
@@ -176,4 +180,36 @@ use yii\helpers\Url;
             }
         });
     }
+
+      wx.config(<?= json_encode($config) ?>);
+    wx.ready(function(){
+        //分享朋友圈
+        wx.onMenuShareTimeline({
+            title: '怀来便民网，免费发布各类信息招聘，买卖，拼车-无需手机验证', // 分享标题
+            link: '', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: 'http://wx.qlogo.cn/mmopen/JeDmEdykfArU3pCbCGC9EQFGiaxsiccuHpHJyvXYy9LONWIxBEPp1zzbqIZVXJAdDB3R2aSQr6levvicXc0ZY4ykbpRIh7ib4Lxs/0', // 分享图标
+            success: function () {
+                // 用户确认分享后执行的回调函数
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+
+        //分享给朋友
+        wx.onMenuShareAppMessage({
+            title:'怀来便民网-无需手机验证', // 分享标题
+            desc: '点击进入免费发布各类信息招聘，买卖，拼车..', // 分享描述
+            link: '', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: 'http://wx.qlogo.cn/mmopen/JeDmEdykfArU3pCbCGC9EQFGiaxsiccuHpHJyvXYy9LONWIxBEPp1zzbqIZVXJAdDB3R2aSQr6levvicXc0ZY4ykbpRIh7ib4Lxs/0', // 分享图标
+            type: '', // 分享类型,music、video或link，不填默认为link
+            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+            success: function () {
+                // 用户确认分享后执行的回调函数
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+    });
 </script>

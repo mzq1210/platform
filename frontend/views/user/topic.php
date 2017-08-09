@@ -32,17 +32,19 @@ use yii\helpers\Url;
                 <?php foreach ($data as $key => $value): ?>
                     <div class="item-box">
                         <div class="font-12" style="color: #A1A2A4;padding: 8px 0;">
-                            <img class="img-circle" src="<?php echo $value['headimgurl'];?>" style="width: 35px;height: 35px;">&nbsp;
-                            <?= $value['uname'];?><span style="margin-left: 10px;"><?= $value['ctime'];?></span>
-                            <!--<div class="float-right top-tip" style="margin-top: 4px;">置顶</div>-->
+<!--                            <img class="img-circle" src="--><?php //echo $value['headimgurl'];?><!--" style="width: 35px;height: 35px;">&nbsp;-->
+<!--                            --><?//= $value['uname'];?>
+                            <span style="margin-left: 10px;"><?= date("m-d h:m", $value['ctime']); ?></span>
+<!--                            <div class="float-right top-tip" style="margin-top: 4px;">置顶</div>-->
+<!--                            <div class="float-right top-tip" style="margin-top: 4px;">置顶</div>-->
                         </div>
                         <a href="<?php echo Url::toRoute(['/release/look','id' => $value['id']]);?>">
                             <div class="item item-thumbnail-left" style="border: none;">
-                                <div class="border-box">
+<!--                                 <div class="border-box">
                                     <div class="item-title font-16 biaoti" style="max-height: 50px;">
                                         <?= $value['title'];?>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="border-box">
                                     <div class="item-title font-14 neirong" style="max-height: 80px;">
                                         <?= $value['content'];?>

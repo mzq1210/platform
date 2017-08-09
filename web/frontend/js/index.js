@@ -75,7 +75,9 @@ window.onload = function () {
                             if(data[i].pic != ''){
                                 var pics = data[i].pics;
                                 for (var j = 0; j < pics.length; j++) {
-                                    picHtml += '<div class="imgbox"><img class="img-rounded" src="'+pics[j]+'"></div>';
+                                    if(j<3){
+                                        picHtml += '<div class="imgbox"><img class="img-rounded" src="'+pics[j]+'"></div>';
+                                    }
                                 }
                             }
                             result += '<a href="/release/look?id='+data[i].id+'">\
@@ -127,7 +129,9 @@ function createList(data) {
         if(data[i].pic != ''){
             var pics = data[i].pics;
             for (var j = 0; j < pics.length; j++) {
-                picHtml += '<div class="imgbox"><img class="img-rounded" src="'+pics[j]+'"></div>';
+                if(j<3){
+                    picHtml += '<div class="imgbox"><img class="img-rounded" src="'+pics[j]+'"></div>';
+                }
             }
         }
         html += '<a href="/release/look?id='+data[i].id+'">\

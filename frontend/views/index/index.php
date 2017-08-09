@@ -96,7 +96,9 @@ use yii\helpers\Url;
                                 </div>
                                 <?php if(isset($value['pics'])):?>
                                     <?php foreach ($value['pics'] as $k => $v): ?>
-                                        <div class="imgbox"><img class="img-rounded" src="<?= $v;?>"></div>
+                                        <?php if($k<3):?>
+                                            <div class="imgbox"><img class="img-rounded" src="<?= $v;?>"></div>
+                                        <?php endif;?>
                                     <?php endforeach;?>
                                 <?php endif;?>
                             </div>
