@@ -40,8 +40,9 @@ class Content extends BaseWechat
     public static function getContentList($page, $size){
         $query = self::find()->select(['content','title','wechat_user.name as uname','pic','headimgurl','cid','wechat_content.ctime','zan','wechat_content.id','look','wechat_category.name as cname','coments'])
            ->innerJoin("`wechat_user` on `wechat_content`.`uid` = `wechat_user`.`id`")
-           ->innerJoin("`wechat_category` on `wechat_content`.`cid` = `wechat_category`.`id`");
-        $query->orderBy(['wechat_content.id'=>SORT_DESC]);
+           ->innerJoin("`wechat_category` on `wechat_content`.`cid` = `wechat_category`.`id`")
+            ->where(['wechat_content.del_flag'=>0]);
+        $query->orderBy(['wechat_content.ctime'=>SORT_DESC]);
         $list = $query->offset($page * $size)->limit($size)->asArray()->all();
         return $list;
     }
@@ -51,8 +52,8 @@ class Content extends BaseWechat
         return self::find()->select(['content','title','wechat_user.name as uname','wechat_user.openid','pic','headimgurl','cid','wechat_content.ctime','zan','wechat_content.id','look','wechat_category.name as cname','coments'])
             ->innerJoin("`wechat_user` on `wechat_content`.`uid` = `wechat_user`.`id`")
             ->innerJoin("`wechat_category` on `wechat_content`.`cid` = `wechat_category`.`id`")
-            ->orderBy(['wechat_content.id'=>SORT_DESC])
-            ->where(['wechat_content.uid'=>$id])
+            ->orderBy(['wechat_content.ctime'=>SORT_DESC])
+            ->where(['wechat_content.del_flag'=>0, 'wechat_content.uid'=>$id])
             ->asArray()
             ->all();
     }
@@ -62,8 +63,8 @@ class Content extends BaseWechat
         return self::find()->select(['content','title','wechat_user.name as uname','pic','headimgurl','cid','wechat_content.ctime','zan','wechat_content.id','look','wechat_category.name as cname','coments'])
             ->innerJoin("`wechat_user` on `wechat_content`.`uid` = `wechat_user`.`id`")
             ->innerJoin("`wechat_category` on `wechat_content`.`cid` = `wechat_category`.`id`")
-            ->orderBy(['wechat_content.id'=>SORT_DESC])
-            ->where(['wechat_category.id'=>$cid])
+            ->orderBy(['wechat_content.ctime'=>SORT_DESC])
+            ->where(['wechat_content.del_flag'=>0, 'wechat_category.id'=>$cid])
             ->asArray()
             ->all();
     }

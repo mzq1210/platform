@@ -14,7 +14,7 @@ window.onload = function () {
         // 这样，即使我们滑动之后， 定时器也不会被清除
         autoplayDisableOnInteraction: false
     });
-    
+
     // 页数
     var page = 0;
     // 每页展示10个
@@ -76,7 +76,7 @@ window.onload = function () {
                                 var pics = data[i].pics;
                                 for (var j = 0; j < pics.length; j++) {
                                     if(j<3){
-                                        picHtml += '<div class="imgbox"><img class="img-rounded" src="'+pics[j]+'"></div>';
+                                        picHtml += '<div class="imgbox"><img style="width: 122px;height: 122px;" class="img-rounded" src="'+pics[j]+'"></div>';
                                     }
                                 }
                             }
@@ -87,7 +87,7 @@ window.onload = function () {
                                     '</div>'+
                                     '<div class="item item-thumbnail-left" style="border: none;">'+
                                         '<div class="border-box">\
-                                            <div class="item-title font-16 biaoti" style="max-height: 50px;">'+data[i].content+'</div>'+
+                                            <div class="item-title font-16 biaoti" style="line-height:25px;max-height: 50px;">'+data[i].content+'</div>'+
                                         '</div>'+picHtml+
                                     '</div>\
                                     <div class="info-block font-16">\
@@ -130,7 +130,7 @@ function createList(data) {
             var pics = data[i].pics;
             for (var j = 0; j < pics.length; j++) {
                 if(j<3){
-                    picHtml += '<div class="imgbox"><img class="img-rounded" src="'+pics[j]+'"></div>';
+                    picHtml += '<div class="imgbox"><img style="width: 122px;height: 122px;" class="img-rounded" src="'+pics[j]+'"></div>';
                 }
             }
         }
@@ -141,7 +141,7 @@ function createList(data) {
             '</div>'+
             '<div class="item item-thumbnail-left" style="border: none;">'+
             '<div class="border-box">\
-                <div class="item-title font-16 biaoti" style="max-height: 50px;">'+data[i].content+'</div>'+
+                <div class="item-title font-16 biaoti" style="line-height:25px;max-height: 50px;">'+data[i].content+'</div>'+
             '</div>'+picHtml+
             '</div>\
             <div class="info-block font-16">\

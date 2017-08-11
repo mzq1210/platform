@@ -20,6 +20,7 @@ class IndexController extends BaseController {
      * @return string
      */
     public function actionIndex(){
+        //$this->layout = false;
         $config=$this->wxJsConfig();
         $category=Category::getCategoryData();
         $data = Content::getContentList(0, 10);

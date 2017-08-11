@@ -43,7 +43,7 @@ use common\widgets\GoLinkPager;
             <td style="text-align: left;"><?php echo mb_substr($val->title, 0, 20);?></td>
             <td style="text-align: left;"><?php echo mb_substr($val->content, 0, 20).'...';?></td>
             <td><?= Category::getThisCategory($val->cid)['name']; ?></td>
-            <td><?= User::getUserInfo2($val->uid)['name']; ?></td>
+            <td><?= User::getUserInfo(['id' =>$val->uid])['name']; ?></td>
             <td><?= date('Y-m-d H:i:s', $val->ctime); ?></td>
             <td><?= $val->look; ?></td>
             <td><?= $val->zan; ?></td>

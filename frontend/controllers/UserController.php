@@ -8,10 +8,11 @@
 namespace frontend\controllers;
 
 use Yii;
-use common\models\wechat\User;
-use app\components\base\BaseController;
 use app\components\Cookie;
+use common\components\Tools;
+use common\models\wechat\User;
 use common\models\wechat\Content;
+use app\components\base\BaseController;
 
 class UserController extends BaseController{
 
@@ -46,9 +47,25 @@ class UserController extends BaseController{
         $data = ['openid' => $openid];
         $info = User::getUserInfo($data);
         $data=Content::getUserContentList($info['id']);
+        $content = $this->_optimizeData($data);
 
         return $this->render('topic',[
-            'data'=>$data,
+            'data'=>$content,
         ]);
+    }
+
+    /**
+     * 处理数据
+     * @param $data
+     * @return mixed
+     */
+    private function _optimizeData($data){
+        foreach ($data as $key => $value){
+            $data[$key]['ctime'] = Tools::timeTran($value['ctime']);
+            if($value['pic'] != ''){
+                $data[$key]['pics'] = explode(',', $value['pic']);
+            }
+        }
+        return $data;
     }
 }

@@ -29,8 +29,8 @@ class BaseController extends Controller
         $this->request = Yii::$app->request;
         $this->datetime = date('Y-m-d H:i:s');
         $this->accessToken = Yii::$app->wechat->getAccessToken();
-   // var_dump($_COOKIE);die;
-        $this->openid = Cookie::getCookie('openid');
+
+        /*$this->openid = Cookie::getCookie('openid');
         $accessToken = Cookie::getCookie('access_token');
         $refreshToken = Cookie::getCookie('refresh_token');
         //验证access_token是否有效
@@ -52,7 +52,7 @@ class BaseController extends Controller
 			header('location:http://www.onelog.cn/wx/getcode');
 		}
         $this->userid = $info['id'];
-        $this->username = $info['name'];
+        $this->username = $info['name'];*/
     }
 
     //验证token

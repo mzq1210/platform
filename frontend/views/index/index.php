@@ -90,14 +90,14 @@ use yii\helpers\Url;
                         <a href="<?php echo Url::toRoute(['/release/look','id' => $value['id']]);?>">
                             <div class="item item-thumbnail-left" style="border: none;">
                                 <div class="border-box">
-                                    <div class="item-title font-16 biaoti" style="max-height: 50px;">
+                                    <div class="item-title font-16 biaoti" style="line-height:25px;height: 50px;">
                                         <?= $value['content'];?>
                                     </div>
                                 </div>
                                 <?php if(isset($value['pics'])):?>
                                     <?php foreach ($value['pics'] as $k => $v): ?>
                                         <?php if($k<3):?>
-                                            <div class="imgbox"><img class="img-rounded" src="<?= $v;?>"></div>
+                                            <div class="imgbox"><img style="width: 122px;height: 122px;" class="img-rounded" src="<?= $v;?>"></div>
                                         <?php endif;?>
                                     <?php endforeach;?>
                                 <?php endif;?>
@@ -133,6 +133,7 @@ use yii\helpers\Url;
             });
             $(this).unbind('click');
         });
+        $(".content img").addClass("carousel-inner img-responsive img-rounded");
     })
 </script>
 

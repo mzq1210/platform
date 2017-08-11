@@ -103,6 +103,43 @@ class ReleaseController extends BaseController{
         return json_encode($data);
     }
 
+    //赞
+    public function actionSettop(){
+        $id = Yii::$app->request->get('id');
+        $model = Content::getThisContent($id);
+        $time = (time() - $model->ctime)/3600;
+        if(intval($time) < 2){
+            echo 2;exit;
+        }
+        $data = [
+            'ctime' => time()
+        ];
+        $model->setAttributes($data, false);
+        $res = $model->save();
+        if ($res) {
+            echo 1;exit;
+        } else {
+            echo 0;exit;
+        }
+    }
+
+    //赞
+    public function actionDelete(){
+        $id = Yii::$app->request->get('id');
+        $model = Content::getThisContent($id);
+
+        $data = [
+            'del_flag' => 1
+        ];
+        $model->setAttributes($data, false);
+        $res = $model->save();
+        if ($res) {
+            echo 1;exit;
+        } else {
+            echo 0;exit;
+        }
+    }
+
     //查看
     public function actionLook($value = '')
     {
