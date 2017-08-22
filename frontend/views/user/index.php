@@ -34,51 +34,18 @@ use yii\helpers\Url;
                     <i class="icon iconfont icon-jiantou1"></i>
                 </div>
             </a>
-<!--            <a href="--><?php //echo Url::toRoute(['/user/topic']); ?><!--">-->
-<!--                <div class="col-xs-12">-->
-<!--                    <div class="set-icon">-->
-<!--                        <i class="icon iconfont icon-tousujianyi"></i>-->
-<!--                    </div>-->
-<!--                    <div class="set-content">-->
-<!--                        我的评论-->
-<!--                    </div>-->
-<!--                    <i class="icon iconfont icon-jiantou1"></i>-->
-<!--                </div>-->
-<!--            </a>-->
-<!--            <a href="--><?php //echo Url::toRoute(['/user/topic']); ?><!--">-->
-<!--                <div class="col-xs-12">-->
-<!--                    <div class="set-icon">-->
-<!--                        <i class="icon iconfont icon-shop"></i>-->
-<!--                    </div>-->
-<!--                    <div class="set-content">-->
-<!--                        我的留言板-->
-<!--                    </div>-->
-<!--                    <i class="icon iconfont icon-jiantou1"></i>-->
-<!--                </div>-->
-<!--            </a>-->
-<!--            <a >-->
-<!--                <div class="col-xs-12">-->
-<!--                    <div class="set-icon">-->
-<!--                        <i class="icon iconfont icon-pwd"></i>-->
-<!--                    </div>-->
-<!--                    <div class="set-content">-->
-<!--                        修改密码-->
-<!--                    </div>-->
-<!--                    <i class="icon iconfont icon-jiantou1"></i>-->
-<!--                </div>-->
-<!--            </a>-->
-<!--            <a >-->
-<!--                <div class="col-xs-12" @click="logout">-->
-<!--                    <div class="set-icon">-->
-<!--                        <i class="icon logout"></i>-->
-<!--                    </div>-->
-<!--                    <div class="set-content">-->
-<!--                        退出-->
-<!--                    </div>-->
-<!--                    <i class="icon iconfont icon-jiantou1"></i>-->
-<!--                </div>-->
-<!--            </a>-->
+            <a href="javascript:void(0)" >
+                <div class="col-xs-12">
+                    <div class="set-icon">
+                        <i class="icon iconfont icon-yonghu"></i>
+                    </div>
+                    <div class="set-content">
+                        我的怀来豆
+                    </div>
+                    <span style="line-height: 23px;color: #0aa3e9;"><?= $UserInfo['integration']?></span>
+                </div>
             <div class="both"></div>
+            </a>
         </div>
     </div>
 </div>

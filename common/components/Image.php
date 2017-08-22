@@ -9,14 +9,14 @@ namespace common\components;
 class Image extends \yii\base\Component
 {
     //单图片上传接口地址
-    //const UPLOAD_API_URL = 'http://upload.99yijia.com/fileupload';
+    //const UPLOAD_API_URL = 'http://upload.99yijia.com/upload';
     const UPLOAD_API_URL = 'http://up.onelog.cn/upload';
 
     //图片展示域名
     //const IMG_DOMAIN = 'http://img.99yijia.com/';
     const IMG_DOMAIN = 'http://show.onelog.cn';
 
-    //授权token u0eew2y17mZZCaaZv43dqdWalA
+    //授权token
     const AUTH_TOKEN = '7hLEn2Ky6WldALSZ9M+C9siGj/SLNYv+Kw';
 
     /**

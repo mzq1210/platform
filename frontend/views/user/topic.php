@@ -77,7 +77,6 @@ use yii\helpers\Url;
 <div class="console">
     请输入您的帖子内容...
 </div>
-<div id="dialogContent"></div>
 <script>
     $(function () {
         $(".biaoti").dotdotdot();//省略号

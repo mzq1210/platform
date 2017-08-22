@@ -53,8 +53,15 @@ use yii\helpers\Url;
     .info-block div{
         width: 50%;float: left;text-align: center;
     }
+    .qiandao{
+        display: block;z-index: 99;
+        position: fixed;right: 15px; bottom: 128px;
+        width: 58px;  height: 58px;border-radius: 50%;
+        background: url("/sign/images/qiandao.jpg") no-repeat;
+        background-size: 100% 100%;
+    }
 </style>
-
+<a class="qiandao" href="<?php echo Url::toRoute(['/sign/index'])?>"></a>
 <div class="index">
     <!--轮波图-->
 <!--     <div class="swiper-container lunbo" id="lunbo">

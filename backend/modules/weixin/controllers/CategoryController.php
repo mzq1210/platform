@@ -17,6 +17,7 @@ use common\components\library\ShowMessage;
 class CategoryController extends BaseController{
     
     public function actionIndex(){
+
         $params = $this->request->post();
         $dataProvider = Category::search($params);
 
@@ -53,6 +54,7 @@ class CategoryController extends BaseController{
      * @return string
      */
     public function actionAdd(){
+
         $model=new Category();
         if($this->request->isPost){
             $params = $this->request->post();

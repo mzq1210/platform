@@ -36,6 +36,10 @@ class User extends BaseWechat
         return $info;
     }
 
+    public static function count(){
+        return self::find()->where(['del_flag' => 0])->count();
+    }
+
     public static function getUserInfo($params, $field='*', $bool=true){
         $info = self::find()->select($field)->where($params);
         if($bool){

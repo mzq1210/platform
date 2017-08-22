@@ -22,7 +22,7 @@ class Content extends BaseWechat
     }
 
     public static function search($params=[]){
-        $query = self::find()->where(['del_flag' => 0])->orderBy(['id' => SORT_ASC]);
+        $query = self::find()->where(['del_flag' => 0])->orderBy(['ctime' => SORT_DESC]);
         $pageSize = isset($params['per-page']) ? $params['per-page'] : 10;
 
         if(isset($params['title'])) {

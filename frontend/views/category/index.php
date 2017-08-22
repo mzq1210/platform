@@ -65,11 +65,11 @@ use yii\helpers\Url;
                         </div>
                         <a href="<?php echo Url::toRoute(['/release/look','id' => $value['id']]);?>">
                             <div class="item item-thumbnail-left" style="border: none;">
-                                <div class="border-box">
-                                    <div class="item-title font-16 biaoti" style="max-height: 50px;">
-                                        <?= $value['title'];?>
-                                    </div>
-                                </div>
+<!--                                <div class="border-box">-->
+<!--                                    <div class="item-title font-16 biaoti" style="max-height: 50px;">-->
+<!--                                        --><?//= $value['title'];?>
+<!--                                    </div>-->
+<!--                                </div>-->
                                 <div class="border-box">
                                     <div class="item-title font-14 neirong" style="max-height: 80px;">
                                         <?= $value['content'];?>

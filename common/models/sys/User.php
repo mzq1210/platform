@@ -87,7 +87,7 @@ class User extends BaseSys{
     /**
      * 关联用户扩展表查询
     */
-    public  function getUserInfo(){
+    public function getUserInfo(){
         return $this->hasOne(UserInfo::className(),['userid' => 'id']);
     }
 

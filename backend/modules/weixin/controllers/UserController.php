@@ -21,10 +21,12 @@ class UserController extends BaseController
         $params['per-page'] = !empty($params['per-page']) ? $params['per-page'] : PAGESIZE;
 
         $info = User::search($params);
+        $count = User::count();
         return $this->render('index', [
             'info' => $info['data'],
             'pages' => $info['pages'],
-            'params' =>$params
+            'params' =>$params,
+            'count' => $count
         ]);
     }
 
