@@ -12,7 +12,7 @@ $(function(){
     $(".commit").click(function(){
         if($('input[name=title]').val().trim().length==0){
             clearTimeout(switcher);
-            $(".console").html("请输入标题！");
+            $(".console").html("请输入手机号！");
             $(".console").css("display","block");
             switcher = setTimeout(function(){
                 $(".console").css("display","none")
