@@ -8,10 +8,10 @@ use yii\helpers\Url;
 <script type="text/javascript" src="/js/dialog.js"></script>
 
 <link rel="stylesheet" href="/css/comment-edit.css">
-<script src="/utils/zepto.js"></script>
 <script src="/js/comment-edit.js"></script>
 <link rel="stylesheet" href="/css/calc-detail.css">
 <script src="/js/calc-detail.js"></script>
+
 <style>
     .comment-edit .editor input{
         width: 100%;
@@ -34,11 +34,6 @@ use yii\helpers\Url;
     input:-ms-input-placeholder{
         color:#666;
     }
-    .upload-botton {
-        width: 150px;
-        height: 45px;
-        margin: 5px 0;
-    }
 
     .upload-botton i {
         font-size: 24px;
@@ -47,10 +42,26 @@ use yii\helpers\Url;
     .tb {display: table;pointer-events: none;width: 100%;height: 100%;  }
     .tb>.tc {display: table-cell;pointer-events: none;vertical-align: middle;}
     .tb>.tc>div {pointer-events: auto;}
+    .imgbox{
+        width: 60px;height: 60px;margin-right: 10px;float: left;margin-bottom: 5px;
+        border: dashed 2px #ccc;display: inline-block;
+        text-align: center;font-size: 38px;color: #999;line-height: 60px;
+        position: relative;top: 0;left: 0;
+    }
+    .imgbox img{
+        position: relative;top: 0;left: 0;
+    }
+    .imgclose{
+        font-size: 22px;
+        position: absolute;
+        top:0;
+        right: 0;
+        color: red;
+    }
 </style>
 
 <nav class="nav text-center">
-    <a href="javascript:history.back(-1);"><div class="back-btn"><i class="icon iconfont">&#xe600;</i></div></a>
+    <a href="<?php echo Url::toRoute(['/index/index']); ?>"><div class="back-btn"><i class="icon iconfont">&#xe600;</i>首页</div></a>
     <span class="title text-ellipsis">发布帖子</span>
 </nav>
 <div class="gray-space"></div>
@@ -61,7 +72,7 @@ use yii\helpers\Url;
             <div class="item-box item padding-top-double padding-bottom-double">
                 <span class="color-light-font">选择分类</span>
                 <div class="float-right">
-                    <span class="select">求购</span>
+                    <span class="select">买卖</span>
                     <i class="iconfont">&#xe601;</i>
                 </div>
             </div>
@@ -69,28 +80,28 @@ use yii\helpers\Url;
         <div class="gray-space"></div>
     </div>
 
-    <div class="editor padding-double">
+    
+<!--     <div class="editor padding-double">
         <input type="text" name="title" placeholder="请输入标题">
-    </div>
+    </div> -->
     <div class="gray-space"></div>
     <div class="editor padding-double">
         <textarea name="content" placeholder="请输入内容"></textarea>
-        <div style="width: 60px;height: 60px;border: dashed 2px #ccc;position: relative;line-height: 60px;text-align: center;font-size: 25px;color: #ccc;">
-            <input type="file" name="file" id="txt_file" multiple class="file-loading"/>
+        <div class="imgs" style="width: 100%;height: auto;overflow: hidden;">
+            <div class="imgbox" onclick="camera()">
+                <i class="glyphicon glyphicon-picture"></i>
+            </div>
         </div>
     </div>
     <div class="gray-space"></div>
-    <!--图片展示区域-->
-    <div class="file-drop-zone" style="margin: 12px 0 12px 0;width: 100%;display: none;">
-        <div class="file-preview-thumbnails"></div>
-        <div class="clearfix"></div>
-        <div class="file-preview-status text-center text-success"></div>
-    </div>
 
     <div class="filebox" style="display: none"></div>
 
     <div class="gray-space"></div>
 
+    <div class="editor padding-double">
+        <input type="text" name="title" placeholder="请输入手机号">
+    </div>
     <input type="hidden" name="cid" value="1">
     <div class="footer flex border-top">
         <div class="commit">
@@ -120,68 +131,85 @@ use yii\helpers\Url;
         <?php } ?>
     </div>
 </div>
+
+<script type='text/javascript' src='http://res.wx.qq.com/open/js/jweixin-1.2.0.js' charset='utf-8'></script>
 <script>
+    $(function () {
+        $(document).on('click', '.imgclose', function() {
+            $(this).parent().remove();
+            var i = $(this).index();
+            $('input[type=hidden]').eq(i).remove();
+        });
+    });
+    //分类
     var json = '<?php echo json_encode($data);?>';
     var test_data = JSON.parse(json);
 
-    $(function () {
-        var oFileInput = new FileInput();
-        oFileInput.Init("txt_file", "/release/upload");
-    });
-
-    var FileInput = function () {
-        var oFile = new Object();
-        oFile.Init = function (ctrlName, uploadUrl) {
-            var control = $('#' + ctrlName);
-            //初始化上传控件的样式
-            control.fileinput({
-                language: 'zh', //设置语言
-                uploadUrl: uploadUrl, //上传的地址
-                allowedFileExtensions: ['jpg', 'gif', 'png'],//接收的文件后缀
-                showUpload: false, //是否显示上传按钮
-                showCaption: false,//是否显示标题
-                showRemove: false, //显示移除按钮
-                showPreview: false, //是否显示预览区域
-                browseClass: "", //按钮样式
-                dropZoneEnabled: true,//是否显示拖拽区域
-                maxFileSize: 4096,//单位为kb，如果为0表示不限制文件大小
-                //minFileCount: 0,
-                maxFileCount: 9, //表示允许同时上传的最大文件个数
-                enctype: 'multipart/form-data',
-                validateInitialCount: true,
-                previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
-                msgFilesTooMany: "选择上传的文件数量({n}) 超过允许的最大数值{m}！"
-            });
-
-            $("#txt_file").on("filebatchselected", function (event, files) {
-                $(".kv-upload-progress").remove();
-                $(this).fileinput("upload");
-            }).on("fileuploaded", function (event, data) {
-                if (data.response.code == 200) {
-                    $(".file-drop-zone").css('display','block');
-                    var img = '<div class="file-preview-frame krajee-default"><div class="kv-file-content" style="height: 60px;">'+
-                        '<img src="'+data.response.imgpath+'" id="img" onclick="delimg(this)" index="'+ data.response.class +'" class="file-preview-image kv-preview-data" style="width:auto;height:60px;">'+
-                        '</div></div>';
-                    $(".file-preview-thumbnails").append(img);
-
-                    $(".kv-file-remove").remove();
-                    var html = '<input type="hidden" class="'+ data.response.class +'" name="imgfile[]" value="'+ data.response.imgpath +'">';
-                    $(".filebox").append(html);
+    wx.config(<?= json_encode($config) ?>);
+    wx.ready(function () {});
+    function camera() {
+        wx.chooseImage({
+            count: 9, // 默认9
+            sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+            sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+            success: function (res) {
+                var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+                var html = '';
+                if(localIds.length>0){
+                    $.each(localIds, function(key, value) {
+                        html += '<div style="overflow: hidden;" class="imgbox"><img style="width: 100%;" src="'+value+'" alt=""><span class="glyphicon glyphicon-remove-circle imgclose"></span></div>';
+                    });
+                    uploadImg(localIds);
                 }
-            });
-        };
-        return oFile;
-    };
-
-    function delimg(obj) {
-        $.onlyAlert('delimg', '删除图片', '确定删除图片吗？', function () {
-            $(obj).parents('.file-preview-frame').remove();
-            if($(".file-preview-frame").length == 0){
-                $(".file-drop-zone").css('display','none');
-                $(".kv-upload-progress").remove();
+                $('.imgs').append(html);
             }
-            var c = $(obj).attr('index');
-            $("."+c).remove();
-        })
+        });
     }
+
+    function uploadImg(localIds) {
+        var localId = localIds.pop();
+        wx.uploadImage({
+            localId: localId, // 需要上传的图片的本地ID，由chooseImage接口获得
+            isShowProgressTips: 1, // 默认为1，显示进度提示
+            success: function (res) {
+                var imgValue = '<input type="hidden" name="serverid[]" value="'+res.serverId+'">';
+                $('.filebox').append(imgValue);
+                if(localIds.length > 0){
+                    uploadImg(localIds);
+                }
+            }
+        });
+    }
+
+      wx.config(<?= json_encode($config) ?>);
+    wx.ready(function(){
+        //分享朋友圈
+        wx.onMenuShareTimeline({
+            title: '怀来便民网，免费发布各类信息招聘，买卖，拼车-无需手机验证', // 分享标题
+            link: '', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: 'http://wx.qlogo.cn/mmopen/JeDmEdykfArU3pCbCGC9EQFGiaxsiccuHpHJyvXYy9LONWIxBEPp1zzbqIZVXJAdDB3R2aSQr6levvicXc0ZY4ykbpRIh7ib4Lxs/0', // 分享图标
+            success: function () {
+                // 用户确认分享后执行的回调函数
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+
+        //分享给朋友
+        wx.onMenuShareAppMessage({
+            title:'怀来便民网-无需手机验证', // 分享标题
+            desc: '点击进入免费发布各类信息招聘，买卖，拼车..', // 分享描述
+            link: '', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: 'http://wx.qlogo.cn/mmopen/JeDmEdykfArU3pCbCGC9EQFGiaxsiccuHpHJyvXYy9LONWIxBEPp1zzbqIZVXJAdDB3R2aSQr6levvicXc0ZY4ykbpRIh7ib4Lxs/0', // 分享图标
+            type: '', // 分享类型,music、video或link，不填默认为link
+            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+            success: function () {
+                // 用户确认分享后执行的回调函数
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+    });
 </script>

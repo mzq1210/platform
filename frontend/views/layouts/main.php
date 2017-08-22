@@ -7,7 +7,7 @@ use yii\helpers\Url;
     <meta charset="UTF-8">
     <title>怀来便民网</title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
-    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
     <!--bootstrap start-->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -19,6 +19,7 @@ use yii\helpers\Url;
     <!--dropload.js:https://github.com/ximan/dropload-->
     <link rel="stylesheet" href="/utils/dropload/dropload.css">
     <script src="/utils/dropload/dropload.min.js"></script>
+    <script src="/js/plug/jquery.dotdotdot.js"></script>
     <!--dropload end-->
     <link rel="stylesheet" href="/css/index.css" />
 

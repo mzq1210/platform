@@ -2,92 +2,134 @@
 use yii\helpers\Url;
 ?>
 <style type="text/css">
-    .icons{
-        display: inline-block;margin-top: 10px;
+    .cate-list a{
+        display: inline-block;
         width: 50px;height: 50px;border-radius: 50%;
     }
-    .icons span{
-        line-height: 44px;font-size: 30px;color: #fff;
-    }
-    .detail{
-        margin: 10px;padding:10px;
-        border: dashed 1px deepskyblue;
-        border-radius: 8px;
+    .cate-list a span{
+        line-height: 44px;font-size: 30px;
     }
     .title{
         padding-left: 20px;
     }
-    .category-name{
-        margin-top: 7px;font-size: 12px;width: 50px;text-align: center;
-    }
-    .title{
-        padding-left: 20px;
-    }
-    .imgnum{
-        position: absolute;
-        left: 88%;
-        top: 58px;
-        color: #fff;
-        font-size: 16px;
-    }
-    .look, .zan, .coments{
-        font-size: 14px;
+    .look, .coments{
+        font-size: 18px;line-height: 36px;
     }
     .item-box .info-block .num{
         display: inline-block;
-        font-size: 16px;
-        margin: 0px;
+        font-size: 18px;
+        margin-left: 10px;line-height: 36px;
     }
-    .item-box .info-block{
-        text-align: right;
+    .biaoti{
+        font-weight: 700;
+    }
+    .info-block{
+        border-radius: 5px;
+        margin-top: 10px !important;height: 36px;padding: 0 !important;
+    }
+    .info-block div{
+        width: 25%;float: left;text-align: center;
     }
 </style>
 
-
 <div class="index">
-
-    <div class="gray-space"></div>
     <div class="recommend-estate">
         <div class="title border-bottom">我的帖子</div>
         <div class="content">
             <div class="list article-list">
 
                 <?php foreach ($data as $key => $value): ?>
-                    <a href="<?php echo Url::toRoute(['/release/look','id' => $value['id']]);?>">
-                        <div class="item-box">
-                            <div class="font-12" style="color: #A1A2A4;padding: 8px 0;">
-                                <img class="img-circle" src="<?php echo $value['headimgurl'];?>" style="width: 35px;height: 35px;">&nbsp;
-                                <?= $value['uname'];?>　　<span><?php echo date("m-d h:m",$value['ctime']);?></span>
-                                <!--                        <div class="float-right top-tip" style="margin-top: 4px;">置顶</div>-->
-                            </div>
-
+                    <div class="item-box">
+                        <div class="font-12" style="color: #A1A2A4;padding: 8px 0;">
+                            <?= $value['ctime'];?>
+                            <div class="float-right top-tip" style="margin-top: 4px;"><?= $value['cname'];?></div>
+                        </div>
+                        <a href="<?php echo Url::toRoute(['/release/look','id' => $value['id']]);?>">
                             <div class="item item-thumbnail-left" style="border: none;">
-                                <?php if($value['pic']):?>
-                                    <span class="imgnum"><span class="glyphicon glyphicon-picture"></span>&nbsp;<?= count(explode(',', $value['pic']))?></span>
-                                    <img width="100%" src="<?= explode(',', $value['pic'])[0]?>" alt="">
-                                <?php endif;?>
                                 <div class="border-box">
-                                    <div class="item-title font-16">
-                                        <?= $value['title'];?>
+                                    <div class="item-title font-16 biaoti" style="max-height: 50px;">
+                                        <?= $value['content'];?>
                                     </div>
                                 </div>
+                                <?php if(isset($value['pics'])):?>
+                                    <?php foreach ($value['pics'] as $k => $v): ?>
+                                        <?php if($k<3):?>
+                                            <div class="imgbox"><img class="img-rounded" src="<?= $v;?>"></div>
+                                        <?php endif;?>
+                                    <?php endforeach;?>
+                                <?php endif;?>
                             </div>
-                            <div class="info-block font-12" style="margin-top: 10px;padding-right: 5px;">
-                                <span style="float: left;">发布于｜<?= $value['cname'];?></span>
-                                <span class="glyphicon glyphicon-eye-open look"></span><span class="num"><?= $value['look'];?></span>
-                                <span class="glyphicon glyphicon-heart-empty zan"></span><span class="num"><?= $value['zan'];?></span>
-                                <span class="glyphicon glyphicon-comment coments"></span><span class="num"><?= $value['coments'];?></span>
-                            </div>
+                        </a>
+                        <div class="info-block font-16">
+                            <div><i class="glyphicon glyphicon-eye-open look font-14"></i><span class="num"><?= $value['look'];?></span></div>
+                            <div><i class="glyphicon glyphicon-comment coments font-14"></i><span class="num"><?= $value['coments'];?></span></div>
+                            <div cid="<?= $value['id'];?>" class="settop"><i class="glyphicon glyphicon-arrow-up coments font-14"></i><span class="num"></span></div>
+                            <div cid="<?= $value['id'];?>" class="delete"><i class="glyphicon glyphicon-trash coments font-14"></i><span class="num"></span></div>
                         </div>
-                    </a>
+                    </div>
                 <?php endforeach;?>
 
             </div>
         </div>
-        <!--<div class="more">
-            查看更多动态
-            <i class="float-right icon iconfont">&#xe601;</i>
-        </div>-->
     </div>
 </div>
 </div>
+<div class="console">
+    请输入您的帖子内容...
+</div>
+<div id="dialogContent"></div>
+<script>
+    $(function () {
+        $(".biaoti").dotdotdot();//省略号
+        $(".neirong").dotdotdot();//省略号
+        var switcher;
+        $('.settop').click(function () {
+            var cid = $(this).attr('cid');
+            $.ajax({
+                type: 'get',
+                data:{id : cid},
+                url: '/release/settop',
+                dataType: 'json',
+                success: function (status) {
+                    if (status== 2) {
+                        $(".console").html("置顶频率过快,请稍后重试...");
+                        $(".console").css("display","block");
+                    } else if(status== 1){
+                        $(".console").html("已置顶!");
+                        $(".console").css("display","block");
+                    }else{
+                        $(".console").html("置顶失败!");
+                        $(".console").css("display","block");
+                    }
+                    switcher = setTimeout(function(){
+                        $(".console").css("display","none")
+                    },2000);
+                }
+            });
+        })
+
+        $('.delete').click(function () {
+            var cid = $(this).attr('cid');
+            var that = $(this);
+            $.ajax({
+                type: 'get',
+                data:{id : cid},
+                url: '/release/delete',
+                dataType: 'json',
+                success: function (status) {
+                    if(status== 1){
+                        that.parents('.item-box').remove();
+                        $(".console").html("删除成功!");
+                        $(".console").css("display","block");
+                    }else{
+                        $(".console").html("删除失败!");
+                        $(".console").css("display","block");
+                    }
+                    switcher = setTimeout(function(){
+                        $(".console").css("display","none")
+                    },2000);
+                }
+            });
+        })
+    })
+</script>

@@ -11,14 +11,11 @@ class Category extends BaseWechat{
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName(){
         return 'wechat_category';
     }
 
-
     public static function search($params=[]){
-
         $query = self::find()->where(['del_flag' => 0]);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -27,10 +24,6 @@ class Category extends BaseWechat{
             ],
         ]);
         $query->orderBy(['sort'=>SORT_ASC,'id'=>SORT_ASC]);
-
-        if (empty($params)) {
-            return $dataProvider;
-        }
         return $dataProvider;
     }
 
@@ -54,11 +47,11 @@ class Category extends BaseWechat{
     }
 
     public static function getCategoryData(){
-        return self::find()->where(['type'=>1, 'del_flag'=>0])->asArray()->All();
+        return self::find()->where(['type'=>1, 'del_flag'=>0])->asArray()->all();
     }
 
     public static function getCategory(){
-        $category = self::find()->where(['type'=>2, 'parentid'=>0, 'del_flag'=>0])->asArray()->All();
+        $category = self::find()->where(['type'=>2, 'parentid'=>0, 'del_flag'=>0])->asArray()->all();
         foreach ($category as $key => $value){
             $category[$key]['childs'] = self::find()->where(['type'=>2, 'parentID' => $value['id'], 'del_flag'=>0])->asArray()->all();
         }
@@ -67,10 +60,6 @@ class Category extends BaseWechat{
 
     public static function getThisCategory($id){
         return self::find()->where(['id'=>$id])->asArray()->one();
-    }
-
-    private static function _getChilds($id){
-        return self::find()->where(['type'=>2, 'parentID' => $id, 'del_flag'=>0])->asArray()->all();
     }
 }
 

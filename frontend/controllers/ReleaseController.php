@@ -10,42 +10,75 @@ namespace frontend\controllers;
 use Yii;
 use yii\helpers\Json;
 use app\components\Cookie;
-use app\components\base\BaseController;
+use common\components\Image;
+use common\components\Tools;
+use common\models\wechat\User;
 use common\models\wechat\Content;
 use common\models\wechat\Category;
 use common\models\wechat\Comment;
-use common\components\Image;
-use common\models\wechat\User;
+use app\components\base\BaseController;
 
 class ReleaseController extends BaseController{
 
     public function actionIndex(){
         $model = new Category();
         $data = $model->getCategoryData();
+        $config = $this->wxJsConfig();
 
         return $this->render('add', [
             'data' => $data,
+            'config' =>$config
         ]);
     }
 
     public function actionCreate(){
-        $model = new Content();
         $params = Yii::$app->request->post();
-
-        $pic = isset($params['imgfile']) ? implode(',', $params['imgfile']) : '';
+        //动态网址过滤
+        if(!empty($params['content'])){
+            preg_match_all("/[a-z]+:\/\/[a-z0-9_\-\/.%]+/i", $params['content'], $array);
+            if(!empty($array[0])) {
+                foreach ($array[0] as $k=>$v){
+                    $params['content'] = str_replace($v, '<a style="color:#00f;" href="'.$v.'">'.$v.'</a>', $params['content']);
+                }
+            }
+        }
+        //微信图片处理
+        $serverids = isset($params['serverid']) ? $params['serverid'] : [];
+        if(!empty($serverids)){
+            $picArr = [];
+            foreach ($serverids as $key => $value){
+                $url = "https://api.weixin.qq.com/cgi-bin/media/get?access_token=".$this->accessToken."&media_id=".$value;
+                $ret = Tools::https_request($url);
+                $picArr[] = Tools::saveWeixinFile($ret);
+            }
+        }
+        $pic = empty($picArr) ? '':implode(',', $picArr);
+        //存储
+        $model = new Content();
         $data = [
             "title" => $params['title'],
-            'content' => $params['content'],
+            'content' => trim($params['content']),
             'ctime' => time(),
             'cid' => $params['cid'],
-            'uid' => Yii::$app->session->get("userid"),
+            'uid' => $this->userid,
             'openid' => Cookie::getCookie('openid'),
             'pic' => $pic,
         ];
         $model->setAttributes($data, false);
         if ($model->save()) {
-            $this->redirect(['/index/index']);
-            echo "成功";
+            $arr = ['id' => $this->userid];
+            $user=User::getUserInfo($arr, '', false);
+            //同步用户表手机号
+            $phone=$user->phone=$params['title'];
+            $data=[
+                'phone'=>$phone,
+            ];
+            $user->setAttributes($data, false);
+            $res = $user->save();
+            if($res){
+                $this->redirect(['/index/index']);
+                echo "成功";
+            }
         } else {
             echo "失败";
         }
@@ -54,9 +87,9 @@ class ReleaseController extends BaseController{
     //赞
     public function actionZan(){
         $id = Yii::$app->request->get('id');
-
         $model = Content::getThisContent($id);
-        $zan = $model->zan + 1;
+
+        $zan = $model->zan + rand(1,15);
         $data = [
             'zan' => $zan
         ];
@@ -68,8 +101,43 @@ class ReleaseController extends BaseController{
             $data['status'] = 0;
         }
         return json_encode($data);
-        die;
+    }
 
+    //赞
+    public function actionSettop(){
+        $id = Yii::$app->request->get('id');
+        $model = Content::getThisContent($id);
+        $time = (time() - $model->ctime)/3600;
+        if(intval($time) < 2){
+            echo 2;exit;
+        }
+        $data = [
+            'ctime' => time()
+        ];
+        $model->setAttributes($data, false);
+        $res = $model->save();
+        if ($res) {
+            echo 1;exit;
+        } else {
+            echo 0;exit;
+        }
+    }
+
+    //赞
+    public function actionDelete(){
+        $id = Yii::$app->request->get('id');
+        $model = Content::getThisContent($id);
+
+        $data = [
+            'del_flag' => 1
+        ];
+        $model->setAttributes($data, false);
+        $res = $model->save();
+        if ($res) {
+            echo 1;exit;
+        } else {
+            echo 0;exit;
+        }
     }
 
     //查看
@@ -94,7 +162,8 @@ class ReleaseController extends BaseController{
         $config = $this->wxJsConfig();
         //查看
         $model = Content::getThisContent($id);
-        $look = $model->look + 1;
+        $look = $model->look + rand(1,15);
+
         $data = [
             'look' => $look
         ];
@@ -107,6 +176,7 @@ class ReleaseController extends BaseController{
         //评论列表
         $comment = new Comment();
         $comment = $comment->getCommentList($id);
+       
 
         return $this->render('look', [
             'data' => $ContentInfo,
@@ -114,6 +184,15 @@ class ReleaseController extends BaseController{
             'config' => $config,
             'id' => $id
         ]);
+    }
+
+    //关注
+    public function actionGuanzhu(){
+        return $this->render('guanzhu');
+    }
+
+    public function actionGuanzhu2(){
+        header('location:https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzIxNTg0MzU2OQ==&scene=123&from=groupmessage&isappinstalled=0#wechat_redirect');
     }
 
     //上传图片
@@ -134,7 +213,7 @@ class ReleaseController extends BaseController{
      */
     public function fileMerge($files)
     {
-        $imgPath = Image::upload($files);
+        $imgPath = Image::upload($files, 'platform', true);
         return rtrim($imgPath, ',');
     }
 
@@ -146,16 +225,19 @@ class ReleaseController extends BaseController{
         if ($this->request->isPost) {
             $params = $this->request->post();
             $openid = Cookie::getCookie('openid');
+            $data = ['openid' => $openid];
+            $userInfo = User::getUserInfo($data);
             $data = [
-                'cid' => $params['parentId'],
+                'cid' => $params['postId'],
                 'comment' => $params['content'],
                 'ctime' => time(),
-                'openid' => $openid
+                'uid' => $userInfo['id'],
+                'fromUsername' => $userInfo['name'],
             ];
             $comment->setAttributes($data, false);
             $res = $comment->save();
             if ($res) {
-                $Content = Content::getThisContent($params['parentId']);
+                $Content = Content::getThisContent($params['postId']);
                 $coments = $Content->coments + 1;
                 $data = [
                     'coments' => $coments
@@ -164,17 +246,80 @@ class ReleaseController extends BaseController{
                 $Content->save();
 
                 //获取评论人信息
-                $user = new User();
-                $userInfo = $user->getUserInfo($openid);
                 if ($userInfo) {
-                    $masage = $userInfo['name'] . "评论您的帖子:" . $params['content'];
-                    $this->massage($Content['openid'], $masage);
+                    $url = 'http://www.onelog.cn/release/look?id='.$params["postId"];
+                    $masage = $userInfo['name'] . "@了你:" . $params['content'];
+                    $info = Content::getThisContent($params['postId']);
+                    $arr = ['id' => $info->uid];
+                    $postUserInfo = User::getUserInfo($arr);
+                    $data = [
+                        'touser' => $postUserInfo['openid'],
+                        'msgtype' => 'text',
+                        'text' => [
+                            'content' => $masage. "<a href='". $url ."'>回复</a>",
+                        ]
+                    ];
+                    $this->massage($data);
                 }
-                $this->redirect(['/release/look?id=' . $params['parentId']]);
+                $this->redirect(['/release/look?id=' . $params['postId']]);
             }
         } else {
             return $this->render('commen', [
                 'id' => $id
+            ]);
+        }
+    }
+
+    //回复
+    public function actionReply()
+    {
+        $pid = $this->request->get('pid', 0);
+        $mid = $this->request->get('mid', 0);
+        if ($this->request->isPost) {
+            $params = $this->request->post();
+            $openid = Cookie::getCookie('openid');
+            $data = ['openid' => $openid];
+            $userInfo = User::getUserInfo($data);
+            $comment = Comment::getInfo($params['commenId']);
+            $arr = ['id' => $comment['uid']];
+            $toUserInfo = User::getUserInfo($arr);
+            $data = [
+                'cid' => $params['postId'],
+                'parentID' => $params['commenId'],
+                'comment' => $params['content'],
+                'ctime' => time(),
+                'uid' => $userInfo['id'],
+                'fromUsername' => $userInfo['name'],
+                'toID' => $toUserInfo['id'],
+                'toUsername' => $toUserInfo['name'],
+            ];
+
+            $model = new Comment();
+            $model->setAttributes($data, false);
+            $res = $model->save();
+            if ($res) {
+                //获取评论人信息
+                if ($userInfo) {
+
+                    $url = 'http://www.onelog.cn/release/look?id='.$params["postId"];
+
+                    $masage = $userInfo['name'] . "@了你:" . $params['content'];
+                    $data = [
+                        'touser' => $toUserInfo['openid'],
+                        'msgtype' => 'text',
+                        'text' => [
+                            'content' => $masage. "<a href='". $url ."'>回复</a>"
+                        ]
+                    ];
+                    $this->massage($data);
+                }
+
+                $this->redirect(['/release/look?id=' . $params['postId']]);
+            }
+        } else {
+            return $this->render('reply', [
+                'pid' => $pid,
+                'mid' => $mid
             ]);
         }
     }

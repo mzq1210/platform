@@ -14,7 +14,7 @@ window.onload = function () {
         // 这样，即使我们滑动之后， 定时器也不会被清除
         autoplayDisableOnInteraction: false
     });
-    
+
     // 页数
     var page = 0;
     // 每页展示10个
@@ -38,49 +38,23 @@ window.onload = function () {
         loadUpFn: function (me) {
             $.ajax({
                 type: 'GET',
-                data:{page:1,size:10},
-                url: '/index/index',
+                data:{page:0, size:10},
+                url: '/ajax/index',
                 dataType: 'json',
                 success: function (data) {
-                    var result = '';
-                    for (var i = 0; i < 10; i++) {
-                        result += '<a href="/release/look?id=">\
-						<div class="item-box">\
-							<div class="font-12" style="color: #A1A2A4;padding: 8px 0;">\
-								<img class="img-circle" src="" style="width: 35px;height: 35px;">&nbsp;\
-								uname<span>2017-2-5</span>\
-								<div class="float-right top-tip" style="margin-top: 4px;">置顶</div>\
-							</div>\
-							<div class="item item-thumbnail-left" style="border: none;">\
-								<span class="imgnum"><span class="glyphicon glyphicon-picture"></span>&nbsp;</span>\
-								<img width="100%" src="" alt="">\
-								<div class="border-box">\
-									<div class="item-title font-16">title</div> \
-								</div>\
-							</div>\
-                            <div class="info-block font-12" style="margin-top: 10px;padding-right: 5px;">\
-                                <span style="float: left;">发布于｜cname</span>\
-                                <span class="glyphicon glyphicon-eye-open look"></span><span class="num">look</span>\
-                                <span class="glyphicon glyphicon-heart-empty zan"></span><span class="num">zan</span>\
-                                <span class="glyphicon glyphicon-comment coments"></span><span class="num">coments</span>\
-                            </div>\
-                        </div>\
-                    </a>';
+                    if (data.length > 0) {
+                        var result = createList(data);
+                    } else{
+                        me.lock();me.noData();
                     }
-                    // 为了测试，延迟1秒加载
                     setTimeout(function () {
                         $('.article-list').html(result);
-                        // 每次数据加载完，必须重置
+                        $(".biaoti").dotdotdot();//省略号
+                        $(".neirong").dotdotdot();//省略号
                         me.resetload();
-                        // 重置页数，重新获取loadDownFn的数据
-                        page = 0;
-                        // 解锁loadDownFn里锁定的情况
-                        me.unlock();
-                        me.noData(false);
-                    }, 1000);
+                    }, 600);
                 },
                 error: function (xhr, type) {
-                    // 即使加载出错，也得重置
                     me.resetload();
                 }
             });
@@ -88,42 +62,40 @@ window.onload = function () {
         loadDownFn: function (me) {
             page++;
             // 拼接HTML
-            var result = '';
             $.ajax({
                 type: 'GET',
                 data:{page:page,size:size},
-                url: '/index/index',
+                url: '/ajax/index',
                 dataType: 'json',
                 success: function (data) {
-                    var arrLen = data.length;
+                    var arrLen = data.length; var result = '';
                     if (arrLen > 0) {
                         for (var i = 0; i < arrLen; i++) {
                             var picHtml = '';
                             if(data[i].pic != ''){
-                                var pics = data[i].pic.split(",");
-                                picHtml = '<span class="imgnum"><span class="glyphicon glyphicon-picture"></span>&nbsp;'+pics.length+'</span>'+
-                                    '<img width="100%" src="'+pics[0]+'" alt="">';
+                                var pics = data[i].pics;
+                                for (var j = 0; j < pics.length; j++) {
+                                    if(j<3){
+                                        picHtml += '<div class="imgbox"><img style="width: 122px;height: 122px;" class="img-rounded" src="'+pics[j]+'"></div>';
+                                    }
+                                }
                             }
                             result += '<a href="/release/look?id='+data[i].id+'">\
-                            <div class="item-box">\
-                                <div class="font-12" style="color: #A1A2A4;padding: 8px 0;">\
-                                    <img class="img-circle" src="'+data[i].headimgurl+'" style="width: 35px;height: 35px;">&nbsp;'+
-                                    data[i].uname+'　　<span>2017-2-5</span>\
-                                    <div class="float-right top-tip" style="margin-top: 4px;">置顶</div>\
-                                </div>\
-                                <div class="item item-thumbnail-left" style="border: none;">'+picHtml+
-                                    '<div class="border-box">\
-                                        <div class="item-title font-16">'+data[i].title+'</div> \
+                                <div class="item-box">\
+                                    <div class="font-12" style="color: #A1A2A4;padding: 8px 0;">'+data[i].ctime+
+                                        '<div class="float-right top-tip" style="margin-top: 4px;">'+data[i].cname+'</div>'+
+                                    '</div>'+
+                                    '<div class="item item-thumbnail-left" style="border: none;">'+
+                                        '<div class="border-box">\
+                                            <div class="item-title font-16 biaoti" style="line-height:25px;max-height: 50px;">'+data[i].content+'</div>'+
+                                        '</div>'+picHtml+
+                                    '</div>\
+                                    <div class="info-block font-16">\
+                                        <div><i class="glyphicon glyphicon-eye-open look font-14"></i><span class="num">'+data[i].look+'</span></div>\
+                                        <div><i class="glyphicon glyphicon-comment coments font-14"></i><span class="num">'+data[i].coments+'</span></div>\
                                     </div>\
                                 </div>\
-                                <div class="info-block font-12" style="margin-top: 10px;padding-right: 5px;">\
-                                    <span style="float: left;">发布于｜'+data[i].cname+'</span>\
-                                    <span class="glyphicon glyphicon-eye-open look"></span><span class="num">'+data[i].look+'</span>\
-                                    <span class="glyphicon glyphicon-heart-empty zan"></span><span class="num">'+data[i].zan+'</span>\
-                                    <span class="glyphicon glyphicon-comment coments"></span><span class="num">'+data[i].coments+'</span>\
-                                </div>\
-                            </div>\
-                        </a>';
+                            </a>';
                         }
                     } else{
                         // 锁定
@@ -135,16 +107,49 @@ window.onload = function () {
                     setTimeout(function () {
                         // 插入数据到页面，放到最后面
                         $('.article-list').append(result);
+                        $(".biaoti").dotdotdot();//省略号
+                        $(".neirong").dotdotdot();//省略号
                         // 每次数据插入，必须重置
                         me.resetload();
                     }, 600);
                 },
                 error: function (xhr, type) {
-                    // 即使加载出错，也得重置
                     me.resetload();
                 }
             });
         },
         threshold: 50
     });
+};
+
+function createList(data) {
+    var html = '';
+    for(var i = 0; i < data.length; i++) {
+        var picHtml = '';
+        if(data[i].pic != ''){
+            var pics = data[i].pics;
+            for (var j = 0; j < pics.length; j++) {
+                if(j<3){
+                    picHtml += '<div class="imgbox"><img style="width: 122px;height: 122px;" class="img-rounded" src="'+pics[j]+'"></div>';
+                }
+            }
+        }
+        html += '<a href="/release/look?id='+data[i].id+'">\
+            <div class="item-box">\
+                <div class="font-12" style="color: #A1A2A4;padding: 8px 0;">'+data[i].ctime+
+            '<div class="float-right top-tip" style="margin-top: 4px;">'+data[i].cname+'</div>'+
+            '</div>'+
+            '<div class="item item-thumbnail-left" style="border: none;">'+
+            '<div class="border-box">\
+                <div class="item-title font-16 biaoti" style="line-height:25px;max-height: 50px;">'+data[i].content+'</div>'+
+            '</div>'+picHtml+
+            '</div>\
+            <div class="info-block font-16">\
+                <div><i class="glyphicon glyphicon-eye-open look font-14"></i><span class="num">'+data[i].look+'</span></div>\
+                    <div><i class="glyphicon glyphicon-comment coments font-14"></i><span class="num">'+data[i].coments+'</span></div>\
+                </div>\
+            </div>\
+        </a>';
+    }
+    return html;
 }

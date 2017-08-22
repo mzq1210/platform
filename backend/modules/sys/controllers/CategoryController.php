@@ -15,7 +15,7 @@ use app\components\base\BaseController;
 use common\components\library\ShowMessage;
 
 class CategoryController extends BaseController{
-    
+
     public function actionIndex(){
         $params = $this->request->post();
         $dataProvider = Category::search($params);
@@ -46,7 +46,7 @@ class CategoryController extends BaseController{
             'params' => $params,
         ]);
 
-}
+    }
     /**
      * 添加顶级分类
      * @param int $id
@@ -148,7 +148,7 @@ class CategoryController extends BaseController{
      */
     public function actionDelete($id)
     {
-       
+
         $model = Category::getDetailGroupById($id);
         if ($model->del_flag != 1) {
             $data = [

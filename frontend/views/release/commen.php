@@ -3,10 +3,7 @@ use yii\helpers\Url;
 ?>
 
 <link rel="stylesheet" href="/css/comment-edit.css">
-<script src="/utils/zepto.js"></script>
-<script src="/js/comment-edit.js"></script>
 <link rel="stylesheet" href="/css/calc-detail.css">
-<script src="/js/calc-detail.js"></script>
 <style>
     .comment-edit .editor input{
         width: 100%;
@@ -44,7 +41,7 @@ use yii\helpers\Url;
     </div>
     <div class="gray-space"></div>
 
-    <input type="hidden" name="parentId" value="<?= $id; ?>">
+    <input type="hidden" name="postId" value="<?= $id; ?>">
     <div class="footer flex border-top">
         <div class="commit" onclick="submit();">
             评论
@@ -64,6 +61,16 @@ use yii\helpers\Url;
 
 <script>
     function submit() {
+        var switcher;
+        if($('textarea[name=content]').val().length==0){
+            clearTimeout(switcher);
+            $(".console").html("请输入内容！");
+            $(".console").css("display","block");
+            switcher = setTimeout(function(){
+                $(".console").css("display","none")
+            },2000);
+            return false;
+        }
         $('form').submit();
     }
 </script>

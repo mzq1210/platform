@@ -8,7 +8,7 @@
 namespace frontend\controllers;
 
 use Yii;
-use yii\helpers\Json;
+use common\components\Tools;
 use common\models\wechat\Content;
 use common\models\wechat\Category;
 use app\components\base\BaseController;
@@ -20,24 +20,31 @@ class IndexController extends BaseController {
      * @return string
      */
     public function actionIndex(){
-        $Content=new Content();
-        $Category=new Category();
-        if (Yii::$app->request->isAjax) {   //门店
-            $post = Yii::$app->request->get();
-            $page = isset($post['page'])? $post['page'] : 0;
-            $size = isset($post['size'])? $post['size'] : 10;
-            $data=$Content->getContentList($page, $size);
-            echo Json::encode($data);exit;
-        }
-
+        //$this->layout = false;
         $config=$this->wxJsConfig();
-        $Content=$Content->getContentList(0, 10);
-        $Category=$Category->getCategoryData();
+        $category=Category::getCategoryData();
+        $data = Content::getContentList(0, 10);
+        $content = $this->_optimizeData($data);
 
         return $this->render('index',[
-        	'Content'=>$Content,
-            'Category'=>$Category,
+            'content'=>$content,
+            'Category'=>$category,
             'config'=>$config
         ]);
+    }
+
+    /**
+     * 处理数据
+     * @param $data
+     * @return mixed
+     */
+    private function _optimizeData($data){
+        foreach ($data as $key => $value){
+            $data[$key]['ctime'] = Tools::timeTran($value['ctime']);
+            if($value['pic'] != ''){
+                $data[$key]['pics'] = explode(',', $value['pic']);
+            }
+        }
+        return $data;
     }
 }

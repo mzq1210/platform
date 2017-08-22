@@ -8,6 +8,7 @@
 
 namespace common\models\wechat;
 
+use yii\data\Pagination;
 use common\models\base\BaseWechat;
 
 class User extends BaseWechat
@@ -20,12 +21,26 @@ class User extends BaseWechat
         return 'wechat_user';
     }
 
+    public static function search($params=[]){
+        $query = self::find()->where(['del_flag' => 0])->orderBy(['id' => SORT_ASC]);
+        $pageSize = isset($params['per-page']) ? $params['per-page'] : 10;
 
-    public static function getUserOpenId($openid){
-        return self::find()->select(['openid'])->where(['openid'=>$openid])->one();
+        if(isset($params['name'])) {
+            $query->andFilterWhere(['like', 'name', $params['name']]);
+        }
+
+        $countQuery = clone $query;
+        $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => $pageSize]);
+        $info['data'] = $query->offset($pages->offset)->limit($pages->limit)->all();
+        $info['pages'] = $pages;
+        return $info;
     }
 
-    public static function getUserInfo($openid){
-        return self::find()->where(['openid'=>$openid])->asArray()->one();
+    public static function getUserInfo($params, $field='*', $bool=true){
+        $info = self::find()->select($field)->where($params);
+        if($bool){
+            $info = $info->asArray();
+        }
+        return $info->one();
     }
 }

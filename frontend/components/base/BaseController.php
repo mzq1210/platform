@@ -10,34 +10,49 @@ namespace app\components\base;
 use Yii;
 use yii\web\Controller;
 use app\components\Cookie;
+use common\models\wechat\User;
 
 class BaseController extends Controller
 {
 
     //总的redis对象
-    public $cache;
     public $request;
-    public $session;
     public $userid;
+    public $openid;
     public $username;
     public $datetime;
-
-    public $wechat;
-    public $actoken;
-    public $appid;
-    public $secret;
+    public $accessToken;
 
     public function init()
     {
         parent::init();
         $this->request = Yii::$app->request;
-        $this->session = Yii::$app->session;
-        $this->userid = $this->session->get('userid');
-        $this->username = $this->session->get('username');
         $this->datetime = date('Y-m-d H:i:s');
-        /*if (Cookie::getCookie('openid') == "") {
-            header('location:http://www.onelog.cn/wx/getcode');
-        }*/
+        $this->accessToken = Yii::$app->wechat->getAccessToken();
+
+        /*$this->openid = Cookie::getCookie('openid');
+        $accessToken = Cookie::getCookie('access_token');
+        $refreshToken = Cookie::getCookie('refresh_token');
+        //验证access_token是否有效
+        $status = Yii::$app->wechat->checkOauth2AccessToken($accessToken, $this->openid);
+        if(!$this->openid || !$status){
+            if($refreshToken){//刷新access_token
+                $res = Yii::$app->wechat->refreshOauth2AccessToken($refreshToken);
+                Cookie::setCookie('openid', $res['openid'], time()+3600);
+                Cookie::setCookie('access_token', $res['access_token'], time()+3600);
+                $this->openid = $res['openid'];
+            }else{
+                header('location:http://www.onelog.cn/wx/getcode');
+            }
+        }
+
+        $data = ['openid' => $this->openid];
+        $info = User::getUserInfo($data);
+        if(!$info){
+			header('location:http://www.onelog.cn/wx/getcode');
+		}
+        $this->userid = $info['id'];
+        $this->username = $info['name'];*/
     }
 
     //验证token
@@ -66,9 +81,46 @@ class BaseController extends Controller
     }
 
     //消息
-    public function massage($openid, $data)
+    public function massage($data)
     {
         $wechat = Yii::$app->wechat;
-        return $wechat->sendText($openid, $data);
+        return $wechat->sendMessage($data);
     }
+
+    public function pr($arr){
+
+        $arr = func_get_args();
+
+        echo "<pre>";
+
+        print_r($arr);
+
+        echo "</pre>";
+    }
+
+
+    /**
+     * 处理数据
+     * @param $data
+     * @return mixed
+     */
+//    public function _optimizeData($data){
+//        foreach ($data as $key => $value){
+//            $data[$key]['ctime'] = $this->_timeTran($value['ctime']);
+//            if($value['pic'] != ''){
+//                $data[$key]['pics'] = explode(',', $value['pic']);
+//            }
+//            //处理超链接
+//            preg_match_all("/http:[\/]{2}[a-z]+[.]{1}[a-z]+[\/]*[A-Za-z\d]+/", $value['content'], $array);
+//            if(!empty($array[0])) {
+//                foreach ($array[0] as $k=>$v){
+//                    $value['content'] = str_replace($v, '<a style="color:#00f;" href="'.$v.'">'.$v.'</a>', $value['content']);
+//                }
+//                $data[$key]['content'] = $value['content'];
+//            }
+//        }
+//        return $data;
+//    }
+//
+
 }

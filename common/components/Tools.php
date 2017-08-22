@@ -273,4 +273,113 @@ class Tools {
         return false;
     }
 
+    /**
+     * 递归创建目录
+     * @param $dir
+     * @param $mode
+     * @return bool
+     */
+    public static function createDir($dir, $mode) {
+        if (!is_dir($dir)) {
+            if (!self::createDir(dirname($dir), $mode)) {
+                return false;
+            }
+            if (!mkdir($dir, $mode, true)) {
+                return false;
+            } else {
+                chmod($dir, $mode);
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * @desc 保存微信图片素材
+     * @param $filecontent
+     */
+    public static function saveWeixinFile($filecontent)
+    {
+        //创建对应目录(注意权限)
+        $basePath = 'upload/'.date('Y/m/d');
+        self::createDir($basePath, 0777);
+        //拼接文件名
+        $str = self::createRandomStr(10);
+        $file = $basePath.'/'.$str.'.jpg';
+        //写入图片
+        $local_file = fopen($file, 'w');
+        if (false !== $local_file){
+            if (false !== fwrite($local_file, $filecontent)) {
+                fclose($local_file);
+            }
+        }
+        return '/'.$file;
+    }
+
+    /**
+     * @desc curl获取微信图片素材
+     * @param $url
+     * @return mixed
+     */
+    public static function https_request($url)
+    {
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, FALSE);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        $output = curl_exec($curl);
+        curl_close($curl);
+        return $output;
+    }
+
+    /**
+     * 创建随机数
+     * @param $length
+     * @return string
+     */
+    public static function createRandomStr($length){
+        $str = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';//62个字符
+        $strlen = 62;
+        while($length > $strlen){
+            $str .= $str;
+            $strlen += 62;
+        }
+        $str = str_shuffle($str);
+        return substr($str,0,$length);
+    }
+
+    /**
+     * 处理时间
+     * @param $the_time
+     * @return bool|string
+     */
+    public static function timeTran($the_time) {
+        header("Content-type: text/html; charset=utf8");
+        date_default_timezone_set("Asia/Shanghai");   //设置时区
+        $now_time = date("Y-m-d H:i:s", time());
+        $now_time = strtotime($now_time);
+        $dur = $now_time - $the_time;
+        if ($dur < 0) {
+            return $the_time;
+        } else {
+            if ($dur < 60) {
+                return $dur . '秒前';
+            } else {
+                if ($dur < 3600) {
+                    return floor($dur / 60) . '分钟前';
+                } else {
+                    if ($dur < 86400) {
+                        return floor($dur / 3600) . '小时前';
+                    } else {
+                        if ($dur < 259200) {//3天内
+                            return floor($dur / 86400) . '天前';
+                        } else {
+                            return date("Y-m-d H:i:s", $the_time);
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
