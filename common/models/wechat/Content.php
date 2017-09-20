@@ -37,36 +37,20 @@ class Content extends BaseWechat
     }
 
     //获取所有话题列表
-    public static function getContentList($page, $size){
+    public static function getContentList($params){
         $query = self::find()->select(['content','title','wechat_user.name as uname','pic','headimgurl','cid','wechat_content.ctime','zan','wechat_content.id','look','wechat_category.name as cname','coments'])
            ->innerJoin("`wechat_user` on `wechat_content`.`uid` = `wechat_user`.`id`")
            ->innerJoin("`wechat_category` on `wechat_content`.`cid` = `wechat_category`.`id`")
             ->where(['wechat_content.del_flag'=>0]);
+        if(isset($params['cid'])){
+            $query->andWhere(['wechat_category.id'=>$params['cid']]);
+        }
+        if(isset($params['uid'])){
+            $query->andWhere(['wechat_content.uid'=>$params['uid']]);
+        }
         $query->orderBy(['wechat_content.ctime'=>SORT_DESC]);
-        $list = $query->offset($page * $size)->limit($size)->asArray()->all();
+        $list = $query->offset($params['page'] * $params['size'])->limit($params['size'])->asArray()->all();
         return $list;
-    }
-
-    //获取用户话题列表
-    public static function getUserContentList($id){
-        return self::find()->select(['content','title','wechat_user.name as uname','wechat_user.openid','pic','headimgurl','cid','wechat_content.ctime','zan','wechat_content.id','look','wechat_category.name as cname','coments'])
-            ->innerJoin("`wechat_user` on `wechat_content`.`uid` = `wechat_user`.`id`")
-            ->innerJoin("`wechat_category` on `wechat_content`.`cid` = `wechat_category`.`id`")
-            ->orderBy(['wechat_content.ctime'=>SORT_DESC])
-            ->where(['wechat_content.del_flag'=>0, 'wechat_content.uid'=>$id])
-            ->asArray()
-            ->all();
-    }
-
-    //获取分类话题
-    public static function getCateContentList($cid){
-        return self::find()->select(['content','title','wechat_user.name as uname','pic','headimgurl','cid','wechat_content.ctime','zan','wechat_content.id','look','wechat_category.name as cname','coments'])
-            ->innerJoin("`wechat_user` on `wechat_content`.`uid` = `wechat_user`.`id`")
-            ->innerJoin("`wechat_category` on `wechat_content`.`cid` = `wechat_category`.`id`")
-            ->orderBy(['wechat_content.ctime'=>SORT_DESC])
-            ->where(['wechat_content.del_flag'=>0, 'wechat_category.id'=>$cid])
-            ->asArray()
-            ->all();
     }
 
     //话题详情

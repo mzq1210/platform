@@ -18,10 +18,15 @@ class CategoryController extends BaseController{
     public function actionInfo(){
         $id=Yii::$app->request->get('id');
         $Category=Category::getThisCategory($id);
-        $data=Content::getCateContentList($id);
+        $params = [
+            'page' => 0,
+            'size' => 10,
+            'cid'  => $id
+        ];
+        $data=Content::getContentList($params);
 
         $Content = $this->_optimizeData($data);
-        $config = $this->wxJsConfig();
+        $config=$this->wxJsConfig();
         return$this->render('index',[
             'Content'=>$Content,
             'Category'=>$Category,

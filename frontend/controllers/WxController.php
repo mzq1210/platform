@@ -26,13 +26,16 @@ class WxController extends Controller{
      * @desc 获取code
      */
     public function actionGetcode(){
+
         $this->secret=Yii::$app->wechat->appSecret;
-        $backUrl="http://www.onelog.cn/wx/openid";
+        $backUrl="http://wx.weihuailai.com/wx/openid";
         $url=Yii::$app->wechat->getOauth2AuthorizeUrl($backUrl);
+
         header('location:'.$url);
     }
 
     public function actionOpenid(){
+        //var_dump($_GET);die;
 
         if(isset($_GET['code'])){
             $res=Yii::$app->wechat->getOauth2AccessToken($_GET['code']);

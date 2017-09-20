@@ -71,8 +71,8 @@ use yii\helpers\Url;
             </div>
         <?php } ?>
 
-        <div style="width: 95%;margin:0 auto;">
-            <img src="http://show.onelog.cn/platform/platform/2017/07/14/guanzhu.jpg" width="100%" style="margin-right: 1%; margin-top: 8px;display: inline-block;">
+        <div style="width: 98%;margin:0 auto;">
+            <img src="/images/sss.png" width="100%" style="margin-right: 1%; margin-top: 8px;display: inline-block;">
         </div>
 
 

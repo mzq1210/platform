@@ -71,13 +71,15 @@ use yii\helpers\Url;
 <!--                                    </div>-->
 <!--                                </div>-->
                                 <div class="border-box">
-                                    <div class="item-title font-14 neirong" style="max-height: 80px;">
+                                    <div class="item-title font-16 biaoti" style="max-height: 80px;">
                                         <?= $value['content'];?>
                                     </div>
                                 </div>
                                 <?php if(isset($value['pics'])):?>
                                     <?php foreach ($value['pics'] as $k => $v): ?>
-                                        <div class="imgbox"><img class="img-rounded" src="<?= $v;?>"></div>
+                                        <?php if($k<3):?>
+                                            <div class="imgbox"><img style="width: 122px;height: 122px;" class="img-rounded" src="<?= $v;?>"></div>
+                                        <?php endif;?>
                                     <?php endforeach;?>
                                 <?php endif;?>
                             </div>
@@ -99,8 +101,10 @@ use yii\helpers\Url;
     <a href="<?php echo Url::toRoute(['/release/index']);?>"></a>
 </div>
 <script type='text/javascript'>
+    var cid = '<?= $Category['id'];?>';
     $(function(){
         $(".biaoti").dotdotdot();//省略号
         $(".neirong").dotdotdot();//省略号
     })
 </script>
+<script  src="/js/category.js"></script>

@@ -2,15 +2,9 @@
 use yii\helpers\Url;
 ?>
 
-<link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap-fileinput/4.3.9/css/fileinput.min.css">
-<script type="text/javascript" src="https://cdn.bootcss.com/bootstrap-fileinput/4.3.9/js/fileinput.min.js"></script>
-<script type="text/javascript" src="https://cdn.bootcss.com/bootstrap-fileinput/4.3.9/js/locales/zh.min.js"></script>
 <script type="text/javascript" src="/js/dialog.js"></script>
-
 <link rel="stylesheet" href="/css/comment-edit.css">
 <script src="/js/comment-edit.js"></script>
-<link rel="stylesheet" href="/css/calc-detail.css">
-<script src="/js/calc-detail.js"></script>
 
 <style>
     .comment-edit .editor input{
@@ -67,23 +61,14 @@ use yii\helpers\Url;
 <div class="gray-space"></div>
 <form class="form-horizontal" action="<?php echo Url::to(['release/create']); ?>" method="post">
 <div class="comment-edit">
-    <div class="calc">
-        <div class="list font-14 padding-left-double padding-right-double">
-            <div class="item-box item padding-top-double padding-bottom-double">
-                <span class="color-light-font">选择分类</span>
-                <div class="float-right">
-                    <span class="select">买卖</span>
-                    <i class="iconfont">&#xe601;</i>
-                </div>
-            </div>
-        </div>
-        <div class="gray-space"></div>
+    <?php foreach ($data as $key => $value):?>
+    <div class="radio btn btn-info">
+        <label style="padding: 0 10px;">
+            <input style="display: none;" type="radio" name="cid" value="<?= $value['id']?>" <?php if($key == 0){echo 'checked';}?>><?= $value['name']?>
+        </label>
     </div>
+    <?php endforeach;?>
 
-    
-<!--     <div class="editor padding-double">
-        <input type="text" name="title" placeholder="请输入标题">
-    </div> -->
     <div class="gray-space"></div>
     <div class="editor padding-double">
         <textarea name="content" placeholder="请输入内容"></textarea>
@@ -94,15 +79,12 @@ use yii\helpers\Url;
         </div>
     </div>
     <div class="gray-space"></div>
-
     <div class="filebox" style="display: none"></div>
-
     <div class="gray-space"></div>
 
     <div class="editor padding-double">
         <input type="text" name="title" placeholder="请输入手机号">
     </div>
-    <input type="hidden" name="cid" value="1">
     <div class="footer flex border-top">
         <div class="commit">
             发布
@@ -116,22 +98,6 @@ use yii\helpers\Url;
     请输入您的帖子内容...
 </div>
 
-<div class="select-menu">
-
-</div>
-<div class="menu-list list text-center">
-    <div class="item padding-double header">
-        选择分类
-    </div>
-    <div class="container">
-        <?php foreach ($data as $key => $value) { ?>
-            <div cid="<?php echo $value['id'] ?>" class="item padding-double font-14">
-                <?php echo $value['name'] ?>
-            </div>
-        <?php } ?>
-    </div>
-</div>
-
 <script type='text/javascript' src='http://res.wx.qq.com/open/js/jweixin-1.2.0.js' charset='utf-8'></script>
 <script>
     $(function () {
@@ -141,9 +107,6 @@ use yii\helpers\Url;
             $('input[type=hidden]').eq(i).remove();
         });
     });
-    //分类
-    var json = '<?php echo json_encode($data);?>';
-    var test_data = JSON.parse(json);
 
     wx.config(<?= json_encode($config) ?>);
     wx.ready(function () {});

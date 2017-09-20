@@ -9,6 +9,7 @@ namespace frontend\controllers;
 
 use Yii;
 use common\components\Tools;
+use common\models\wechat\User;
 use common\models\wechat\Content;
 use common\models\wechat\Category;
 use app\components\base\BaseController;
@@ -21,8 +22,23 @@ class IndexController extends BaseController {
      */
     public function actionIndex(){
         $config=$this->wxJsConfig();
+
+        $userModel = User::getUserInfo(['openid' => $this->openid], '', false);
+        if($userModel){
+            $data = [
+                'login_time' => time()
+            ];
+            $userModel->setAttributes($data, false);
+            $userModel->save();
+        }
+
         $category=Category::getCategoryData();
-        $data = Content::getContentList(0, 10);
+
+        $param = [
+            'page' => 0,
+            'size' => 10
+        ];
+        $data = Content::getContentList($param);
         $content = $this->_optimizeData($data);
 
         return $this->render('index',[

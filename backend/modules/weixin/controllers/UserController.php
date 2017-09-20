@@ -22,11 +22,13 @@ class UserController extends BaseController
 
         $info = User::search($params);
         $count = User::count();
+        $todayLogin = User::todayLogin();
         return $this->render('index', [
             'info' => $info['data'],
             'pages' => $info['pages'],
             'params' =>$params,
-            'count' => $count
+            'count' => $count,
+            'todayLogin' =>$todayLogin
         ]);
     }
 

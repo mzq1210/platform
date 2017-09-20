@@ -36,6 +36,10 @@ class User extends BaseWechat
         return $info;
     }
 
+    public static function todayLogin(){
+        return self::find()->where(['>', 'login_time', strtotime(date('Y-m-d'))])->count();
+    }
+
     public static function count(){
         return self::find()->where(['del_flag' => 0])->count();
     }

@@ -74,15 +74,25 @@ class ReleaseController extends BaseController{
                 'phone'=>$phone,
             ];
             $user->setAttributes($data, false);
+
             $res = $user->save();
             if($res){
-                $this->redirect(['/index/index']);
-                echo "成功";
+
+                $config = $this->wxJsConfig();
+                $id=$model->attributes['id'];
+
+
+                //return $this->redirect(['/index/index']);
+
+                return $this->render('success',['id'=>$id,'content'=>trim($params['content']),'config' =>$config]);
+
             }
         } else {
             echo "失败";
         }
     }
+
+
 
     //赞
     public function actionZan(){

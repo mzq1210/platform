@@ -20,6 +20,10 @@ use common\widgets\GoLinkPager;
             <label for="txtName">用户总数：</label>
             <input class="form-control ipt" disabled value="<?= $count;?>" style="font-weight: 700;color: #00f;">
         </div>
+        <div class="form-group input-group-sm" style="margin-left: 100px;">
+            <label for="txtName">今日活跃数：</label>
+            <input class="form-control ipt" disabled value="<?= $todayLogin;?>" style="font-weight: 700;color: #00f;">
+        </div>
     </form>
 
 </div>

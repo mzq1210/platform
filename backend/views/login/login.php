@@ -61,8 +61,8 @@ use yii\helpers\Url;
 
 	<div class="blank20"></div>
 	<div align="center" style="height:30px;line-height:30px;color:#555555">
-		Copyright &copy;2016 S系统 &nbsp; - &nbsp;
-		技术支持：PHP团队
+		Copyright &copy;2017 怀来便民网 &nbsp; - &nbsp;
+		技术总监：苗忠强
 	</div>
 
 </div>

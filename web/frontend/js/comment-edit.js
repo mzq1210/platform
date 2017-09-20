@@ -29,5 +29,9 @@ $(function(){
             return false;
         }
         $('form').submit();
+    });
+    $('.comment-edit .radio').click(function () {
+        $(this).siblings('.radio').removeClass('btn-success').addClass('btn-info');
+        $(this).removeClass('btn-info').addClass('btn-success');
     })
 })

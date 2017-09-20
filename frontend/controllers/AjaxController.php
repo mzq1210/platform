@@ -25,9 +25,8 @@ class AjaxController extends BaseController {
     public function actionIndex(){
         if (Yii::$app->request->isAjax) {   //门店
             $params = Yii::$app->request->get();
-            $page = isset($params['page'])? $params['page'] : 0;
-            $size = isset($params['size'])? $params['size'] : 10;
-            $data = Content::getContentList($page, $size);
+
+            $data = Content::getContentList($params);
             $content = $this->_optimizeData($data);
 
             echo Json::encode($content);exit;

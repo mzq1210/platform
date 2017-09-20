@@ -78,6 +78,7 @@ use yii\helpers\Url;
     请输入您的帖子内容...
 </div>
 <script>
+    var uid = '<?= $uid;?>';
     $(function () {
         $(".biaoti").dotdotdot();//省略号
         $(".neirong").dotdotdot();//省略号
@@ -132,3 +133,4 @@ use yii\helpers\Url;
         })
     })
 </script>
+<script  src="/js/user.js"></script>

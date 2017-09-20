@@ -46,11 +46,18 @@ class UserController extends BaseController{
         }
         $data = ['openid' => $openid];
         $info = User::getUserInfo($data);
-        $data=Content::getUserContentList($info['id']);
+
+        $params = [
+            'page' => 0,
+            'size' => 10,
+            'uid'  => $info['id']
+        ];
+        $data=Content::getContentList($params);
         $content = $this->_optimizeData($data);
 
         return $this->render('topic',[
             'data'=>$content,
+            'uid' => $info['id']
         ]);
     }
 

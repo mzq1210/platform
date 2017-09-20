@@ -1,6 +1,6 @@
 // index.js
 window.onload = function () {
-     new Swiper('#lunbo', {
+    new Swiper('#lunbo', {
         // 轮播图的方向，也可以是vertical方向
         direction: 'horizontal',
         //播放速度
@@ -14,7 +14,7 @@ window.onload = function () {
         // 这样，即使我们滑动之后， 定时器也不会被清除
         autoplayDisableOnInteraction: false
     });
-    
+
     // 页数
     var page = 0;
     // 每页展示10个
@@ -36,57 +36,25 @@ window.onload = function () {
             domNoData: '<div class="dropload-noData">到底了</div>'
         },
         loadUpFn: function (me) {
-            var result = '';
             $.ajax({
                 type: 'GET',
-                data:{page:0, size:10},
-                url: '/index/index',
+                data:{page:0, size:10, cid:cid},
+                url: '/ajax/index',
                 dataType: 'json',
                 success: function (data) {
-                    var arrLen = data.length;
-                    if (arrLen > 0) {
-                        for (var i = 0; i < arrLen; i++) {
-                            var picHtml = '';
-                            if(data[i].pic != ''){
-                                var pics = data[i].pics;
-                                for (var j = 0; j < pics.length; j++) {
-                                    picHtml += '<div class="imgbox"><img class="img-rounded" src="'+pics[j]+'"></div>';
-                                }
-                            }
-                            result += '<a href="/release/look?id='+data[i].id+'">\
-                            <div class="item-box">\
-                                <div class="font-12" style="color: #A1A2A4;padding: 8px 0;">'+data[i].ctime+
-                                '</div>'+
-                                '<div class="item item-thumbnail-left" style="border: none;">'+
-                                    '<div class="border-box">\
-                                        <div class="item-title font-16 biaoti" style="max-height: 50px;">'+data[i].content+'</div>'+
-                                    '</div>'+picHtml+
-                                '</div>\
-                                <div class="info-block font-16">\
-                                    <div><i class="glyphicon glyphicon-eye-open look font-14"></i><span class="num">'+data[i].look+'</span></div>\
-                                    <div><i class="glyphicon glyphicon-comment coments font-14"></i><span class="num">'+data[i].coments+'</span></div>\
-                                </div>\
-                            </div>\
-                        </a>';
-                        }
+                    if (data.length > 0) {
+                        var result = createList(data);
                     } else{
-                        // 锁定
-                        me.lock();
-                        // 无数据
-                        me.noData();
+                        me.lock();me.noData();
                     }
-                    // 为了测试，延迟1秒加载
                     setTimeout(function () {
-                        // 插入数据到页面，放到最后面
                         $('.article-list').html(result);
                         $(".biaoti").dotdotdot();//省略号
                         $(".neirong").dotdotdot();//省略号
-                        // 每次数据插入，必须重置
                         me.resetload();
                     }, 600);
                 },
                 error: function (xhr, type) {
-                    // 即使加载出错，也得重置
                     me.resetload();
                 }
             });
@@ -94,38 +62,40 @@ window.onload = function () {
         loadDownFn: function (me) {
             page++;
             // 拼接HTML
-            var result = '';
             $.ajax({
                 type: 'GET',
-                data:{page:page,size:size},
-                url: '/index/index',
+                data:{page:page,size:size,cid:cid},
+                url: '/ajax/index',
                 dataType: 'json',
                 success: function (data) {
-                    var arrLen = data.length;
+                    var arrLen = data.length; var result = '';
                     if (arrLen > 0) {
                         for (var i = 0; i < arrLen; i++) {
                             var picHtml = '';
                             if(data[i].pic != ''){
                                 var pics = data[i].pics;
                                 for (var j = 0; j < pics.length; j++) {
-                                    picHtml += '<div class="imgbox"><img class="img-rounded" src="'+pics[j]+'"></div>';
+                                    if(j<3){
+                                        picHtml += '<div class="imgbox"><img style="width: 122px;height: 122px;" class="img-rounded" src="'+pics[j]+'"></div>';
+                                    }
                                 }
                             }
                             result += '<a href="/release/look?id='+data[i].id+'">\
-                            <div class="item-box">\
-                                <div class="font-12" style="color: #A1A2A4;padding: 8px 0;">'+data[i].ctime+
+                                <div class="item-box">\
+                                    <div class="font-12" style="color: #A1A2A4;padding: 8px 0;">'+data[i].ctime+
+                                '<div class="float-right top-tip" style="margin-top: 4px;">'+data[i].cname+'</div>'+
                                 '</div>'+
                                 '<div class="item item-thumbnail-left" style="border: none;">'+
-                                    '<div class="border-box">\
-                                        <div class="item-title font-16 biaoti" style="max-height: 50px;">'+data[i].content+'</div>'+
-                                    '</div>'+picHtml+
+                                '<div class="border-box">\
+                                    <div class="item-title font-16 biaoti" style="line-height:25px;max-height: 50px;">'+data[i].content+'</div>'+
+                                '</div>'+picHtml+
                                 '</div>\
                                 <div class="info-block font-16">\
                                     <div><i class="glyphicon glyphicon-eye-open look font-14"></i><span class="num">'+data[i].look+'</span></div>\
-                                    <div><i class="glyphicon glyphicon-comment coments font-14"></i><span class="num">'+data[i].coments+'</span></div>\
+                                        <div><i class="glyphicon glyphicon-comment coments font-14"></i><span class="num">'+data[i].coments+'</span></div>\
+                                    </div>\
                                 </div>\
-                            </div>\
-                        </a>';
+                            </a>';
                         }
                     } else{
                         // 锁定
@@ -144,11 +114,42 @@ window.onload = function () {
                     }, 600);
                 },
                 error: function (xhr, type) {
-                    // 即使加载出错，也得重置
                     me.resetload();
                 }
             });
         },
         threshold: 50
     });
+};
+
+function createList(data) {
+    var html = '';
+    for(var i = 0; i < data.length; i++) {
+        var picHtml = '';
+        if(data[i].pic != ''){
+            var pics = data[i].pics;
+            for (var j = 0; j < pics.length; j++) {
+                if(j<3){
+                    picHtml += '<div class="imgbox"><img style="width: 122px;height: 122px;" class="img-rounded" src="'+pics[j]+'"></div>';
+                }
+            }
+        }
+        html += '<a href="/release/look?id='+data[i].id+'">\
+            <div class="item-box">\
+                <div class="font-12" style="color: #A1A2A4;padding: 8px 0;">'+data[i].ctime+
+            '<div class="float-right top-tip" style="margin-top: 4px;">'+data[i].cname+'</div>'+
+            '</div>'+
+            '<div class="item item-thumbnail-left" style="border: none;">'+
+            '<div class="border-box">\
+                <div class="item-title font-16 biaoti" style="line-height:25px;max-height: 50px;">'+data[i].content+'</div>'+
+            '</div>'+picHtml+
+            '</div>\
+            <div class="info-block font-16">\
+                <div><i class="glyphicon glyphicon-eye-open look font-14"></i><span class="num">'+data[i].look+'</span></div>\
+                    <div><i class="glyphicon glyphicon-comment coments font-14"></i><span class="num">'+data[i].coments+'</span></div>\
+                </div>\
+            </div>\
+        </a>';
+    }
+    return html;
 }
